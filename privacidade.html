@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política e Privacidade - Aurora</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        main {
+            padding: 3rem 0;
+            min-height: calc(100vh - 200px);
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .privacy-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .privacy-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .privacy-intro {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .last-updated {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+
+        .policy-section {
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .policy-section h2 {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .policy-section h3 {
+            font-size: 1.4rem;
+            color: #555;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .policy-section p {
+            margin-bottom: 1rem;
+            color: #555;
+            text-align: justify;
+        }
+
+        .policy-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .policy-section li {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .highlight-box h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item strong {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .privacy-header h1 {
+                font-size: 2rem;
+            }
+
+            .policy-section {
+                padding: 1.5rem;
+            }
+
+            .contact-details {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .policy-section {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .policy-section:nth-child(even) {
+            animation-delay: 0.1s;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Aurora</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="comandos.html">Comandos</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="regras.html">Regras</a></li>
+                <li><a href="privacidade.html" class="active">Política e Privacidade</a></li>
+            </ul>
+            <div class="mobile-menu" onclick="toggleMobileMenu()">☰</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <div class="privacy-header">
+                <h1>🔒 Política de Privacidade e Termos de Uso</h1>
+                <p class="privacy-intro">Transparência e segurança são prioridades para nós. Esta política explica como o Aurora coleta, usa e protege suas informações ao utilizar nossos serviços no Discord.</p>
+            </div>
+
+            <div class="last-updated">
+                📅 Última atualização: 24 de junho de 2025
+            </div>
+
+            <div class="policy-section">
+                <h2>📋 1. Informações que Coletamos</h2>
+                <p>O Aurora coleta apenas as informações necessárias para seu funcionamento adequado:</p>
+                
+                <h3>Dados Automáticos:</h3>
+                <ul>
+                    <li><strong>IDs de Usuário e Servidor:</strong> Identificadores únicos fornecidos pelo Discord</li>
+                    <li><strong>Mensagens de Comando:</strong> Apenas comandos direcionados ao bot</li>
+                    <li><strong>Configurações de Servidor:</strong> Preferências definidas pelos administradores</li>
+                    <li><strong>Logs de Uso:</strong> Registros de comandos executados para melhorias</li>
+                </ul>
+
+                <h3>Dados Não Coletados:</h3>
+                <ul>
+                    <li>❌ Mensagens privadas entre usuários</li>
+                    <li>❌ Conversas em canais não relacionadas a comandos</li>
+                    <li>❌ Informações pessoais sensíveis</li>
+                    <li>❌ Dados de outros bots ou aplicações</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>🛡️ 2. Como Protegemos Seus Dados</h2>
+                <p>Implementamos múltiplas camadas de segurança para proteger suas informações:</p>
+                
+                <ul>
+                    <li><strong>Criptografia:</strong> Todos os dados são criptografados em trânsito e em repouso</li>
+                    <li><strong>Acesso Restrito:</strong> Apenas desenvolvedores autorizados têm acesso aos dados</li>
+                    <li><strong>Servidores Seguros:</strong> Hospedagem em provedores certificados com alta segurança</li>
+                    <li><strong>Backups Protegidos:</strong> Backups regulares com criptografia adicional</li>
+                    <li><strong>Monitoramento:</strong> Sistemas de detecção de atividades suspeitas</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h3>🔐 Compromisso de Segurança</h3>
+                    <p>Nunca vendemos, alugamos ou compartilhamos seus dados com terceiros para fins comerciais. Seus dados são utilizados exclusivamente para o funcionamento do Aurora.</p>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>⚙️ 3. Como Utilizamos os Dados</h2>
+                <p>Os dados coletados são utilizados exclusivamente para:</p>
+                
+                <ul>
+                    <li><strong>Funcionalidade do Bot:</strong> Executar comandos e fornecer respostas</li>
+                    <li><strong>Personalização:</strong> Lembrar configurações e preferências do servidor</li>
+                    <li><strong>Melhorias:</strong> Analisar uso para desenvolver novas funcionalidades</li>
+                    <li><strong>Suporte Técnico:</strong> Diagnosticar e resolver problemas</li>
+                    <li><strong>Prevenção de Abuso:</strong> Detectar e prevenir uso inadequado</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>📅 4. Retenção de Dados</h2>
+                <p>Mantemos diferentes tipos de dados por períodos específicos:</p>
+                
+                <ul>
+                    <li><strong>Configurações de Servidor:</strong> Mantidas enquanto o bot estiver no servidor</li>
+                    <li><strong>Logs de Comandos:</strong> Mantidos por 90 dias para fins de suporte</li>
+                    <li><strong>Dados de Cache:</strong> Automaticamente limpos a cada 24 horas</li>
+                    <li><strong>Backups:</strong> Mantidos por 30 dias para recuperação de emergência</li>
+                </ul>
+
+                <h3>Exclusão Automática:</h3>
+                <p>Quando o Aurora é removido de um servidor, todas as configurações e dados relacionados são automaticamente excluídos em até 48 horas.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>👤 5. Seus Direitos</h2>
+                <p>Você tem total controle sobre seus dados e pode exercer os seguintes direitos:</p>
+                
+                <ul>
+                    <li><strong>Acesso:</strong> Solicitar informações sobre dados que temos sobre você</li>
+                    <li><strong>Correção:</strong> Corrigir dados incorretos ou desatualizados</li>
+                    <li><strong>Exclusão:</strong> Solicitar a remoção completa de seus dados</li>
+                    <li><strong>Portabilidade:</strong> Receber uma cópia de seus dados em formato legível</li>
+                    <li><strong>Limitação:</strong> Restringir o processamento de seus dados</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h3>📧 Como Exercer Seus Direitos</h3>
+                    <p>Entre em contato conosco através do email <strong>ohlevix12@gmail.com</strong> ou pelo Discord <strong>discord.gg/HMkvQtsck3</strong> para exercer qualquer um desses direitos.</p>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>📜 6. Termos de Uso</h2>
+                <p>Ao utilizar o Aurora, você concorda com os seguintes termos:</p>
+                
+                <h3>Uso Permitido:</h3>
+                <ul>
+                    <li>✅ Uso para entretenimento e moderação de servidores</li>
+                    <li>✅ Configuração personalizada de comandos</li>
+                    <li>✅ Integração com outros bots compatíveis</li>
+                </ul>
+
+                <h3>Uso Proibido:</h3>
+                <ul>
+                    <li>❌ Spam ou abuso de comandos</li>
+                    <li>❌ Tentativas de quebrar ou explorar o bot</li>
+                    <li>❌ Uso para atividades ilegais ou prejudiciais</li>
+                    <li>❌ Compartilhamento não autorizado de dados do bot</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>🔄 7. Atualizações desta Política</h2>
+                <p>Esta política pode ser atualizada ocasionalmente para refletir mudanças em nossos serviços ou requisitos legais. Quando isso acontecer:</p>
+                
+                <ul>
+                    <li>Notificaremos sobre mudanças significativas através do Discord</li>
+                    <li>A data de "última atualização" será modificada</li>
+                    <li>Mudanças entram em vigor 7 dias após a publicação</li>
+                    <li>Você será notificado se continuar usando o Aurora após as mudanças</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>🌍 8. Conformidade Legal</h2>
+                <p>O Aurora está em conformidade com as principais regulamentações de privacidade:</p>
+                
+                <ul>
+                    <li><strong>LGPD (Brasil):</strong> Lei Geral de Proteção de Dados Pessoais</li>
+                    <li><strong>GDPR (Europa):</strong> Regulamento Geral sobre a Proteção de Dados</li>
+                    <li><strong>CCPA (Califórnia):</strong> California Consumer Privacy Act</li>
+                    <li><strong>Discord ToS:</strong> Termos de Serviço do Discord</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="contact-info">
+                <h3>📞 Dúvidas sobre Privacidade?</h3>
+                <p>Se você tiver qualquer dúvida sobre esta política de privacidade ou sobre como tratamos seus dados, entre em contato conosco:</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <strong>📧 Email</strong>
+                        ohlevix12@gmail.com
+                    </div>
+                    <div class="contact-item">
+                        <strong>💬 Discord</strong>
+                        discord.gg/HMkvQtsck3
+                    </div>
+                    <div class="contact-item">
+                        <strong>⏰ Resposta</strong>
+                        24-48h em dias úteis
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Aurora. Todos os direitos reservados.</p>
+            <p>Feito com ❤️ para a comunidade Discord</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Animação de entrada suave para seções
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.policy-section').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Scroll suave para âncoras
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
