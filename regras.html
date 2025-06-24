@@ -3,16 +3,304 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Regras e Políticas - MeuBot</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Regras e Políticas - Aurora</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        main {
+            padding: 3rem 0;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .rules-intro {
+            font-size: 1.2rem;
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .rules-content {
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 2.5rem;
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .rules-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .rules-content h3 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .rules-section h4 {
+            font-size: 1.3rem;
+            color: #34495e;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #ecf0f1;
+            position: relative;
+        }
+
+        .rules-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .rules-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .rules-section li {
+            margin-bottom: 0.8rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .rules-section li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .rules-section li::before {
+            content: '✓';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #27ae60;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .prohibited li::before {
+            content: '✗';
+            background: #e74c3c;
+        }
+
+        .prohibited li {
+            border-left-color: #e74c3c;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-top: 4px solid #667eea;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-card h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-card p {
+            color: #7f8c8d;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 4px solid #e17055;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .section {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .rules-content {
+                padding: 1.5rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform-origin: left;
+            z-index: 9999;
+        }
+    </style>
 </head>
 <body>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+    
     <header>
         <nav class="container">
-            <a href="index.html" class="logo">MeuBot</a>
+            <a href="index.html" class="logo">🌟 Aurora</a>
             <ul class="nav-links">
                 <li><a href="index.html">Início</a></li>
                 <li><a href="comandos.html">Comandos</a></li>
+                <li><a href="novidades.html">Novidades</a></li>
                 <li><a href="contato.html">Contato</a></li>
                 <li><a href="regras.html" class="active">Regras</a></li>
             </ul>
@@ -22,97 +310,97 @@
 
     <main class="container">
         <section class="section">
-            <h2>Regras e Políticas</h2>
-            <p class="rules-intro">Leia atentamente nossos termos, políticas e diretrizes para usar o MeuBot da melhor forma possível.</p>
+            <h2>📋 Regras de Uso do Aurora</h2>
+            <p class="rules-intro">Leia atentamente nossas regras e diretrizes para usar o Aurora da melhor forma possível e garantir uma experiência segura e divertida para toda a comunidade Discord.</p>
             
             <div class="rules-content">
                 <h3>📋 Termos de Uso</h3>
                 <div class="rules-section">
-                    <h4>Uso Permitido</h4>
+                    <div class="highlight">
+                        <strong>🎯 Objetivo:</strong> O Aurora foi criado para melhorar a experiência da sua comunidade Discord, oferecendo moderação inteligente, entretenimento e utilidades práticas.
+                    </div>
+                    
+                    <h4>✅ Uso Permitido</h4>
                     <ul>
-                        <li>O bot deve ser usado apenas para fins legítimos e não maliciosos</li>
-                        <li>Utilização em servidores Discord públicos e privados</li>
-                        <li>Personalização das configurações conforme necessidades do servidor</li>
-                        <li>Uso de todos os comandos disponíveis dentro dos limites estabelecidos</li>
+                        <li><strong>Fins legítimos:</strong> Use o bot apenas para atividades legais e construtivas em sua comunidade</li>
+                        <li><strong>Servidores públicos e privados:</strong> O bot funciona em qualquer tipo de servidor Discord</li>
+                        <li><strong>Personalização livre:</strong> Configure comandos, permissões e recursos conforme as necessidades do seu servidor</li>
+                        <li><strong>Todos os comandos:</strong> Utilize qualquer funcionalidade disponível respeitando os limites de uso</li>
+                        <li><strong>Integração com outros bots:</strong> O Aurora é compatível com a maioria dos bots populares</li>
+                        <li><strong>Moderação automatizada:</strong> Configure filtros automáticos, sistemas de warn e punições graduais</li>
+                        <li><strong>Eventos e giveaways:</strong> Organize sorteios, enquetes e eventos para sua comunidade</li>
                     </ul>
                     
-                    <h4>Uso Proibido</h4>
-                    <ul>
-                        <li>É proibido usar o bot para spam, assédio ou qualquer atividade ilegal</li>
-                        <li>Não utilize para distribuir conteúdo ofensivo, discriminatório ou prejudicial</li>
-                        <li>Proibido tentar quebrar, hackear ou explorar vulnerabilidades do bot</li>
-                        <li>Não use o bot para atividades comerciais sem autorização prévia</li>
-                        <li>É vedado o uso excessivo que possa sobrecarregar nossos serviços</li>
+                    <h4>❌ Uso Proibido</h4>
+                    <ul class="prohibited">
+                        <li><strong>Spam e assédio:</strong> Não use o bot para enviar mensagens repetitivas ou assediar outros usuários</li>
+                        <li><strong>Conteúdo ofensivo:</strong> Proibido distribuir material discriminatório, ofensivo ou que promova ódio</li>
+                        <li><strong>Tentativas de hack:</strong> Não tente explorar vulnerabilidades, quebrar ou contornar limitações do bot</li>
+                        <li><strong>Uso comercial não autorizado:</strong> Atividades comerciais requerem autorização prévia da nossa equipe</li>
+                        <li><strong>Sobrecarga do sistema:</strong> Evite usar comandos excessivamente que possam prejudicar o desempenho</li>
+                        <li><strong>Contas falsas:</strong> Não crie múltiplas contas para contornar punições ou limitações</li>
+                        <li><strong>Violação de ToS do Discord:</strong> Qualquer uso que viole os termos do Discord é automaticamente proibido</li>
                     </ul>
                     
-                    <h4>Responsabilidades</h4>
+                    <h4>⚖️ Responsabilidades e Consequências</h4>
                     <ul>
-                        <li>Os administradores do servidor são responsáveis pelo uso adequado do bot</li>
-                        <li>Usuários devem seguir as regras do servidor onde o bot está instalado</li>
-                        <li>Reservamos o direito de remover o bot de servidores que violem estas regras</li>
-                        <li>Podemos suspender ou banir usuários que façam mau uso do serviço</li>
+                        <li><strong>Administradores:</strong> São responsáveis por monitorar o uso adequado do bot em seus servidores</li>
+                        <li><strong>Usuários:</strong> Devem seguir tanto as regras do bot quanto as regras específicas de cada servidor</li>
+                        <li><strong>Remoção automática:</strong> Servidores que violem estas regras podem ter o bot removido automaticamente</li>
+                        <li><strong>Sistema de punições:</strong> Warning → Suspensão temporária → Banimento permanente</li>
+                        <li><strong>Permissões atualizadas:</strong> Mantenha as permissões do bot sempre organizadas e seguras</li>
+                        <li><strong>Reporte de problemas:</strong> Comunique imediatamente qualquer uso inadequado que presenciar</li>
                     </ul>
                 </div>
             </div>
 
             <div class="rules-content">
-                <h3>🔒 Política de Privacidade</h3>
+                <h3>⚖️ Regras de Conduta e Comportamento</h3>
                 <div class="rules-section">
-                    <h4>Dados Coletados</h4>
+                    <div class="highlight">
+                        <strong>🤝 Nossa Filosofia:</strong> Acreditamos em uma comunidade respeitosa, divertida e acolhedora para todos. Seja parte dessa mudança positiva!
+                    </div>
+                    
+                    <h4>🤝 Comportamento Esperado</h4>
                     <ul>
-                        <li>IDs de usuários e servidores para personalização e configurações</li>
-                        <li>Comandos executados para estatísticas e melhorias do serviço</li>
-                        <li>Dados de uso básicos como horários de atividade</li>
-                        <li>Informações de configuração específicas do servidor</li>
-                        <li>Logs de erro para diagnóstico e correção de problemas</li>
+                        <li><strong>Respeito mútuo:</strong> Trate todos os usuários com cortesia, independente de diferenças de opinião</li>
+                        <li><strong>Uso consciente:</strong> Pense antes de usar comandos que possam afetar outros membros do servidor</li>
+                        <li><strong>Inclusividade:</strong> Respeite diversidade cultural, de gênero, orientação sexual e outras diferenças</li>
+                        <li><strong>Ambiente saudável:</strong> Contribua para discussões construtivas e mantenha o clima positivo</li>
+                        <li><strong>Colaboração:</strong> Ajude outros usuários que tenham dúvidas sobre o uso do bot</li>
+                        <li><strong>Feedback construtivo:</strong> Reporte problemas e sugira melhorias de forma educada</li>
+                        <li><strong>Educação:</strong> Ensine e aprenda com outros membros da comunidade</li>
                     </ul>
                     
-                    <h4>Como Usamos os Dados</h4>
+                    <h4>🛡️ Moderação Responsável</h4>
                     <ul>
-                        <li>Personalização da experiência de acordo com preferências do servidor</li>
-                        <li>Análise de performance e otimização do bot</li>
-                        <li>Diagnóstico e correção de erros técnicos</li>
-                        <li>Estatísticas internas para melhorar funcionalidades</li>
-                        <li>Suporte técnico quando solicitado pelos usuários</li>
+                        <li><strong>Não ao abuso de poder:</strong> Use comandos de moderação apenas quando necessário e justificado</li>
+                        <li><strong>Responsabilidade administrativa:</strong> Administradores devem ser exemplos de comportamento adequado</li>
+                        <li><strong>Punições justas:</strong> Aplique medidas proporcionais às infrações cometidas</li>
+                        <li><strong>Transparência:</strong> Mantenha logs das ações administrativas para prestação de contas</li>
+                        <li><strong>Educação antes punição:</strong> Sempre que possível, eduque antes de punir</li>
+                        <li><strong>Appeals:</strong> Permita que usuários possam contestar punições injustas</li>
+                        <li><strong>Consistência:</strong> Aplique as regras de forma igual para todos os membros</li>
                     </ul>
                     
-                    <h4>Proteção de Dados</h4>
+                    <h4>⚡ Limites Técnicos e Boas Práticas</h4>
                     <ul>
-                        <li>Mensagens não são armazenadas permanentemente</li>
-                        <li>Não compartilhamos dados pessoais com terceiros</li>
-                        <li>Dados são criptografados e armazenados com segurança</li>
-                        <li>Você pode solicitar a remoção dos seus dados a qualquer momento</li>
-                        <li>Acesso aos dados é restrito apenas à equipe técnica autorizada</li>
+                        <li><strong>Rate limiting:</strong> Respeite os intervalos entre comandos (geralmente 2-3 segundos)</li>
+                        <li><strong>Não spam de comandos:</strong> Evite repetir o mesmo comando múltiplas vezes seguidas</li>
+                        <li><strong>Música responsável:</strong> Use recursos de áudio respeitando o volume e preferências dos outros</li>
+                        <li><strong>Canais apropriados:</strong> Use comandos nos canais designados para evitar poluição</li>
+                        <li><strong>Reporte bugs adequadamente:</strong> Use os canais oficiais com informações detalhadas</li>
+                        <li><strong>Aguarde processamento:</strong> Não envie novos comandos enquanto o anterior está sendo processado</li>
+                        <li><strong>Recursos limitados:</strong> Entenda que alguns comandos têm uso limitado por motivos técnicos</li>
                     </ul>
-                </div>
-            </div>
 
-            <div class="rules-content">
-                <h3>⚖️ Regras de Conduta</h3>
-                <div class="rules-section">
-                    <h4>Comportamento Esperado</h4>
-                    <ul>
-                        <li>Seja respeitoso ao usar comandos públicos</li>
-                        <li>Use os comandos de forma responsável e consciente</li>
-                        <li>Respeite outros usuários e suas preferências</li>
-                        <li>Mantenha um ambiente saudável no servidor</li>
-                        <li>Colabore para uma experiência positiva para todos</li>
-                    </ul>
-                    
-                    <h4>Moderação</h4>
-                    <ul>
-                        <li>Não abuse dos comandos de moderação</li>
-                        <li>Use poderes administrativos com responsabilidade</li>
-                        <li>Aplique punições de forma justa e proporcional</li>
-                        <li>Mantenha logs de ações importantes para transparência</li>
-                    </ul>
-                    
-                    <h4>Limites Técnicos</h4>
-                    <ul>
-                        <li>Respeite os limites de rate limiting dos comandos</li>
-                        <li>Não tente sobrecarregar o bot com comandos excessivos</li>
-                        <li>Use recursos de música de forma consciente</li>
-                        <li>Reporte bugs através dos canais oficiais</li>
+                    <h4>🚨 Sistema de Advertências</h4>
+                    <ul class="prohibited">
+                        <li><strong>1ª Advertência:</strong> Aviso educativo com explicação da regra violada</li>
+                        <li><strong>2ª Advertência:</strong> Suspensão temporária de 24 horas do uso do bot</li>
+                        <li><strong>3ª Advertência:</strong> Suspensão de 7 dias + revisão do caso</li>
+                        <li><strong>Violações graves:</strong> Banimento imediato para casos de assédio, spam malicioso ou atividades ilegais</li>
+                        <li><strong>Servidor infrator:</strong> Remoção do bot do servidor após múltiplas violações não corrigidas</li>
                     </ul>
                 </div>
             </div>
@@ -120,43 +408,45 @@
             <div class="rules-content">
                 <h3>📞 Suporte e Contato</h3>
                 <div class="rules-section">
-                    <h4>Canais de Suporte</h4>
-                    <ul>
-                        <li><strong>Discord:</strong> Servidor de Suporte Oficial - discord.gg/meubot</li>
-                        <li><strong>Email:</strong> suporte@meubot.com (resposta em até 48h)</li>
-                        <li><strong>GitHub:</strong> Issues no repositório oficial para bugs</li>
-                        <li><strong>Website:</strong> Formulário de contato em nosso site</li>
-                    </ul>
+                    <div class="contact-grid">
+                        <div class="contact-card">
+                            <h4>💬 Discord</h4>
+                            <p><strong>Servidor Oficial:</strong> discord.gg/aurora</p>
+                            <p>Resposta imediata da comunidade</p>
+                            <p>Suporte 24/7 da comunidade</p>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <h4>📧 Email</h4>
+                            <p><strong>Contato:</strong> suporte@aurora.com</p>
+                            <p>Resposta em até 48 horas</p>
+                            <p>Suporte técnico especializado</p>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <h4>🐛 GitHub</h4>
+                            <p><strong>Issues:</strong> Repositório oficial</p>
+                            <p>Análise em até 72 horas</p>
+                            <p>Para bugs e melhorias</p>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <h4>🌐 Website</h4>
+                            <p><strong>Formulário:</strong> Contato no site</p>
+                            <p>Para questões gerais</p>
+                            <p>FAQ e documentação</p>
+                        </div>
+                    </div>
                     
-                    <h4>Tipos de Suporte</h4>
+                    <h4>🎯 Tipos de Suporte Disponível</h4>
                     <ul>
                         <li>Suporte técnico para problemas com comandos</li>
                         <li>Ajuda com configuração e personalização</li>
-                        <li>Reporte de bugs e problemas</li>
+                        <li>Reporte de bugs e problemas de segurança</li>
                         <li>Sugestões de novas funcionalidades</li>
-                        <li>Questões sobre privacidade e dados</li>
+                        <li>Questões sobre privacidade e proteção de dados</li>
+                        <li>Orientação sobre melhores práticas de uso</li>
                     </ul>
-                    
-                    <h4>Tempo de Resposta</h4>
-                    <ul>
-                        <li>Discord: Resposta imediata da comunidade</li>
-                        <li>Email: 24-48 horas em dias úteis</li>
-                        <li>GitHub: Análise em até 72 horas</li>
-                        <li>Problemas críticos: Prioridade máxima</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="rules-content">
-                <h3>🔄 Atualizações das Políticas</h3>
-                <div class="rules-section">
-                    <p>Esta política pode ser atualizada periodicamente. Mudanças significativas serão comunicadas através de:</p>
-                    <ul>
-                        <li>Notificação no servidor Discord oficial</li>
-                        <li>Aviso na página inicial do website</li>
-                        <li>Email para administradores de servidores (quando aplicável)</li>
-                    </ul>
-                    <p><strong>Última atualização:</strong> 24 de Junho de 2024</p>
                 </div>
             </div>
         </section>
@@ -164,11 +454,60 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 MeuBot. Todos os direitos reservados.</p>
-            <p>Feito com ❤️ para a comunidade Discord</p>
+            <p>&copy; 2025 Aurora. Todos os direitos reservados.</p>
+            <p>Feito com ❤️ para a comunidade Discord brasileira</p>
+            <p>🔒 Seus dados estão seguros conosco | 🌟 Obrigado por usar o Aurora!</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Indicador de scroll
+        window.addEventListener('scroll', function() {
+            const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('scrollIndicator').style.transform = `scaleX(${scrolled / 100})`;
+        });
+
+        // Animação de entrada dos elementos
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.rules-content').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Menu mobile (função básica)
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
