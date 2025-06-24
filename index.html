@@ -3,18 +3,492 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MeuBot - Bot para Discord</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Aurora - Bot para Discord</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        main {
+            padding: 3rem 0;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.05) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 2rem 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .bot-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
+            margin: 0 auto 2rem;
+            border: 5px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            animation: avatarPulse 3s ease-in-out infinite;
+            object-fit: cover;
+            display: block;
+        }
+
+        @keyframes avatarPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            }
+            50% { 
+                transform: scale(1.05);
+                box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+            }
+        }
+
+        .bot-avatar:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.4);
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #667eea, #764ba2, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+            text-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            animation: titleGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { filter: drop-shadow(0 0 5px rgba(102, 126, 234, 0.3)); }
+            to { filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.6)); }
+        }
+
+        .hero p {
+            font-size: 1.6rem;
+            color: #666;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+            transform: perspective(1000px) rotateX(0deg);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #764ba2, #667eea);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) perspective(1000px) rotateX(10deg);
+            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.6);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(102, 126, 234, 0.1), 
+                rgba(118, 75, 162, 0.1), 
+                rgba(255, 107, 107, 0.1)
+            );
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+
+        .feature-card:hover::before {
+            left: 0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2) rotate(10deg);
+            filter: drop-shadow(0 10px 25px rgba(102, 126, 234, 0.3));
+        }
+
+        .feature-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            color: #333;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .feature-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .feature-card:hover h3::after {
+            width: 50px;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-heart {
+            color: #ff6b6b;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 50%, 100% { transform: scale(1); }
+            25%, 75% { transform: scale(1.2); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                flex-direction: column;
+                padding: 1rem;
+                border-radius: 0 0 10px 10px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                color: #333;
+                margin: 0.5rem 0;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.3rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .bot-avatar {
+                width: 120px;
+                height: 120px;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Animações de entrada */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .feature-card {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .feature-card:nth-child(odd) {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .feature-card:nth-child(even) {
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+        .feature-card:nth-child(5) { animation-delay: 0.5s; }
+        .feature-card:nth-child(6) { animation-delay: 0.6s; }
+        .feature-card:nth-child(7) { animation-delay: 0.7s; }
+        .feature-card:nth-child(8) { animation-delay: 0.8s; }
+        .feature-card:nth-child(9) { animation-delay: 0.9s; }
+
+        /* Partículas flutuantes */
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: floatParticle 10s infinite linear;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="floating-particles" id="particles"></div>
+
     <header>
         <nav class="container">
-            <a href="index.html" class="logo">MeuBot</a>
+            <a href="index.html" class="logo">Aurora</a>
             <ul class="nav-links">
-                <li><a href="index.html">Início</a></li>
+                <li><a href="index.html" class="active">Início</a></li>
                 <li><a href="comandos.html">Comandos</a></li>
                 <li><a href="contato.html">Contato</a></li>
                 <li><a href="regras.html">Regras</a></li>
+                <li><a href="privacidade.html">Privacidade</a></li>
             </ul>
             <div class="mobile-menu" onclick="toggleMobileMenu()">☰</div>
         </nav>
@@ -23,41 +497,55 @@
     <main class="container">
         <section class="section">
             <div class="hero">
-                <h1>MeuBot</h1>
-                <p>O bot mais incrível para seu servidor Discord!</p>
-                <a href="https://discord.com/api/oauth2/authorize?client_id=SEU_CLIENT_ID&permissions=8&scope=bot" class="cta-button">Adicionar ao Discord</a>
+                <img src="https://cdn.discordapp.com/attachments/1346969321502539826/1387205655416541285/Image_20250624_195346.jpg?ex=685c7f71&is=685b2df1&hm=73ca0aeab0c06b0ffe58f3aaaf05d992070c743f462f77fcd2e8e62f47d70985&" alt="Aurora Bot" class="bot-avatar">
+                <h1>✨ Aurora</h1>
+                <p>O bot mais elegante e poderoso para transformar seu servidor Discord em uma experiência mágica e inesquecível!</p>
+                <a href="https://discord.com/oauth2/authorize?client_id=1379556005666357268" class="cta-button">
+                    🚀 Adicionar ao Discord
+                </a>
             </div>
 
             <div class="features">
                 <div class="feature-card">
-                    <div class="feature-icon">🎵</div>
-                    <h3>Música</h3>
-                    <p>Reproduza suas músicas favoritas com qualidade cristalina e controles avançados.</p>
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Moderação Avançada</h3>
+                    <p>Sistema completo de moderação com auto-mod inteligente, filtros personalizáveis, logs detalhados e punições automáticas para manter seu servidor sempre seguro e organizado.</p>
                 </div>
+                
                 <div class="feature-card">
                     <div class="feature-icon">🎮</div>
-                    <h3>Jogos</h3>
-                    <p>Mini-jogos divertidos para entreter sua comunidade e criar interações únicas.</p>
+                    <h3>Diversão Infinita</h3>
+                    <p>Mini-jogos interativos, memes atualizados, piadas inteligentes, sorteios automáticos e atividades envolventes que mantêm sua comunidade sempre animada e conectada.</p>
                 </div>
+                
                 <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>Moderação</h3>
-                    <p>Ferramentas poderosas de moderação para manter seu servidor seguro e organizado.</p>
+                    <div class="feature-icon">💰</div>
+                    <h3>Sistema de Economia</h3>
+                    <p>Economia virtual completa com moedas personalizadas, empregos diversos, loja exclusiva, apostas emocionantes e rankings competitivos para engajar todos os membros.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Estatísticas</h3>
-                    <p>Acompanhe o crescimento e atividade do seu servidor com relatórios detalhados.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3>Personalização</h3>
-                    <p>Configure o bot de acordo com suas necessidades e estilo do servidor.</p>
-                </div>
+                
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
-                    <h3>Alta Performance</h3>
-                    <p>Bot otimizado com 99.9% de uptime e respostas ultra-rápidas.</p>
+                    <h3>Performance Suprema</h3>
+                    <p>Infraestrutura de ponta com 99.9% de uptime, respostas instantâneas, servidores globais e tecnologia de última geração para máxima performance.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Notificações Smart</h3>
+                    <p>Sistema inteligente de avisos personalizáveis, lembretes automáticos, anúncios programados e notificações contextuais para eventos importantes.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Sistema de Níveis</h3>
+                    <p>Ranking dinâmico com XP personalizado, níveis exclusivos, recompensas especiais e sistema de conquistas que motiva participação ativa da comunidade.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Utilitários Avançados</h3>
+                    <p>Ferramentas profissionais como calculadora científica, tradutor multilíngue, previsão do tempo, encurtador de links e dezenas de outras funcionalidades úteis.</p>
                 </div>
             </div>
         </section>
@@ -65,11 +553,119 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 MeuBot. Todos os direitos reservados.</p>
-            <p>Feito com ❤️ para a comunidade Discord</p>
+            <p>&copy; 2025 Aurora Bot. Todos os direitos reservados.</p>
+            <p>Feito com <span class="footer-heart">❤️</span> para a comunidade Discord</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Criar partículas flutuantes
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 15;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 6 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Animação de scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Efeito de parallax no scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.section::before');
+            const speed = scrolled * 0.5;
+        });
+
+        // Animação de entrada para elementos
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Efeito de digitação no título
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Inicializar animações
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            
+            // Animação de entrada suave para cards
+            const cards = document.querySelectorAll('.feature-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // Efeito de brilho no botão CTA
+        const ctaButton = document.querySelector('.cta-button');
+        ctaButton.addEventListener('mousemove', (e) => {
+            const rect = ctaButton.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            ctaButton.style.background = `radial-gradient(circle at ${x}px ${y}px, #764ba2, #667eea)`;
+        });
+
+        ctaButton.addEventListener('mouseleave', () => {
+            ctaButton.style.background = 'linear-gradient(45deg, #667eea, #764ba2)';
+        });
+    </script>
 </body>
 </html>
