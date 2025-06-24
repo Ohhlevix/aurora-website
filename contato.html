@@ -335,7 +335,7 @@
 <body>
     <header>
         <nav class="container">
-            <a href="index.html" class="logo">Aurorat</a>
+            <a href="index.html" class="logo">Aurora</a>
             <ul class="nav-links">
                 <li><a href="index.html">Início</a></li>
                 <li><a href="comandos.html">Comandos</a></li>
@@ -467,7 +467,7 @@
             });
         });
 
-        
+        // Copiar informações de contato ao clicar
         document.querySelectorAll('.detail-value').forEach(element => {
             element.addEventListener('click', function() {
                 if (this.textContent.includes('@') || this.textContent.includes('discord.gg')) {
@@ -485,7 +485,7 @@
             });
         });
 
-        
+        // Animação de entrada suave
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
