@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Regras e Políticas - MeuBot</title>
+    <title>Contato - MeuBot</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,8 +13,9 @@
             <ul class="nav-links">
                 <li><a href="index.html">Início</a></li>
                 <li><a href="comandos.html">Comandos</a></li>
-                <li><a href="contato.html">Contato</a></li>
-                <li><a href="regras.html" class="active">Regras</a></li>
+                <li><a href="contato.html" class="active">Contato</a></li>
+                <li><a href="regras.html">Regras</a></li>
+                <li><a href="privacidade.html">Privacidade</a></li>
             </ul>
             <div class="mobile-menu" onclick="toggleMobileMenu()">☰</div>
         </nav>
@@ -22,141 +23,194 @@
 
     <main class="container">
         <section class="section">
-            <h2>Regras e Políticas</h2>
-            <p class="rules-intro">Leia atentamente nossos termos, políticas e diretrizes para usar o MeuBot da melhor forma possível.</p>
+            <div class="contact-header">
+                <h2>📞 Entre em Contato</h2>
+                <p class="contact-intro">Precisa de ajuda, tem sugestões ou quer tirar dúvidas? Estamos aqui para ajudar! Escolha a melhor forma de nos contactar.</p>
+            </div>
             
-            <div class="rules-content">
-                <h3>📋 Termos de Uso</h3>
-                <div class="rules-section">
-                    <h4>Uso Permitido</h4>
-                    <ul>
-                        <li>O bot deve ser usado apenas para fins legítimos e não maliciosos</li>
-                        <li>Utilização em servidores Discord públicos e privados</li>
-                        <li>Personalização das configurações conforme necessidades do servidor</li>
-                        <li>Uso de todos os comandos disponíveis dentro dos limites estabelecidos</li>
-                    </ul>
-                    
-                    <h4>Uso Proibido</h4>
-                    <ul>
-                        <li>É proibido usar o bot para spam, assédio ou qualquer atividade ilegal</li>
-                        <li>Não utilize para distribuir conteúdo ofensivo, discriminatório ou prejudicial</li>
-                        <li>Proibido tentar quebrar, hackear ou explorar vulnerabilidades do bot</li>
-                        <li>Não use o bot para atividades comerciais sem autorização prévia</li>
-                        <li>É vedado o uso excessivo que possa sobrecarregar nossos serviços</li>
-                    </ul>
-                    
-                    <h4>Responsabilidades</h4>
-                    <ul>
-                        <li>Os administradores do servidor são responsáveis pelo uso adequado do bot</li>
-                        <li>Usuários devem seguir as regras do servidor onde o bot está instalado</li>
-                        <li>Reservamos o direito de remover o bot de servidores que violem estas regras</li>
-                        <li>Podemos suspender ou banir usuários que façam mau uso do serviço</li>
-                    </ul>
+            <div class="contact-options">
+                <div class="contact-card">
+                    <div class="contact-icon">💬</div>
+                    <h3>Discord - Suporte Oficial</h3>
+                    <p>Nossa comunidade ativa está pronta para ajudar! Suporte em tempo real com outros usuários e nossa equipe.</p>
+                    <div class="contact-details">
+                        <span class="detail-label">Servidor:</span>
+                        <span class="detail-value">discord.gg/meubot</span>
+                    </div>
+                    <div class="contact-details">
+                        <span class="detail-label">Resposta:</span>
+                        <span class="detail-value">Imediata da comunidade</span>
+                    </div>
+                    <a href="https://discord.gg/meubot" target="_blank" class="contact-button">Entrar no Discord</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email - Suporte Técnico</h3>
+                    <p>Para questões mais complexas ou que precisam de documentação. Nossa equipe técnica está sempre disponível.</p>
+                    <div class="contact-details">
+                        <span class="detail-label">Email:</span>
+                        <span class="detail-value">suporte@meubot.com</span>
+                    </div>
+                    <div class="contact-details">
+                        <span class="detail-label">Resposta:</span>
+                        <span class="detail-value">24-48h em dias úteis</span>
+                    </div>
+                    <a href="mailto:suporte@meubot.com" class="contact-button">Enviar Email</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">🐛</div>
+                    <h3>GitHub - Bugs e Issues</h3>
+                    <p>Encontrou um bug ou tem uma sugestão técnica? Reporte diretamente no nosso repositório oficial.</p>
+                    <div class="contact-details">
+                        <span class="detail-label">Repositório:</span>
+                        <span class="detail-value">github.com/meubot/issues</span>
+                    </div>
+                    <div class="contact-details">
+                        <span class="detail-label">Análise:</span>
+                        <span class="detail-value">Até 72 horas</span>
+                    </div>
+                    <a href="https://github.com/meubot/issues" target="_blank" class="contact-button">Reportar Bug</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">🌐</div>
+                    <h3>Formulário Web</h3>
+                    <p>Prefere um formulário organizado? Use nosso sistema web para enviar sua mensagem de forma estruturada.</p>
+                    <div class="contact-details">
+                        <span class="detail-label">Categorias:</span>
+                        <span class="detail-value">Suporte, Sugestões, Parcerias</span>
+                    </div>
+                    <div class="contact-details">
+                        <span class="detail-label">Resposta:</span>
+                        <span class="detail-value">1-3 dias úteis</span>
+                    </div>
+                    <a href="#form-section" class="contact-button">Usar Formulário</a>
                 </div>
             </div>
 
-            <div class="rules-content">
-                <h3>🔒 Política de Privacidade</h3>
-                <div class="rules-section">
-                    <h4>Dados Coletados</h4>
-                    <ul>
-                        <li>IDs de usuários e servidores para personalização e configurações</li>
-                        <li>Comandos executados para estatísticas e melhorias do serviço</li>
-                        <li>Dados de uso básicos como horários de atividade</li>
-                        <li>Informações de configuração específicas do servidor</li>
-                        <li>Logs de erro para diagnóstico e correção de problemas</li>
-                    </ul>
-                    
-                    <h4>Como Usamos os Dados</h4>
-                    <ul>
-                        <li>Personalização da experiência de acordo com preferências do servidor</li>
-                        <li>Análise de performance e otimização do bot</li>
-                        <li>Diagnóstico e correção de erros técnicos</li>
-                        <li>Estatísticas internas para melhorar funcionalidades</li>
-                        <li>Suporte técnico quando solicitado pelos usuários</li>
-                    </ul>
-                    
-                    <h4>Proteção de Dados</h4>
-                    <ul>
-                        <li>Mensagens não são armazenadas permanentemente</li>
-                        <li>Não compartilhamos dados pessoais com terceiros</li>
-                        <li>Dados são criptografados e armazenados com segurança</li>
-                        <li>Você pode solicitar a remoção dos seus dados a qualquer momento</li>
-                        <li>Acesso aos dados é restrito apenas à equipe técnica autorizada</li>
-                    </ul>
+            <div class="support-types">
+                <h3>🎯 Tipos de Suporte Disponíveis</h3>
+                <div class="support-grid">
+                    <div class="support-item">
+                        <div class="support-icon">🔧</div>
+                        <h4>Suporte Técnico</h4>
+                        <ul>
+                            <li>Problemas com comandos</li>
+                            <li>Configuração do bot</li>
+                            <li>Erro de funcionalidades</li>
+                            <li>Performance e lag</li>
+                        </ul>
+                    </div>
+                    <div class="support-item">
+                        <div class="support-icon">⚙️</div>
+                        <h4>Configuração</h4>
+                        <ul>
+                            <li>Setup inicial</li>
+                            <li>Personalização avançada</li>
+                            <li>Permissões e roles</li>
+                            <li>Integração com outros bots</li>
+                        </ul>
+                    </div>
+                    <div class="support-item">
+                        <div class="support-icon">💡</div>
+                        <h4>Sugestões</h4>
+                        <ul>
+                            <li>Novas funcionalidades</li>
+                            <li>Melhorias de UX</li>
+                            <li>Novos comandos</li>
+                            <li>Feedback geral</li>
+                        </ul>
+                    </div>
+                    <div class="support-item">
+                        <div class="support-icon">🤝</div>
+                        <h4>Parcerias</h4>
+                        <ul>
+                            <li>Colaborações</li>
+                            <li>Integrações</li>
+                            <li>Patrocínios</li>
+                            <li>Projetos especiais</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            <div class="rules-content">
-                <h3>⚖️ Regras de Conduta</h3>
-                <div class="rules-section">
-                    <h4>Comportamento Esperado</h4>
-                    <ul>
-                        <li>Seja respeitoso ao usar comandos públicos</li>
-                        <li>Use os comandos de forma responsável e consciente</li>
-                        <li>Respeite outros usuários e suas preferências</li>
-                        <li>Mantenha um ambiente saudável no servidor</li>
-                        <li>Colabore para uma experiência positiva para todos</li>
-                    </ul>
-                    
-                    <h4>Moderação</h4>
-                    <ul>
-                        <li>Não abuse dos comandos de moderação</li>
-                        <li>Use poderes administrativos com responsabilidade</li>
-                        <li>Aplique punições de forma justa e proporcional</li>
-                        <li>Mantenha logs de ações importantes para transparência</li>
-                    </ul>
-                    
-                    <h4>Limites Técnicos</h4>
-                    <ul>
-                        <li>Respeite os limites de rate limiting dos comandos</li>
-                        <li>Não tente sobrecarregar o bot com comandos excessivos</li>
-                        <li>Use recursos de música de forma consciente</li>
-                        <li>Reporte bugs através dos canais oficiais</li>
-                    </ul>
+            <div class="contact-form-section" id="form-section">
+                <h3>📝 Formulário de Contato</h3>
+                <div class="form-container">
+                    <form class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Nome *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="server">Nome do Servidor (opcional)</label>
+                            <input type="text" id="server" name="server">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="category">Categoria *</label>
+                            <select id="category" name="category" required>
+                                <option value="">Selecione uma categoria</option>
+                                <option value="suporte">Suporte Técnico</option>
+                                <option value="config">Ajuda com Configuração</option>
+                                <option value="bug">Reportar Bug</option>
+                                <option value="sugestao">Sugestão/Melhoria</option>
+                                <option value="parceria">Parceria/Colaboração</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Assunto *</label>
+                            <input type="text" id="subject" name="subject" placeholder="Descreva brevemente sua questão" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mensagem *</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Descreva detalhadamente sua questão, incluindo passos para reproduzir problemas se aplicável..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="privacy" name="privacy" required>
+                            <label for="privacy">Concordo com a <a href="privacidade.html" target="_blank">Política de Privacidade</a> *</label>
+                        </div>
+                        
+                        <button type="submit" class="submit-button">
+                            <span class="button-icon">📨</span>
+                            Enviar Mensagem
+                        </button>
+                    </form>
                 </div>
             </div>
 
-            <div class="rules-content">
-                <h3>📞 Suporte e Contato</h3>
-                <div class="rules-section">
-                    <h4>Canais de Suporte</h4>
-                    <ul>
-                        <li><strong>Discord:</strong> Servidor de Suporte Oficial - discord.gg/meubot</li>
-                        <li><strong>Email:</strong> suporte@meubot.com (resposta em até 48h)</li>
-                        <li><strong>GitHub:</strong> Issues no repositório oficial para bugs</li>
-                        <li><strong>Website:</strong> Formulário de contato em nosso site</li>
-                    </ul>
-                    
-                    <h4>Tipos de Suporte</h4>
-                    <ul>
-                        <li>Suporte técnico para problemas com comandos</li>
-                        <li>Ajuda com configuração e personalização</li>
-                        <li>Reporte de bugs e problemas</li>
-                        <li>Sugestões de novas funcionalidades</li>
-                        <li>Questões sobre privacidade e dados</li>
-                    </ul>
-                    
-                    <h4>Tempo de Resposta</h4>
-                    <ul>
-                        <li>Discord: Resposta imediata da comunidade</li>
-                        <li>Email: 24-48 horas em dias úteis</li>
-                        <li>GitHub: Análise em até 72 horas</li>
-                        <li>Problemas críticos: Prioridade máxima</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="rules-content">
-                <h3>🔄 Atualizações das Políticas</h3>
-                <div class="rules-section">
-                    <p>Esta política pode ser atualizada periodicamente. Mudanças significativas serão comunicadas através de:</p>
-                    <ul>
-                        <li>Notificação no servidor Discord oficial</li>
-                        <li>Aviso na página inicial do website</li>
-                        <li>Email para administradores de servidores (quando aplicável)</li>
-                    </ul>
-                    <p><strong>Última atualização:</strong> 24 de Junho de 2024</p>
+            <div class="contact-faq">
+                <h3>❓ Perguntas Frequentes</h3>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h4>Como adicionar o bot ao meu servidor?</h4>
+                        <p>Use o link de convite na página inicial e certifique-se de ter permissões de administrador no servidor.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>O bot parou de funcionar, o que fazer?</h4>
+                        <p>Primeiro, verifique se o bot tem as permissões necessárias. Se o problema persistir, contate-nos via Discord.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Posso solicitar funcionalidades personalizadas?</h4>
+                        <p>Sim! Use o formulário de sugestões ou entre em contato para discutir possibilidades de personalização.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Qual o tempo de resposta do suporte?</h4>
+                        <p>Discord é imediato, email em 24-48h úteis, GitHub até 72h, e formulário web em 1-3 dias úteis.</p>
+                    </div>
                 </div>
             </div>
         </section>
