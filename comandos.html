@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comandos - MeuBot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">MeuBot</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="comandos.html" class="active">Comandos</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="regras.html">Regras</a></li>
+            </ul>
+            <div class="mobile-menu" onclick="toggleMobileMenu()">☰</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <h2>Comandos Disponíveis</h2>
+            
+            <div class="commands-category">
+                <h3>🎵 Comandos de Música</h3>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <div class="command-name">/play [música]</div>
+                        <p>Reproduz uma música ou playlist do YouTube/Spotify</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/pause</div>
+                        <p>Pausa a música atual</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/skip</div>
+                        <p>Pula para a próxima música da fila</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/queue</div>
+                        <p>Mostra a fila de reprodução atual</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/stop</div>
+                        <p>Para a reprodução e limpa a fila</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/volume [0-100]</div>
+                        <p>Ajusta o volume da reprodução</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="commands-category">
+                <h3>🛡️ Comandos de Moderação</h3>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <div class="command-name">/kick [usuário]</div>
+                        <p>Remove um usuário do servidor</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/ban [usuário]</div>
+                        <p>Bane um usuário do servidor</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/mute [usuário]</div>
+                        <p>Silencia um usuário temporariamente</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/clear [quantidade]</div>
+                        <p>Remove mensagens do chat</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/warn [usuário]</div>
+                        <p>Aplica uma advertência ao usuário</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/timeout [usuário] [tempo]</div>
+                        <p>Aplica timeout em um usuário</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="commands-category">
+                <h3>🎮 Comandos de Jogos</h3>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <div class="command-name">/coinflip</div>
+                        <p>Joga uma moeda (cara ou coroa)</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/roll [dados]</div>
+                        <p>Rola dados (ex: 1d20, 2d6)</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/8ball [pergunta]</div>
+                        <p>Faça uma pergunta para a bola 8 mágica</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/trivia</div>
+                        <p>Inicia um jogo de perguntas e respostas</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="commands-category">
+                <h3>📊 Comandos Utilitários</h3>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <div class="command-name">/stats</div>
+                        <p>Mostra estatísticas do servidor</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/userinfo [usuário]</div>
+                        <p>Exibe informações de um usuário</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/serverinfo</div>
+                        <p>Mostra informações do servidor</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/ping</div>
+                        <p>Verifica a latência do bot</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/help</div>
+                        <p>Lista todos os comandos disponíveis</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/avatar [usuário]</div>
+                        <p>Mostra o avatar de um usuário</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 MeuBot. Todos os direitos reservados.</p>
+            <p>Feito com ❤️ para a comunidade Discord</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
