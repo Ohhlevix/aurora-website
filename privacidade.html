@@ -134,7 +134,16 @@
             border-left: 4px solid #667eea;
         }
 
-        .policy-section h2 {
+        .terms-section {
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .policy-section h2,
+        .terms-section h2 {
             font-size: 1.8rem;
             color: #667eea;
             margin-bottom: 1rem;
@@ -143,24 +152,32 @@
             gap: 0.5rem;
         }
 
-        .policy-section h3 {
+        .terms-section h2 {
+            color: #ff6b6b;
+        }
+
+        .policy-section h3,
+        .terms-section h3 {
             font-size: 1.4rem;
             color: #555;
             margin: 1.5rem 0 1rem 0;
         }
 
-        .policy-section p {
+        .policy-section p,
+        .terms-section p {
             margin-bottom: 1rem;
             color: #555;
             text-align: justify;
         }
 
-        .policy-section ul {
+        .policy-section ul,
+        .terms-section ul {
             margin-left: 1.5rem;
             margin-bottom: 1rem;
         }
 
-        .policy-section li {
+        .policy-section li,
+        .terms-section li {
             margin-bottom: 0.5rem;
             color: #555;
         }
@@ -175,6 +192,34 @@
         }
 
         .highlight-box h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .warning-box h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .info-box h3 {
             color: white;
             margin-bottom: 1rem;
         }
@@ -212,6 +257,29 @@
             margin-bottom: 0.5rem;
         }
 
+        .section-divider {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 4px;
+            border-radius: 2px;
+            margin: 3rem 0;
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .terms-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .terms-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
         footer {
             background: rgba(0, 0, 0, 0.8);
             color: white;
@@ -237,11 +305,13 @@
                 padding: 2rem 1rem;
             }
 
-            .privacy-header h1 {
+            .privacy-header h1,
+            .terms-header h1 {
                 font-size: 2rem;
             }
 
-            .policy-section {
+            .policy-section,
+            .terms-section {
                 padding: 1.5rem;
             }
 
@@ -267,11 +337,13 @@
             animation: fadeInUp 0.8s ease-out;
         }
 
-        .policy-section {
+        .policy-section,
+        .terms-section {
             animation: fadeInUp 0.8s ease-out;
         }
 
-        .policy-section:nth-child(even) {
+        .policy-section:nth-child(even),
+        .terms-section:nth-child(even) {
             animation-delay: 0.1s;
         }
 
@@ -438,72 +510,164 @@
             </div>
         </section>
 
+        <!-- Divisor entre Política de Privacidade e Termos de Serviço -->
+        <div class="section-divider"></div>
+
+        <!-- SEÇÃO DE TERMOS DE SERVIÇO -->
         <section class="section">
-            <div class="contact-info">
-                <h3>📞 Dúvidas sobre Privacidade?</h3>
-                <p>Se você tiver qualquer dúvida sobre esta política de privacidade ou sobre como tratamos seus dados, entre em contato conosco:</p>
+            <div class="terms-header">
+                <h1>📋 Termos de Serviço</h1>
+                <p>Estes termos governam o uso do bot Aurora. Ao utilizar nossos serviços, você concorda integralmente com todos os termos descritos abaixo.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>🎯 1. Aceitação dos Termos</h2>
+                <p>Ao adicionar o Aurora ao seu servidor Discord ou utilizar qualquer uma de suas funcionalidades, você automaticamente aceita estes Termos de Serviço e nossa Política de Privacidade. Se você não concorda com qualquer parte destes termos, deve cessar imediatamente o uso do bot.</p>
                 
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <strong>📧 Email</strong>
-                        ohlevix12@gmail.com
-                    </div>
-                    <div class="contact-item">
-                        <strong>💬 Discord</strong>
-                        discord.gg/HMkvQtsck3
-                    </div>
-                    <div class="contact-item">
-                        <strong>⏰ Resposta</strong>
-                        24-48h em dias úteis
-                    </div>
+                <h3>Capacidade Legal:</h3>
+                <ul>
+                    <li>Você deve ter pelo menos 13 anos para usar o Aurora</li>
+                    <li>Se você é menor de idade, precisa ter consentimento dos pais ou responsáveis</li>
+                    <li>Você deve ter autoridade para aceitar estes termos em nome de sua organização (se aplicável)</li>
+                </ul>
+
+                <div class="info-box">
+                    <h3>📝 Importante</h3>
+                    <p>Estes termos formam um contrato legal entre você e os desenvolvedores do Aurora. Leia cuidadosamente antes de continuar.</p>
                 </div>
             </div>
-        </section>
-    </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Aurora. Todos os direitos reservados.</p>
-            <p>Feito com ❤️ para a comunidade Discord</p>
-        </div>
-    </footer>
+            <div class="terms-section">
+                <h2>🤖 2. Descrição do Serviço</h2>
+                <p>O Aurora é um bot Discord desenvolvido para fornecer funcionalidades de entretenimento, moderação e utilidades para servidores. Nossos serviços incluem, mas não se limitam a:</p>
+                
+                <ul>
+                    <li><strong>Comandos de Moderação:</strong> Ferramentas para administração de servidores</li>
+                    <li><strong>Comandos de Entretenimento:</strong> Jogos, música e atividades divertidas</li>
+                    <li><strong>Utilidades:</strong> Ferramentas úteis para o dia a dia do servidor</li>
+                    <li><strong>Personalização:</strong> Configurações customizáveis por servidor</li>
+                    <li><strong>Suporte Técnico:</strong> Assistência para resolução de problemas</li>
+                </ul>
 
-    <script>
-        function toggleMobileMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        }
+                <h3>Natureza do Serviço:</h3>
+                <p>O Aurora é fornecido "como está" e pode estar sujeito a interrupções, atualizações ou modificações sem aviso prévio. Não garantimos disponibilidade 100% do tempo.</p>
+            </div>
 
-        // Animação de entrada suave para seções
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        });
+            <div class="terms-section">
+                <h2>✅ 3. Uso Aceitável</h2>
+                <p>Você concorda em usar o Aurora apenas para fins legítimos e de acordo com estes termos. É estritamente proibido:</p>
+                
+                <h3>Atividades Proibidas:</h3>
+                <ul>
+                    <li>❌ <strong>Spam:</strong> Uso excessivo ou abusivo de comandos</li>
+                    <li>❌ <strong>Exploração:</strong> Tentativas de quebrar, hackear ou explorar vulnerabilidades</li>
+                    <li>❌ <strong>Conteúdo Ilegal:</strong> Usar o bot para atividades ilegais ou prejudiciais</li>
+                    <li>❌ <strong>Assédio:</strong> Usar o bot para assediar, intimidar ou prejudicar outros usuários</li>
+                    <li>❌ <strong>Impersonação:</strong> Fingir ser outra pessoa ou entidade</li>
+                    <li>❌ <strong>Distribuição de Malware:</strong> Usar o bot para distribuir vírus ou software malicioso</li>
+                    <li>❌ <strong>Violação de Privacidade:</strong> Coletar dados pessoais de outros usuários sem consentimento</li>
+                </ul>
 
-        document.querySelectorAll('.policy-section').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
+                <div class="warning-box">
+                    <h3>⚠️ Consequências</h3>
+                    <p>Violações destes termos podem resultar em suspensão imediata do acesso ao Aurora, remoção do bot do seu servidor e, em casos graves, ações legais.</p>
+                </div>
+            </div>
 
-        // Scroll suave para âncoras
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+            <div class="terms-section">
+                <h2>🔧 4. Responsabilidades do Usuário</h2>
+                <p>Como usuário do Aurora, você tem as seguintes responsabilidades:</p>
+                
+                <h3>Administradores de Servidor:</h3>
+                <ul>
+                    <li><strong>Configuração Adequada:</strong> Configurar permissões e canais apropriadamente</li>
+                    <li><strong>Monitoramento:</strong> Supervisionar o uso do bot em seu servidor</li>
+                    <li><strong>Conformidade:</strong> Garantir que todos os membros sigam estes termos</li>
+                    <li><strong>Backup:</strong> Manter backups de configurações importantes</li>
+                </ul>
+
+                <h3>Usuários Gerais:</h3>
+                <ul>
+                    <li><strong>Uso Responsável:</strong> Utilizar comandos de forma responsável e respeitosa</li>
+                    <li><strong>Relato de Problemas:</strong> Reportar bugs ou comportamentos inadequados</li>
+                    <li><strong>Atualização:</strong> Manter-se informado sobre mudanças nos termos</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2>🛡️ 5. Limitações de Responsabilidade</h2>
+                <p>O Aurora é fornecido gratuitamente e, portanto, está sujeito às seguintes limitações:</p>
+                
+                <h3>Isenções:</h3>
+                <ul>
+                    <li><strong>Disponibilidade:</strong> Não garantimos que o serviço estará sempre disponível</li>
+                    <li><strong>Erros:</strong> Não somos responsáveis por erros ou falhas do bot</li>
+                    <li><strong>Perda de Dados:</strong> Não nos responsabilizamos por perda de configurações ou dados</li>
+                    <li><strong>Danos Indiretos:</strong> Não somos responsáveis por danos consequenciais</li>
+                    <li><strong>Conteúdo de Terceiros:</strong> Não controlamos conteúdo gerado por usuários</li>
+                </ul>
+
+                <h3>Limite de Responsabilidade:</h3>
+                <p>Nossa responsabilidade total, se houver, não excederá o valor de $0 (zero dólares), considerando que o serviço é gratuito.</p>
+
+                <div class="info-box">
+                    <h3>💡 Recomendação</h3>
+                    <p>Sempre mantenha backups de configurações importantes e use o Aurora em conjunto com outras ferramentas de moderação para garantir a segurança do seu servidor.</p>
+                </div>
+            </div>
+
+            <div class="terms-section">
+                <h2>⚖️ 6. Propriedade Intelectual</h2>
+                <p>Todos os direitos de propriedade intelectual relacionados ao Aurora são de propriedade exclusiva dos desenvolvedores:</p>
+                
+                <h3>Direitos dos Desenvolvedores:</h3>
+                <ul>
+                    <li><strong>Código-fonte:</strong> Todo o código do Aurora é propriedade intelectual protegida</li>
+                    <li><strong>Nome e Logo:</strong> "Aurora" e elementos visuais associados são marcas protegidas</li>
+                    <li><strong>Funcionalidades:</strong> Recursos únicos e algoritmos são propriedade dos desenvolvedores</li>
+                    <li><strong>Documentação:</strong> Manuais, guias e documentação são protegidos por direitos autorais</li>
+                </ul>
+
+                <h3>Direitos dos Usuários:</h3>
+                <ul>
+                    <li>✅ Uso pessoal e não-comercial do bot</li>
+                    <li>✅ Compartilhamento de screenshots e experiências</li>
+                    <li>✅ Criação de conteúdo educativo sobre o uso do Aurora</li>
+                    <li>❌ Cópia, reprodução ou distribuição do código</li>
+                    <li>❌ Uso comercial sem autorização expressa</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2>🔄 7. Modificações e Atualizações</h2>
+                <p>Reservamo-nos o direito de modificar, atualizar ou descontinuar o Aurora a qualquer momento:</p>
+                
+                <h3>Tipos de Mudanças:</h3>
+                <ul>
+                    <li><strong>Funcionalidades:</strong> Adição, modificação ou remoção de comandos</li>
+                    <li><strong>Interface:</strong> Mudanças na forma como o bot responde</li>
+                    <li><strong>Termos:</strong> Atualizações nestes Termos de Serviço</li>
+                    <li><strong>Política:</strong> Modificações na Política de Privacidade</li>
+                </ul>
+
+                <h3>Notificações:</h3>
+                <ul>
+                    <li>Mudanças significativas serão comunicadas através do servidor oficial do Discord</li>
+                    <li>Atualizações menores podem ser implementadas sem aviso prévio</li>
+                    <li>Usuários são responsáveis por se manter atualizados</li>
+                </ul>
+
+                <div class="info-box">
+                    <h3>📢 Fique Atualizado</h3>
+                    <p>Junte-se ao nosso servidor Discord oficial para receber notificações sobre atualizações importantes e participar da comunidade Aurora.</p>
+                </div>
+            </div>
+
+            <div class="terms-section">
+                <h2>⏰ 8. Suspensão e Encerramento</h2>
+                <p>Podemos suspender ou encerrar o acesso ao Aurora nas seguintes situações:</p>
+                
+                <h3>Motivos para Suspensão:</h3>
+                <ul>
+                    <li><strong>Violação dos Termos:</strong> Descumprimento de qualquer cláusula destes termos</li>
+                    <li><strong>
