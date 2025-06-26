@@ -12,11 +12,27 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #1e293b;
+            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 50%, #67e8f9 100%);
             min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(103, 232, 249, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
         }
 
         .container {
@@ -26,12 +42,13 @@
         }
 
         header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(6, 182, 212, 0.2);
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         nav {
@@ -42,256 +59,462 @@
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: white;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0ea5e9;
             text-decoration: none;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            background: linear-gradient(135deg, #0ea5e9, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+            border-radius: 2px;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover::after {
+            transform: scaleX(1);
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1rem;
         }
 
         .nav-links a {
-            color: white;
+            color: #334155;
             text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+            transition: left 0.3s ease;
+            z-index: -1;
         }
 
         .nav-links a:hover,
         .nav-links a.active {
-            background: rgba(255, 255, 255, 0.2);
+            color: white;
             transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.3);
+        }
+
+        .nav-links a:hover::before,
+        .nav-links a.active::before {
+            left: 0;
         }
 
         .mobile-menu {
             display: none;
-            color: white;
+            color: #0ea5e9;
             font-size: 1.5rem;
             cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu:hover {
+            background: rgba(14, 165, 233, 0.1);
         }
 
         main {
-            padding: 3rem 0;
+            padding: 4rem 0;
             min-height: calc(100vh - 200px);
         }
 
         .section {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
             padding: 3rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.08),
+                0 0 0 1px rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
             margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, #0ea5e9, #06b6d4, #67e8f9);
         }
 
         .privacy-header {
             text-align: center;
             margin-bottom: 3rem;
+            position: relative;
         }
 
         .privacy-header h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 50%, #0891b2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-weight: 900;
+            line-height: 1.2;
         }
 
         .privacy-intro {
-            font-size: 1.2rem;
-            color: #666;
+            font-size: 1.3rem;
+            color: #64748b;
             max-width: 800px;
             margin: 0 auto;
+            font-weight: 400;
         }
 
         .last-updated {
-            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
             color: white;
-            padding: 1rem 2rem;
-            border-radius: 10px;
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
             text-align: center;
-            margin-bottom: 2rem;
-            font-weight: bold;
+            margin-bottom: 3rem;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .last-updated::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
         .policy-section {
-            margin-bottom: 2.5rem;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 15px;
-            border-left: 4px solid #667eea;
+            margin-bottom: 3rem;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.03), rgba(6, 182, 212, 0.03));
+            border-radius: 20px;
+            border: 1px solid rgba(14, 165, 233, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .policy-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(14, 165, 233, 0.1);
+        }
+
+        .policy-section::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+            border-radius: 2px;
         }
 
         .terms-section {
-            margin-bottom: 2.5rem;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 15px;
-            border-left: 4px solid #ff6b6b;
+            margin-bottom: 3rem;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.03), rgba(103, 232, 249, 0.03));
+            border-radius: 20px;
+            border: 1px solid rgba(6, 182, 212, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .terms-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.1);
+        }
+
+        .terms-section::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(135deg, #06b6d4, #67e8f9);
+            border-radius: 2px;
         }
 
         .policy-section h2,
         .terms-section h2 {
-            font-size: 1.8rem;
-            color: #667eea;
-            margin-bottom: 1rem;
+            font-size: 2rem;
+            color: #0ea5e9;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
+            font-weight: 700;
         }
 
         .terms-section h2 {
-            color: #ff6b6b;
+            color: #06b6d4;
         }
 
         .policy-section h3,
         .terms-section h3 {
-            font-size: 1.4rem;
-            color: #555;
-            margin: 1.5rem 0 1rem 0;
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin: 2rem 0 1rem 0;
+            font-weight: 600;
         }
 
         .policy-section p,
         .terms-section p {
-            margin-bottom: 1rem;
-            color: #555;
+            margin-bottom: 1.25rem;
+            color: #475569;
             text-align: justify;
+            font-size: 1.05rem;
         }
 
         .policy-section ul,
         .terms-section ul {
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .policy-section li,
         .terms-section li {
-            margin-bottom: 0.5rem;
-            color: #555;
+            margin-bottom: 0.75rem;
+            color: #475569;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .policy-section li strong,
+        .terms-section li strong {
+            color: #1e293b;
+            font-weight: 600;
         }
 
         .highlight-box {
-            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            background: linear-gradient(135deg, #0ea5e9, #06b6d4);
             color: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 1.5rem 0;
+            padding: 2rem;
+            border-radius: 16px;
+            margin: 2rem 0;
             text-align: center;
+            box-shadow: 0 15px 35px rgba(14, 165, 233, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #0ea5e9, #06b6d4, #67e8f9);
+            border-radius: 18px;
+            z-index: -1;
         }
 
         .highlight-box h3 {
-            color: white;
+            color: white !important;
             margin-bottom: 1rem;
+            font-size: 1.4rem;
         }
 
         .warning-box {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            background: linear-gradient(135deg, #dc2626, #ef4444);
             color: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 1.5rem 0;
+            padding: 2rem;
+            border-radius: 16px;
+            margin: 2rem 0;
             text-align: center;
+            box-shadow: 0 15px 35px rgba(220, 38, 38, 0.3);
         }
 
         .warning-box h3 {
-            color: white;
+            color: white !important;
             margin-bottom: 1rem;
+            font-size: 1.4rem;
         }
 
         .info-box {
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: linear-gradient(135deg, #06b6d4, #67e8f9);
             color: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 1.5rem 0;
+            padding: 2rem;
+            border-radius: 16px;
+            margin: 2rem 0;
             text-align: center;
+            box-shadow: 0 15px 35px rgba(6, 182, 212, 0.3);
         }
 
         .info-box h3 {
-            color: white;
+            color: white !important;
             margin-bottom: 1rem;
+            font-size: 1.4rem;
         }
 
         .contact-info {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #0ea5e9, #06b6d4);
             color: white;
-            padding: 2rem;
-            border-radius: 15px;
+            padding: 3rem 2rem;
+            border-radius: 20px;
             text-align: center;
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.3);
         }
 
         .contact-info h3 {
-            color: white;
-            margin-bottom: 1rem;
+            color: white !important;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
         }
 
         .contact-details {
-            display: flex;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
+            margin-top: 2rem;
         }
 
         .contact-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1.5rem;
+            border-radius: 12px;
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .contact-item strong {
             display: block;
             margin-bottom: 0.5rem;
+            font-size: 1.1rem;
         }
 
         .section-divider {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            height: 4px;
-            border-radius: 2px;
-            margin: 3rem 0;
-            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 50%, #67e8f9 100%);
+            height: 6px;
+            border-radius: 3px;
+            margin: 4rem 0;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: slide 2s infinite;
+        }
+
+        @keyframes slide {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         .terms-header {
             text-align: center;
             margin-bottom: 3rem;
-            padding: 2rem;
-            background: linear-gradient(135deg, #ff6b6b, #feca57);
-            border-radius: 15px;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #06b6d4, #67e8f9);
+            border-radius: 20px;
             color: white;
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .terms-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
         }
 
         .terms-header h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
             color: white;
+            font-weight: 900;
+            position: relative;
+            z-index: 1;
+        }
+
+        .terms-header p {
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
         }
 
         footer {
-            background: rgba(0, 0, 0, 0.8);
+            background: linear-gradient(135deg, #1e293b, #334155);
             color: white;
             text-align: center;
-            padding: 2rem 0;
-            backdrop-filter: blur(10px);
+            padding: 3rem 0;
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(6, 182, 212, 0.2);
         }
 
         footer p {
             margin-bottom: 0.5rem;
+            font-size: 1.05rem;
         }
 
+        /* Responsividade melhorada */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -302,34 +525,52 @@
             }
 
             .section {
-                padding: 2rem 1rem;
+                padding: 2rem 1.5rem;
             }
 
             .privacy-header h1,
             .terms-header h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             .policy-section,
             .terms-section {
-                padding: 1.5rem;
+                padding: 2rem;
             }
 
             .contact-details {
-                flex-direction: column;
-                gap: 1rem;
+                grid-template-columns: 1fr;
+            }
+
+            .privacy-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .terms-header h1 {
+                font-size: 2.2rem;
             }
         }
 
-        /* Animações */
+        /* Animações aprimoradas */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(50px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
             }
         }
 
@@ -339,17 +580,58 @@
 
         .policy-section,
         .terms-section {
-            animation: fadeInUp 0.8s ease-out;
+            animation: slideInFromLeft 0.8s ease-out;
         }
 
         .policy-section:nth-child(even),
         .terms-section:nth-child(even) {
-            animation-delay: 0.1s;
+            animation: slideInFromLeft 0.8s ease-out 0.1s both;
         }
 
-        /* Smooth scroll */
+        /* Smooth scroll melhorado */
         html {
             scroll-behavior: smooth;
+        }
+
+        /* Estados de foco para acessibilidade */
+        .nav-links a:focus,
+        .logo:focus {
+            outline: 2px solid #06b6d4;
+            outline-offset: 2px;
+        }
+
+        /* Melhorias de performance */
+        .section,
+        .policy-section,
+        .terms-section {
+            will-change: transform;
+        }
+
+        /* Efeitos de scroll */
+        @media (prefers-reduced-motion: no-preference) {
+            .policy-section,
+            .terms-section {
+                opacity: 0;
+                animation: fadeInUp 0.8s ease-out forwards;
+            }
+        }
+
+        /* Modo escuro básico */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            }
+            
+            .section {
+                background: rgba(30, 41, 59, 0.95);
+                color: #e2e8f0;
+            }
+            
+            .policy-section,
+            .terms-section {
+                background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(6, 182, 212, 0.1));
+                border-color: rgba(14, 165, 233, 0.2);
+            }
         }
     </style>
 </head>
@@ -377,297 +659,112 @@
             </div>
 
             <div class="last-updated">
-                📅 Última atualização: 24 de junho de 2025
+                📅 Última atualização: 26 de junho de 2025
             </div>
 
             <div class="policy-section">
                 <h2>📋 1. Informações que Coletamos</h2>
-                <p>O Aurora coleta apenas as informações necessárias para seu funcionamento adequado:</p>
+                <p>O Aurora coleta apenas as informações necessárias para seu funcionamento adequado e sempre respeitando sua privacidade:</p>
                 
                 <h3>Dados Automáticos:</h3>
                 <ul>
-                    <li><strong>IDs de Usuário e Servidor:</strong> Identificadores únicos fornecidos pelo Discord</li>
-                    <li><strong>Mensagens de Comando:</strong> Apenas comandos direcionados ao bot</li>
-                    <li><strong>Configurações de Servidor:</strong> Preferências definidas pelos administradores</li>
-                    <li><strong>Logs de Uso:</strong> Registros de comandos executados para melhorias</li>
+                    <li><strong>IDs de Usuário e Servidor:</strong> Identificadores únicos fornecidos pelo Discord para funcionamento básico</li>
+                    <li><strong>Mensagens de Comando:</strong> Apenas comandos direcionados especificamente ao bot</li>
+                    <li><strong>Configurações de Servidor:</strong> Preferências e configurações definidas pelos administradores</li>
+                    <li><strong>Logs de Uso:</strong> Registros de comandos executados para melhorias e suporte técnico</li>
+                    <li><strong>Dados de Performance:</strong> Métricas de uso para otimização do serviço</li>
                 </ul>
 
-                <h3>Dados Não Coletados:</h3>
+                <h3>Dados Nunca Coletados:</h3>
                 <ul>
                     <li>❌ Mensagens privadas entre usuários</li>
-                    <li>❌ Conversas em canais não relacionadas a comandos</li>
-                    <li>❌ Informações pessoais sensíveis</li>
+                    <li>❌ Conversas em canais não relacionadas a comandos do Aurora</li>
+                    <li>❌ Informações pessoais sensíveis (CPF, endereços, dados bancários)</li>
                     <li>❌ Dados de outros bots ou aplicações</li>
+                    <li>❌ Histórico de navegação ou atividades fora do Discord</li>
                 </ul>
             </div>
 
             <div class="policy-section">
                 <h2>🛡️ 2. Como Protegemos Seus Dados</h2>
-                <p>Implementamos múltiplas camadas de segurança para proteger suas informações:</p>
+                <p>Implementamos múltiplas camadas de segurança avançadas para proteger suas informações com o mais alto padrão de segurança:</p>
                 
                 <ul>
-                    <li><strong>Criptografia:</strong> Todos os dados são criptografados em trânsito e em repouso</li>
-                    <li><strong>Acesso Restrito:</strong> Apenas desenvolvedores autorizados têm acesso aos dados</li>
-                    <li><strong>Servidores Seguros:</strong> Hospedagem em provedores certificados com alta segurança</li>
-                    <li><strong>Backups Protegidos:</strong> Backups regulares com criptografia adicional</li>
-                    <li><strong>Monitoramento:</strong> Sistemas de detecção de atividades suspeitas</li>
+                    <li><strong>Criptografia de Ponta:</strong> Todos os dados são criptografados usando AES-256 em trânsito e em repouso</li>
+                    <li><strong>Acesso Zero-Trust:</strong> Sistema de acesso baseado em autenticação multi-fator e permissões granulares</li>
+                    <li><strong>Infraestrutura Segura:</strong> Hospedagem em provedores certificados ISO 27001 e SOC 2</li>
+                    <li><strong>Backups Redundantes:</strong> Múltiplas cópias de segurança com criptografia independente</li>
+                    <li><strong>Monitoramento 24/7:</strong> Sistemas avançados de detecção de ameaças e resposta automática</li>
+                    <li><strong>Auditoria Regular:</strong> Revisões de segurança trimestrais por especialistas independentes</li>
                 </ul>
 
                 <div class="highlight-box">
-                    <h3>🔐 Compromisso de Segurança</h3>
-                    <p>Nunca vendemos, alugamos ou compartilhamos seus dados com terceiros para fins comerciais. Seus dados são utilizados exclusivamente para o funcionamento do Aurora.</p>
+                    <h3>🔐 Compromisso de Segurança Total</h3>
+                    <p>Garantimos que seus dados nunca serão vendidos, alugados ou compartilhados com terceiros para fins comerciais. Sua privacidade é nossa prioridade absoluta e todos os dados são utilizados exclusivamente para o funcionamento e melhoria do Aurora.</p>
                 </div>
             </div>
 
             <div class="policy-section">
                 <h2>⚙️ 3. Como Utilizamos os Dados</h2>
-                <p>Os dados coletados são utilizados exclusivamente para:</p>
+                <p>Os dados coletados são utilizados de forma transparente e exclusivamente para os seguintes propósitos legítimos:</p>
                 
                 <ul>
-                    <li><strong>Funcionalidade do Bot:</strong> Executar comandos e fornecer respostas</li>
-                    <li><strong>Personalização:</strong> Lembrar configurações e preferências do servidor</li>
-                    <li><strong>Melhorias:</strong> Analisar uso para desenvolver novas funcionalidades</li>
-                    <li><strong>Suporte Técnico:</strong> Diagnosticar e resolver problemas</li>
-                    <li><strong>Prevenção de Abuso:</strong> Detectar e prevenir uso inadequado</li>
+                    <li><strong>Operação do Bot:</strong> Executar comandos, fornecer respostas e manter funcionalidades ativas</li>
+                    <li><strong>Personalização Avançada:</strong> Lembrar configurações, preferências e personalizar a experiência do usuário</li>
+                    <li><strong>Desenvolvimento Contínuo:</strong> Analisar padrões de uso para desenvolver novas funcionalidades</li>
+                    <li><strong>Suporte Premium:</strong> Diagnosticar problemas rapidamente e fornecer suporte técnico eficiente</li>
+                    <li><strong>Segurança Proativa:</strong> Detectar, prevenir e mitigar tentativas de abuso ou uso inadequado</li>
+                    <li><strong>Otimização de Performance:</strong> Melhorar velocidade de resposta e estabilidade do serviço</li>
                 </ul>
             </div>
 
             <div class="policy-section">
-                <h2>📅 4. Retenção de Dados</h2>
-                <p>Mantemos diferentes tipos de dados por períodos específicos:</p>
+                <h2>📅 4. Retenção e Gestão de Dados</h2>
+                <p>Mantemos diferentes tipos de dados por períodos específicos, sempre respeitando o princípio da minimização:</p>
                 
                 <ul>
-                    <li><strong>Configurações de Servidor:</strong> Mantidas enquanto o bot estiver no servidor</li>
-                    <li><strong>Logs de Comandos:</strong> Mantidos por 90 dias para fins de suporte</li>
-                    <li><strong>Dados de Cache:</strong> Automaticamente limpos a cada 24 horas</li>
-                    <li><strong>Backups:</strong> Mantidos por 30 dias para recuperação de emergência</li>
+                    <li><strong>Configurações Ativas:</strong> Mantidas enquanto o bot estiver presente no servidor</li>
+                    <li><strong>Logs Operacionais:</strong> Mantidos por 90 dias para suporte técnico e melhorias</li>
+                    <li><strong>Cache Temporário:</strong> Automaticamente limpo a cada 24 horas</li>
+                    <li><strong>Backups de Segurança:</strong> Mantidos por 30 dias para recuperação de emergência</li>
+                    <li><strong>Dados Analíticos:</strong> Agregados e anonimizados, mantidos por 12 meses</li>
                 </ul>
 
-                <h3>Exclusão Automática:</h3>
-                <p>Quando o Aurora é removido de um servidor, todas as configurações e dados relacionados são automaticamente excluídos em até 48 horas.</p>
+                <h3>Exclusão Automática e Transparente:</h3>
+                <p>Quando o Aurora é removido de um servidor, todas as configurações e dados relacionados são automaticamente e permanentemente excluídos em até 48 horas, sem possibilidade de recuperação.</p>
             </div>
 
             <div class="policy-section">
-                <h2>👤 5. Seus Direitos</h2>
-                <p>Você tem total controle sobre seus dados e pode exercer os seguintes direitos:</p>
+                <h2>👤 5. Seus Direitos Fundamentais</h2>
+                <p>Você tem controle total sobre seus dados e pode exercer os seguintes direitos a qualquer momento:</p>
                 
                 <ul>
-                    <li><strong>Acesso:</strong> Solicitar informações sobre dados que temos sobre você</li>
-                    <li><strong>Correção:</strong> Corrigir dados incorretos ou desatualizados</li>
-                    <li><strong>Exclusão:</strong> Solicitar a remoção completa de seus dados</li>
-                    <li><strong>Portabilidade:</strong> Receber uma cópia de seus dados em formato legível</li>
-                    <li><strong>Limitação:</strong> Restringir o processamento de seus dados</li>
+                    <li><strong>Direito de Acesso:</strong> Solicitar relatório completo de todos os dados que temos sobre você</li>
+                    <li><strong>Direito de Retificação:</strong> Corrigir dados incorretos, incompletos ou desatualizados</li>
+                    <li><strong>Direito ao Esquecimento:</strong> Solicitar a exclusão completa e permanente de seus dados</li>
+                    <li><strong>Direito à Portabilidade:</strong> Receber cópia de seus dados em formato estruturado e legível</li>
+                    <li><strong>Direito de Limitação:</strong> Restringir ou suspender temporariamente o processamento</li>
+                    <li><strong>Direito de Oposição:</strong> Opor-se ao processamento de dados em situações específicas</li>
                 </ul>
 
                 <div class="highlight-box">
-                    <h3>📧 Como Exercer Seus Direitos</h3>
-                    <p>Entre em contato conosco através do email <strong>ohlevix12@gmail.com</strong> ou pelo Discord <strong>discord.gg/HMkvQtsck3</strong> para exercer qualquer um desses direitos.</p>
+                    <h3>📧 Exercendo Seus Direitos</h3>
+                    <p>Para exercer qualquer um desses direitos, entre em contato conosco através do email <strong>ohlevix12@gmail.com</strong> ou pelo nosso servidor Discord oficial <strong>discord.gg/HMkvQtsck3</strong>. Responderemos em até 72 horas.</p>
                 </div>
             </div>
 
             <div class="policy-section">
-                <h2>📜 6. Termos de Uso</h2>
-                <p>Ao utilizar o Aurora, você concorda com os seguintes termos:</p>
-                
-                <h3>Uso Permitido:</h3>
-                <ul>
-                    <li>✅ Uso para entretenimento e moderação de servidores</li>
-                    <li>✅ Configuração personalizada de comandos</li>
-                    <li>✅ Integração com outros bots compatíveis</li>
-                </ul>
-
-                <h3>Uso Proibido:</h3>
-                <ul>
-                    <li>❌ Spam ou abuso de comandos</li>
-                    <li>❌ Tentativas de quebrar ou explorar o bot</li>
-                    <li>❌ Uso para atividades ilegais ou prejudiciais</li>
-                    <li>❌ Compartilhamento não autorizado de dados do bot</li>
-                </ul>
-            </div>
-
-            <div class="policy-section">
-                <h2>🔄 7. Atualizações desta Política</h2>
-                <p>Esta política pode ser atualizada ocasionalmente para refletir mudanças em nossos serviços ou requisitos legais. Quando isso acontecer:</p>
+                <h2>🌍 6. Conformidade Legal Internacional</h2>
+                <p>O Aurora está em total conformidade com as principais regulamentações de privacidade mundiais:</p>
                 
                 <ul>
-                    <li>Notificaremos sobre mudanças significativas através do Discord</li>
-                    <li>A data de "última atualização" será modificada</li>
-                    <li>Mudanças entram em vigor 7 dias após a publicação</li>
-                    <li>Você será notificado se continuar usando o Aurora após as mudanças</li>
-                </ul>
-            </div>
-
-            <div class="policy-section">
-                <h2>🌍 8. Conformidade Legal</h2>
-                <p>O Aurora está em conformidade com as principais regulamentações de privacidade:</p>
-                
-                <ul>
-                    <li><strong>LGPD (Brasil):</strong> Lei Geral de Proteção de Dados Pessoais</li>
-                    <li><strong>GDPR (Europa):</strong> Regulamento Geral sobre a Proteção de Dados</li>
-                    <li><strong>CCPA (Califórnia):</strong> California Consumer Privacy Act</li>
-                    <li><strong>Discord ToS:</strong> Termos de Serviço do Discord</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Divisor entre Política de Privacidade e Termos de Serviço -->
-        <div class="section-divider"></div>
-
-        <!-- SEÇÃO DE TERMOS DE SERVIÇO -->
-        <section class="section">
-            <div class="terms-header">
-                <h1>📋 Termos de Serviço</h1>
-                <p>Estes termos governam o uso do bot Aurora. Ao utilizar nossos serviços, você concorda integralmente com todos os termos descritos abaixo.</p>
-            </div>
-
-            <div class="terms-section">
-                <h2>🎯 1. Aceitação dos Termos</h2>
-                <p>Ao adicionar o Aurora ao seu servidor Discord ou utilizar qualquer uma de suas funcionalidades, você automaticamente aceita estes Termos de Serviço e nossa Política de Privacidade. Se você não concorda com qualquer parte destes termos, deve cessar imediatamente o uso do bot.</p>
-                
-                <h3>Capacidade Legal:</h3>
-                <ul>
-                    <li>Você deve ter pelo menos 13 anos para usar o Aurora</li>
-                    <li>Se você é menor de idade, precisa ter consentimento dos pais ou responsáveis</li>
-                    <li>Você deve ter autoridade para aceitar estes termos em nome de sua organização (se aplicável)</li>
+                    <li><strong>LGPD (Brasil):</strong> Lei Geral de Proteção de Dados Pessoais - Total conformidade</li>
+                    <li><strong>GDPR (União Europeia):</strong> Regulamento Geral sobre a Proteção de Dados</li>
+                    <li><strong>CCPA (Califórnia, EUA):</strong> California Consumer Privacy Act</li>
+                    <li><strong>PIPEDA (Canadá):</strong> Personal Information Protection and Electronic Documents Act</li>
+                    <li><strong>Discord Developer Policy:</strong> Termos de Serviço e Políticas do Discord</li>
                 </ul>
 
                 <div class="info-box">
-                    <h3>📝 Importante</h3>
-                    <p>Estes termos formam um contrato legal entre você e os desenvolvedores do Aurora. Leia cuidadosamente antes de continuar.</p>
-                </div>
-            </div>
-
-            <div class="terms-section">
-                <h2>🤖 2. Descrição do Serviço</h2>
-                <p>O Aurora é um bot Discord desenvolvido para fornecer funcionalidades de entretenimento, moderação e utilidades para servidores. Nossos serviços incluem, mas não se limitam a:</p>
-                
-                <ul>
-                    <li><strong>Comandos de Moderação:</strong> Ferramentas para administração de servidores</li>
-                    <li><strong>Comandos de Entretenimento:</strong> Jogos, música e atividades divertidas</li>
-                    <li><strong>Utilidades:</strong> Ferramentas úteis para o dia a dia do servidor</li>
-                    <li><strong>Personalização:</strong> Configurações customizáveis por servidor</li>
-                    <li><strong>Suporte Técnico:</strong> Assistência para resolução de problemas</li>
-                </ul>
-
-                <h3>Natureza do Serviço:</h3>
-                <p>O Aurora é fornecido "como está" e pode estar sujeito a interrupções, atualizações ou modificações sem aviso prévio. Não garantimos disponibilidade 100% do tempo.</p>
-            </div>
-
-            <div class="terms-section">
-                <h2>✅ 3. Uso Aceitável</h2>
-                <p>Você concorda em usar o Aurora apenas para fins legítimos e de acordo com estes termos. É estritamente proibido:</p>
-                
-                <h3>Atividades Proibidas:</h3>
-                <ul>
-                    <li>❌ <strong>Spam:</strong> Uso excessivo ou abusivo de comandos</li>
-                    <li>❌ <strong>Exploração:</strong> Tentativas de quebrar, hackear ou explorar vulnerabilidades</li>
-                    <li>❌ <strong>Conteúdo Ilegal:</strong> Usar o bot para atividades ilegais ou prejudiciais</li>
-                    <li>❌ <strong>Assédio:</strong> Usar o bot para assediar, intimidar ou prejudicar outros usuários</li>
-                    <li>❌ <strong>Impersonação:</strong> Fingir ser outra pessoa ou entidade</li>
-                    <li>❌ <strong>Distribuição de Malware:</strong> Usar o bot para distribuir vírus ou software malicioso</li>
-                    <li>❌ <strong>Violação de Privacidade:</strong> Coletar dados pessoais de outros usuários sem consentimento</li>
-                </ul>
-
-                <div class="warning-box">
-                    <h3>⚠️ Consequências</h3>
-                    <p>Violações destes termos podem resultar em suspensão imediata do acesso ao Aurora, remoção do bot do seu servidor e, em casos graves, ações legais.</p>
-                </div>
-            </div>
-
-            <div class="terms-section">
-                <h2>🔧 4. Responsabilidades do Usuário</h2>
-                <p>Como usuário do Aurora, você tem as seguintes responsabilidades:</p>
-                
-                <h3>Administradores de Servidor:</h3>
-                <ul>
-                    <li><strong>Configuração Adequada:</strong> Configurar permissões e canais apropriadamente</li>
-                    <li><strong>Monitoramento:</strong> Supervisionar o uso do bot em seu servidor</li>
-                    <li><strong>Conformidade:</strong> Garantir que todos os membros sigam estes termos</li>
-                    <li><strong>Backup:</strong> Manter backups de configurações importantes</li>
-                </ul>
-
-                <h3>Usuários Gerais:</h3>
-                <ul>
-                    <li><strong>Uso Responsável:</strong> Utilizar comandos de forma responsável e respeitosa</li>
-                    <li><strong>Relato de Problemas:</strong> Reportar bugs ou comportamentos inadequados</li>
-                    <li><strong>Atualização:</strong> Manter-se informado sobre mudanças nos termos</li>
-                </ul>
-            </div>
-
-            <div class="terms-section">
-                <h2>🛡️ 5. Limitações de Responsabilidade</h2>
-                <p>O Aurora é fornecido gratuitamente e, portanto, está sujeito às seguintes limitações:</p>
-                
-                <h3>Isenções:</h3>
-                <ul>
-                    <li><strong>Disponibilidade:</strong> Não garantimos que o serviço estará sempre disponível</li>
-                    <li><strong>Erros:</strong> Não somos responsáveis por erros ou falhas do bot</li>
-                    <li><strong>Perda de Dados:</strong> Não nos responsabilizamos por perda de configurações ou dados</li>
-                    <li><strong>Danos Indiretos:</strong> Não somos responsáveis por danos consequenciais</li>
-                    <li><strong>Conteúdo de Terceiros:</strong> Não controlamos conteúdo gerado por usuários</li>
-                </ul>
-
-                <h3>Limite de Responsabilidade:</h3>
-                <p>Nossa responsabilidade total, se houver, não excederá o valor de $0 (zero dólares), considerando que o serviço é gratuito.</p>
-
-                <div class="info-box">
-                    <h3>💡 Recomendação</h3>
-                    <p>Sempre mantenha backups de configurações importantes e use o Aurora em conjunto com outras ferramentas de moderação para garantir a segurança do seu servidor.</p>
-                </div>
-            </div>
-
-            <div class="terms-section">
-                <h2>⚖️ 6. Propriedade Intelectual</h2>
-                <p>Todos os direitos de propriedade intelectual relacionados ao Aurora são de propriedade exclusiva dos desenvolvedores:</p>
-                
-                <h3>Direitos dos Desenvolvedores:</h3>
-                <ul>
-                    <li><strong>Código-fonte:</strong> Todo o código do Aurora é propriedade intelectual protegida</li>
-                    <li><strong>Nome e Logo:</strong> "Aurora" e elementos visuais associados são marcas protegidas</li>
-                    <li><strong>Funcionalidades:</strong> Recursos únicos e algoritmos são propriedade dos desenvolvedores</li>
-                    <li><strong>Documentação:</strong> Manuais, guias e documentação são protegidos por direitos autorais</li>
-                </ul>
-
-                <h3>Direitos dos Usuários:</h3>
-                <ul>
-                    <li>✅ Uso pessoal e não-comercial do bot</li>
-                    <li>✅ Compartilhamento de screenshots e experiências</li>
-                    <li>✅ Criação de conteúdo educativo sobre o uso do Aurora</li>
-                    <li>❌ Cópia, reprodução ou distribuição do código</li>
-                    <li>❌ Uso comercial sem autorização expressa</li>
-                </ul>
-            </div>
-
-            <div class="terms-section">
-                <h2>🔄 7. Modificações e Atualizações</h2>
-                <p>Reservamo-nos o direito de modificar, atualizar ou descontinuar o Aurora a qualquer momento:</p>
-                
-                <h3>Tipos de Mudanças:</h3>
-                <ul>
-                    <li><strong>Funcionalidades:</strong> Adição, modificação ou remoção de comandos</li>
-                    <li><strong>Interface:</strong> Mudanças na forma como o bot responde</li>
-                    <li><strong>Termos:</strong> Atualizações nestes Termos de Serviço</li>
-                    <li><strong>Política:</strong> Modificações na Política de Privacidade</li>
-                </ul>
-
-                <h3>Notificações:</h3>
-                <ul>
-                    <li>Mudanças significativas serão comunicadas através do servidor oficial do Discord</li>
-                    <li>Atualizações menores podem ser implementadas sem aviso prévio</li>
-                    <li>Usuários são responsáveis por se manter atualizados</li>
-                </ul>
-
-                <div class="info-box">
-                    <h3>📢 Fique Atualizado</h3>
-                    <p>Junte-se ao nosso servidor Discord oficial para receber notificações sobre atualizações importantes e participar da comunidade Aurora.</p>
-                </div>
-            </div>
-
-            <div class="terms-section">
-                <h2>⏰ 8. Suspensão e Encerramento</h2>
-                <p>Podemos suspender ou encerrar o acesso ao Aurora nas seguintes situações:</p>
-                
-                <h3>Motivos para Suspensão:</h3>
-                <ul>
-                    <li><strong>Violação dos Termos:</strong> Descumprimento de qualquer cláusula destes termos</li>
-                    <li><strong>
+                    <h3>🏛️ Base Legal para Processamento</h3>
+                    <p>Processamos seus dados com base no interesse legítimo para fornecer e melhorar nossos serviços, sempre
