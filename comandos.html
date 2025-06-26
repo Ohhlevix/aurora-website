@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comandos - Aurora Bot</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,12 +14,20 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #1a202c;
+            background: linear-gradient(135deg, #e6f3ff 0%, #b3e5fc 25%, #4dd0e1 50%, #00bcd4 100%);
+            background-size: 400% 400%;
+            animation: gradient-shift 10s ease infinite;
             min-height: 100vh;
             overflow-x: hidden;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .container {
@@ -27,12 +37,13 @@
         }
 
         header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(0, 188, 212, 0.2);
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 188, 212, 0.1);
         }
 
         nav {
@@ -43,42 +54,51 @@
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: white;
+            font-size: 2rem;
+            font-weight: 700;
             text-decoration: none;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            background: linear-gradient(45deg, #00bcd4, #4dd0e1, #0288d1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            filter: drop-shadow(0 2px 4px rgba(0, 188, 212, 0.3));
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .nav-links a {
-            color: white;
+            color: #0288d1;
             text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
+            padding: 0.7rem 1.5rem;
+            border-radius: 20px;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 188, 212, 0.2);
+            font-weight: 500;
         }
 
         .nav-links a:hover,
         .nav-links a.active {
-            background: rgba(255, 255, 255, 0.2);
+            background: linear-gradient(45deg, #00bcd4, #4dd0e1);
+            color: white;
             transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
         }
 
         .mobile-menu {
             display: none;
-            color: white;
+            color: #00bcd4;
             font-size: 1.5rem;
             cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu:hover {
+            transform: rotate(90deg);
         }
 
         main {
@@ -86,12 +106,12 @@
         }
 
         .section {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 20px;
             padding: 3rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 188, 212, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 188, 212, 0.2);
             margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
@@ -104,8 +124,8 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.05) 0%, transparent 70%);
-            animation: float 6s ease-in-out infinite;
+            background: radial-gradient(circle, rgba(0, 188, 212, 0.05) 0%, transparent 70%);
+            animation: float 8s ease-in-out infinite;
         }
 
         @keyframes float {
@@ -122,27 +142,23 @@
         }
 
         .page-title h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #667eea, #764ba2, #ff6b6b);
+            background: linear-gradient(45deg, #00bcd4, #4dd0e1, #0288d1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-weight: 900;
-            animation: titleGlow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes titleGlow {
-            from { filter: drop-shadow(0 0 5px rgba(102, 126, 234, 0.3)); }
-            to { filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.6)); }
+            font-weight: 700;
+            text-shadow: 0 4px 8px rgba(0, 188, 212, 0.2);
         }
 
         .page-title p {
             font-size: 1.3rem;
-            color: #666;
+            color: #4a5568;
             max-width: 600px;
             margin: 0 auto;
-            font-weight: 300;
+            font-weight: 400;
+            line-height: 1.8;
         }
 
         .commands-category {
@@ -154,10 +170,10 @@
         .commands-category h3 {
             font-size: 2rem;
             margin-bottom: 2rem;
-            color: #333;
+            color: #2d3748;
             text-align: center;
             position: relative;
-            font-weight: 700;
+            font-weight: 600;
         }
 
         .commands-category h3::after {
@@ -168,7 +184,7 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, #00bcd4, #4dd0e1);
             border-radius: 2px;
         }
 
@@ -179,12 +195,12 @@
         }
 
         .command-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+            background: rgba(255, 255, 255, 0.95);
             padding: 2rem;
             border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(0, 188, 212, 0.2);
             backdrop-filter: blur(15px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
             cursor: pointer;
@@ -198,8 +214,8 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(45deg, 
-                rgba(102, 126, 234, 0.1), 
-                rgba(118, 75, 162, 0.1)
+                rgba(0, 188, 212, 0.1), 
+                rgba(77, 208, 225, 0.1)
             );
             transition: left 0.5s ease;
             z-index: -1;
@@ -211,50 +227,111 @@
 
         .command-card:hover {
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 188, 212, 0.2);
+            border-color: #00bcd4;
         }
 
         .command-name {
             font-size: 1.2rem;
-            font-weight: bold;
-            color: #667eea;
+            font-weight: 600;
+            color: #00bcd4;
             margin-bottom: 0.8rem;
             font-family: 'Courier New', monospace;
-            background: rgba(102, 126, 234, 0.1);
+            background: rgba(0, 188, 212, 0.1);
             padding: 0.5rem 1rem;
             border-radius: 8px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #00bcd4;
         }
 
         .command-card p {
-            color: #666;
+            color: #4a5568;
             line-height: 1.6;
             font-size: 1rem;
+            font-weight: 400;
         }
 
         footer {
-            background: rgba(0, 0, 0, 0.8);
+            background: linear-gradient(135deg, #2d3748, #4a5568);
             color: white;
             text-align: center;
             padding: 3rem 0;
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 3rem;
         }
 
         footer p {
             margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .footer-heart {
-            color: #ff6b6b;
-            animation: heartbeat 1.5s ease-in-out infinite;
+            color: #4dd0e1;
+            animation: heartbeat 2s ease-in-out infinite;
         }
 
         @keyframes heartbeat {
             0%, 50%, 100% { transform: scale(1); }
             25%, 75% { transform: scale(1.2); }
         }
+
+        /* Partículas flutuantes */
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(0, 188, 212, 0.1);
+            border-radius: 50%;
+            animation: floatParticle 12s infinite linear;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Animações de entrada */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .command-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .command-card:nth-child(1) { animation-delay: 0.1s; }
+        .command-card:nth-child(2) { animation-delay: 0.2s; }
+        .command-card:nth-child(3) { animation-delay: 0.3s; }
+        .command-card:nth-child(4) { animation-delay: 0.4s; }
+        .command-card:nth-child(5) { animation-delay: 0.5s; }
+        .command-card:nth-child(6) { animation-delay: 0.6s; }
+        .command-card:nth-child(7) { animation-delay: 0.7s; }
+        .command-card:nth-child(8) { animation-delay: 0.8s; }
 
         @media (max-width: 768px) {
             .nav-links {
@@ -266,7 +343,7 @@
                 background: rgba(255, 255, 255, 0.95);
                 flex-direction: column;
                 padding: 1rem;
-                border-radius: 0 0 10px 10px;
+                border-radius: 0 0 15px 15px;
             }
 
             .nav-links.active {
@@ -274,7 +351,7 @@
             }
 
             .nav-links a {
-                color: #333;
+                color: #0288d1;
                 margin: 0.5rem 0;
             }
 
@@ -307,64 +384,6 @@
                 font-size: 1.6rem;
             }
         }
-
-        /* Animações de entrada */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .command-card {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .command-card:nth-child(1) { animation-delay: 0.1s; }
-        .command-card:nth-child(2) { animation-delay: 0.2s; }
-        .command-card:nth-child(3) { animation-delay: 0.3s; }
-        .command-card:nth-child(4) { animation-delay: 0.4s; }
-        .command-card:nth-child(5) { animation-delay: 0.5s; }
-        .command-card:nth-child(6) { animation-delay: 0.6s; }
-
-        /* Partículas flutuantes */
-        .floating-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: floatParticle 10s infinite linear;
-        }
-
-        @keyframes floatParticle {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
     </style>
 </head>
 <body>
@@ -393,109 +412,137 @@
             </div>
             
             <div class="commands-category">
-                <h3>🛡️ Comandos de Moderação</h3>
+                <h3>📋 Comandos Básicos</h3>
                 <div class="commands-grid">
                     <div class="command-card">
-                        <div class="command-name">/kick [usuário] [motivo]</div>
-                        <p>Remove um usuário do servidor com sistema de logs avançado e notificação automática</p>
+                        <div class="command-name">/help</div>
+                        <p>Mostra a mensagem de ajuda completa com todos os comandos disponíveis do Aurora</p>
                     </div>
                     <div class="command-card">
-                        <div class="command-name">/ban [usuário] [motivo]</div>
-                        <p>Bane um usuário permanentemente com histórico completo e sistema de apelação</p>
+                        <div class="command-name">/ping</div>
+                        <p>Verifica a latência do bot e mostra informações de conexão em tempo real</p>
                     </div>
                     <div class="command-card">
-                        <div class="command-name">/mute [usuário] [tempo]</div>
-                        <p>Silencia um usuário temporariamente com controle preciso de duração</p>
+                        <div class="command-name">/perfil [usuário]</div>
+                        <p>Visualiza seu perfil completo ou de outro usuário com estatísticas detalhadas</p>
                     </div>
                     <div class="command-card">
-                        <div class="command-name">/clear [quantidade]</div>
-                        <p>Remove até 100 mensagens instantaneamente com filtros inteligentes</p>
-                    </div>
-                    <div class="command-card">
-                        <div class="command-name">/warn [usuário] [motivo]</div>
-                        <p>Sistema de advertências com escalação automática de punições</p>
-                    </div>
-                    <div class="command-card">
-                        <div class="command-name">/automod [configurar]</div>
-                        <p>Configure filtros automáticos contra spam, palavrões e links maliciosos</p>
+                        <div class="command-name">/rank</div>
+                        <p>Mostra o ranking do servidor com os usuários mais ativos e experientes</p>
                     </div>
                 </div>
             </div>
 
             <div class="commands-category">
-                <h3>🎮 Comandos de Diversão</h3>
+                <h3>💰 Sistema Econômico</h3>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <div class="command-name">/balance</div>
+                        <p>Verifica seu saldo atual de moedas Aurora com histórico de transações</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/diario</div>
+                        <p>Colete suas moedas diárias com bônus de streak consecutivo</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/loja</div>
+                        <p>Acesse a loja virtual do servidor com itens exclusivos e upgrades</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/transferir [usuário] [valor]</div>
+                        <p>Transfira moedas Aurora para outros usuários de forma segura</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="commands-category">
+                <h3>🛡️ Comandos de Moderação</h3>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <div class="command-name">/ban [usuário] [motivo]</div>
+                        <p>Banir um usuário do servidor com sistema de logs e histórico completo</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/kick [usuário] [motivo]</div>
+                        <p>Expulsar um usuário do servidor com notificação automática</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/mute [usuário] [tempo]</div>
+                        <p>Silenciar um usuário temporariamente com controle preciso de duração</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/lock</div>
+                        <p>Trancar um canal impedindo que usuários comuns enviem mensagens</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/unlock</div>
+                        <p>Destrancar um canal restaurando as permissões normais de envio</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="commands-category">
+                <h3>🎮 Jogos e Diversão</h3>
                 <div class="commands-grid">
                     <div class="command-card">
                         <div class="command-name">/coinflip</div>
                         <p>Jogue cara ou coroa com animações visuais épicas e estatísticas</p>
                     </div>
                     <div class="command-card">
-                        <div class="command-name">/roll [dados]</div>
-                        <p>Sistema avançado de dados para RPG com suporte a múltiplos tipos</p>
-                    </div>
-                    <div class="command-card">
                         <div class="command-name">/8ball [pergunta]</div>
                         <p>Bola 8 mágica com mais de 50 respostas únicas e divertidas</p>
                     </div>
                     <div class="command-card">
-                        <div class="command-name">/meme</div>
-                        <p>Gerador de memes atualizados diariamente com templates exclusivos</p>
+                        <div class="command-name">/dado [lados]</div>
+                        <p>Rolar um dado personalizado com diferentes números de lados</p>
                     </div>
                     <div class="command-card">
-                        <div class="command-name">/piada</div>
-                        <p>Banco com milhares de piadas categorizadas e sistema de avaliação</p>
+                        <div class="command-name">/escolher [opções]</div>
+                        <p>Deixe o Aurora escolher entre várias opções que você fornecer</p>
                     </div>
                     <div class="command-card">
-                        <div class="command-name">/quiz [categoria]</div>
-                        <p>Perguntas e respostas interativas com ranking e recompensas</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="commands-category">
-                <h3>💰 Sistema de Economia</h3>
-                <div class="commands-grid">
-                    <div class="command-card">
-                        <div class="command-name">/balance</div>
-                        <p>Consulte seu saldo de moedas Aurora com histórico detalhado</p>
+                        <div class="command-name">/par-ou-impar [número]</div>
+                        <p>Jogo clássico de par ou ímpar com apostas e rankings</p>
                     </div>
                     <div class="command-card">
-                        <div class="command-name">/daily</div>
-                        <p>Colete sua recompensa diária com bônus de streak consecutivo</p>
+                        <div class="command-name">/roleta</div>
+                        <p>Jogue na roleta russa virtual com emoção e adrenalina</p>
                     </div>
                     <div class="command-card">
-                        <div class="command-name">/work</div>
-                        <p>Trabalhe em diversos empregos virtuais para ganhar moedas</p>
-                    </div>
-                    <div class="command-card">
-                        <div class="command-name">/shop</div>
-                        <p>Loja virtual com itens exclusivos, roles e upgrades especiais</p>
-                    </div>
-                    <div class="command-card">
-                        <div class="command-name">/bet [valor]</div>
-                        <p>Sistema de apostas com múltiplos jogos e jackpots progressivos</p>
-                    </div>
-                    <div class="command-card">
-                        <div class="command-name">/leaderboard [economia]</div>
-                        <p>Ranking dos usuários mais ricos do servidor com prêmios semanais</p>
+                        <div class="command-name">/pedra-papel-tesoura</div>
+                        <p>Jogo clássico contra o bot com estatísticas e torneios</p>
                     </div>
                 </div>
             </div>
 
             <div class="commands-category">
-                <h3>🏆 Sistema de Níveis</h3>
+                <h3>💕 Comandos Sociais</h3>
                 <div class="commands-grid">
                     <div class="command-card">
-                        <div class="command-name">/rank [usuário]</div>
-                        <p>Visualize seu nível atual, XP e posição no ranking global</p>
+                        <div class="command-name">/casar [usuário]</div>
+                        <p>Case-se com alguém especial e compartilhe momentos únicos</p>
                     </div>
                     <div class="command-card">
-                        <div class="command-name">/leaderboard [xp]</div>
-                        <p>Top 10 usuários com mais experiência e suas conquistas</p>
+                        <div class="command-name">/kiss [usuário]</div>
+                        <p>Envie um beijo carinhoso para alguém com GIFs animados</p>
                     </div>
                     <div class="command-card">
-                        <div class="command-name">/rewards [configurar]</div>
-                        <p>Configure recompensas automáticas por níveis alcançados</p>
+                        <div class="command-name">/ship [usuário1] [usuário2]</div>
+                        <p>Veja a compatibilidade entre duas pessoas com porcentagem</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="commands-category">
+                <h3>⚙️ Gestão de Servidor</h3>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <div class="command-name">/sorteio [prêmio] [tempo]</div>
+                        <p>Crie sorteios interativos com sistema anti-fraude integrado</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/embed [título] [descrição]</div>
+                        <p>Crie mensagens embed personalizadas com formatação avançada</p>
                     </div>
                 </div>
             </div>
@@ -516,34 +563,12 @@
                         <p>Visualize avatares em alta resolução com download direto</p>
                     </div>
                     <div class="command-card">
-                        <div class="command-name">/ping</div>
-                        <p>Latência detalhada do bot com status dos servidores globais</p>
-                    </div>
-                    <div class="command-card">
                         <div class="command-name">/weather [cidade]</div>
                         <p>Previsão do tempo em tempo real com mapas meteorológicos</p>
                     </div>
                     <div class="command-card">
                         <div class="command-name">/translate [texto]</div>
                         <p>Tradutor inteligente com suporte a mais de 100 idiomas</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="commands-category">
-                <h3>🔔 Sistema de Notificações</h3>
-                <div class="commands-grid">
-                    <div class="command-card">
-                        <div class="command-name">/reminder [tempo] [mensagem]</div>
-                        <p>Lembretes personalizados com notificação automática</p>
-                    </div>
-                    <div class="command-card">
-                        <div class="command-name">/announce [mensagem]</div>
-                        <p>Anúncios elegantes com formatação avançada e menções</p>
-                    </div>
-                    <div class="command-card">
-                        <div class="command-name">/giveaway [prêmio]</div>
-                        <p>Sorteios automáticos com sistema anti-fraude integrado</p>
                     </div>
                 </div>
             </div>
@@ -566,7 +591,7 @@
         // Criar partículas flutuantes
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 15;
+            const particleCount = 12;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
@@ -576,8 +601,8 @@
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
                 particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 10 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particle.style.animationDelay = Math.random() * 12 + 's';
+                particle.style.animationDuration = (Math.random() * 8 + 12) + 's';
                 
                 particlesContainer.appendChild(particle);
             }
