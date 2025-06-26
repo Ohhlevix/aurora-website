@@ -5,19 +5,136 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aurora - Bot para Discord</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
+        /* Animação de Loading */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeOut 1s ease-in-out 3s forwards;
+        }
+
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+
+        .loading-logo {
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: scale(0.3);
+            animation: logoExpand 2s ease-out 0.5s forwards;
+        }
+
+        .loading-text {
+            font-size: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: textSlideUp 1s ease-out 1.5s forwards;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-left: 4px solid white;
+            border-radius: 50%;
+            margin: 2rem auto 0;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes logoExpand {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) rotate(-10deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1) rotate(5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        @keyframes textSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+                visibility: visible;
+            }
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        /* Conteúdo principal */
+        .main-content {
+            opacity: 0;
+            animation: fadeInContent 1s ease-in-out 4s forwards;
+        }
+
+        @keyframes fadeInContent {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1a202c;
+            background: linear-gradient(135deg, #e6f3ff 0%, #b3e5fc 25%, #4dd0e1 50%, #00bcd4 100%);
+            background-size: 400% 400%;
+            animation: gradient-shift 10s ease infinite;
             min-height: 100vh;
             overflow-x: hidden;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .container {
@@ -27,12 +144,13 @@
         }
 
         header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(0, 188, 212, 0.2);
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 188, 212, 0.1);
         }
 
         nav {
@@ -43,42 +161,51 @@
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: white;
+            font-size: 2rem;
+            font-weight: 700;
             text-decoration: none;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            background: linear-gradient(45deg, #00bcd4, #4dd0e1, #0288d1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            filter: drop-shadow(0 2px 4px rgba(0, 188, 212, 0.3));
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .nav-links a {
-            color: white;
+            color: #0288d1;
             text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
+            padding: 0.7rem 1.5rem;
+            border-radius: 20px;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 188, 212, 0.2);
+            font-weight: 500;
         }
 
         .nav-links a:hover,
         .nav-links a.active {
-            background: rgba(255, 255, 255, 0.2);
+            background: linear-gradient(45deg, #00bcd4, #4dd0e1);
+            color: white;
             transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
         }
 
         .mobile-menu {
             display: none;
-            color: white;
+            color: #00bcd4;
             font-size: 1.5rem;
             cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu:hover {
+            transform: rotate(90deg);
         }
 
         main {
@@ -86,12 +213,12 @@
         }
 
         .section {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 20px;
             padding: 3rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 188, 212, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 188, 212, 0.2);
             margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
@@ -104,8 +231,8 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.05) 0%, transparent 70%);
-            animation: float 6s ease-in-out infinite;
+            background: radial-gradient(circle, rgba(0, 188, 212, 0.05) 0%, transparent 70%);
+            animation: float 8s ease-in-out infinite;
         }
 
         @keyframes float {
@@ -123,76 +250,69 @@
         }
 
         .bot-avatar {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             border-radius: 20px;
             margin: 0 auto 2rem;
-            border: 5px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            animation: avatarPulse 3s ease-in-out infinite;
+            border: 4px solid rgba(0, 188, 212, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 188, 212, 0.2);
+            transition: all 0.4s ease;
+            animation: avatar-float 3s ease-in-out infinite;
             object-fit: cover;
             display: block;
         }
 
-        @keyframes avatarPulse {
+        @keyframes avatar-float {
             0%, 100% { 
-                transform: scale(1);
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+                transform: translateY(0);
+                box-shadow: 0 15px 35px rgba(0, 188, 212, 0.2);
             }
             50% { 
-                transform: scale(1.05);
-                box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+                transform: translateY(-10px);
+                box-shadow: 0 25px 50px rgba(0, 188, 212, 0.3);
             }
         }
 
         .bot-avatar:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.4);
+            transform: scale(1.05);
+            box-shadow: 0 25px 60px rgba(0, 188, 212, 0.4);
         }
 
         .hero h1 {
             font-size: 4.5rem;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #667eea, #764ba2, #ff6b6b);
+            background: linear-gradient(45deg, #00bcd4, #4dd0e1, #0288d1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-weight: 900;
-            text-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            animation: titleGlow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes titleGlow {
-            from { filter: drop-shadow(0 0 5px rgba(102, 126, 234, 0.3)); }
-            to { filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.6)); }
+            font-weight: 700;
+            text-shadow: 0 4px 8px rgba(0, 188, 212, 0.2);
         }
 
         .hero p {
-            font-size: 1.6rem;
-            color: #666;
+            font-size: 1.4rem;
+            color: #4a5568;
             margin-bottom: 2.5rem;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            font-weight: 300;
+            font-weight: 400;
             line-height: 1.8;
         }
 
         .cta-button {
             display: inline-block;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, #00bcd4, #4dd0e1);
             color: white;
             padding: 1.2rem 3rem;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 30px;
             font-size: 1.3rem;
-            font-weight: bold;
+            font-weight: 600;
             transition: all 0.4s ease;
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 188, 212, 0.3);
             position: relative;
             overflow: hidden;
-            transform: perspective(1000px) rotateX(0deg);
         }
 
         .cta-button::before {
@@ -202,7 +322,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, #764ba2, #667eea);
+            background: linear-gradient(45deg, #4dd0e1, #00bcd4);
             transition: left 0.4s ease;
             z-index: -1;
         }
@@ -212,30 +332,33 @@
         }
 
         .cta-button:hover {
-            transform: translateY(-5px) perspective(1000px) rotateX(10deg);
-            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 188, 212, 0.4);
         }
 
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
+            gap: 2rem;
             margin-top: 4rem;
             position: relative;
             z-index: 2;
         }
 
         .feature-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+            background: rgba(255, 255, 255, 0.95);
             padding: 2.5rem;
-            border-radius: 20px;
+            border-radius: 15px;
             text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 188, 212, 0.2);
             backdrop-filter: blur(15px);
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
         }
 
         .feature-card::before {
@@ -246,9 +369,8 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(45deg, 
-                rgba(102, 126, 234, 0.1), 
-                rgba(118, 75, 162, 0.1), 
-                rgba(255, 107, 107, 0.1)
+                rgba(0, 188, 212, 0.1), 
+                rgba(77, 208, 225, 0.1)
             );
             transition: left 0.5s ease;
             z-index: -1;
@@ -259,27 +381,29 @@
         }
 
         .feature-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 188, 212, 0.2);
+            border-color: #00bcd4;
         }
 
         .feature-icon {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 1.5rem;
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+            color: #00bcd4;
+            filter: drop-shadow(0 4px 8px rgba(0, 188, 212, 0.2));
             transition: all 0.3s ease;
         }
 
         .feature-card:hover .feature-icon {
-            transform: scale(1.2) rotate(10deg);
-            filter: drop-shadow(0 10px 25px rgba(102, 126, 234, 0.3));
+            transform: scale(1.1);
+            filter: drop-shadow(0 6px 12px rgba(0, 188, 212, 0.3));
         }
 
         .feature-card h3 {
             font-size: 1.6rem;
             margin-bottom: 1.2rem;
-            color: #333;
-            font-weight: 700;
+            color: #2d3748;
+            font-weight: 600;
             position: relative;
         }
 
@@ -290,10 +414,9 @@
             left: 50%;
             transform: translateX(-50%);
             width: 0;
-            height: 3px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            height: 2px;
+            background: linear-gradient(45deg, #00bcd4, #4dd0e1);
             transition: width 0.3s ease;
-            border-radius: 2px;
         }
 
         .feature-card:hover h3::after {
@@ -301,145 +424,34 @@
         }
 
         .feature-card p {
-            color: #666;
+            color: #4a5568;
             line-height: 1.8;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 400;
         }
 
         footer {
-            background: rgba(0, 0, 0, 0.8);
+            background: linear-gradient(135deg, #2d3748, #4a5568);
             color: white;
             text-align: center;
             padding: 3rem 0;
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 3rem;
         }
 
         footer p {
             margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .footer-heart {
-            color: #ff6b6b;
-            animation: heartbeat 1.5s ease-in-out infinite;
+            color: #4dd0e1;
+            animation: heartbeat 2s ease-in-out infinite;
         }
 
         @keyframes heartbeat {
             0%, 50%, 100% { transform: scale(1); }
             25%, 75% { transform: scale(1.2); }
         }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(255, 255, 255, 0.95);
-                flex-direction: column;
-                padding: 1rem;
-                border-radius: 0 0 10px 10px;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links a {
-                color: #333;
-                margin: 0.5rem 0;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .hero p {
-                font-size: 1.3rem;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .section {
-                padding: 2rem 1rem;
-            }
-
-            .bot-avatar {
-                width: 120px;
-                height: 120px;
-            }
-
-            .cta-button {
-                padding: 1rem 2rem;
-                font-size: 1.1rem;
-            }
-        }
-
-        /* Animações de entrada */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .feature-card {
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .feature-card:nth-child(odd) {
-            animation: slideInLeft 0.8s ease-out;
-        }
-
-        .feature-card:nth-child(even) {
-            animation: slideInRight 0.8s ease-out;
-        }
-
-        .feature-card:nth-child(1) { animation-delay: 0.1s; }
-        .feature-card:nth-child(2) { animation-delay: 0.2s; }
-        .feature-card:nth-child(3) { animation-delay: 0.3s; }
-        .feature-card:nth-child(4) { animation-delay: 0.4s; }
-        .feature-card:nth-child(5) { animation-delay: 0.5s; }
-        .feature-card:nth-child(6) { animation-delay: 0.6s; }
-        .feature-card:nth-child(7) { animation-delay: 0.7s; }
-        .feature-card:nth-child(8) { animation-delay: 0.8s; }
-        .feature-card:nth-child(9) { animation-delay: 0.9s; }
 
         /* Partículas flutuantes */
         .floating-particles {
@@ -454,9 +466,9 @@
 
         .particle {
             position: absolute;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 188, 212, 0.1);
             border-radius: 50%;
-            animation: floatParticle 10s infinite linear;
+            animation: floatParticle 12s infinite linear;
         }
 
         @keyframes floatParticle {
@@ -475,89 +487,182 @@
                 opacity: 0;
             }
         }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 4.5s; }
+        .feature-card:nth-child(2) { animation-delay: 4.6s; }
+        .feature-card:nth-child(3) { animation-delay: 4.7s; }
+        .feature-card:nth-child(4) { animation-delay: 4.8s; }
+        .feature-card:nth-child(5) { animation-delay: 4.9s; }
+        .feature-card:nth-child(6) { animation-delay: 5.0s; }
+        .feature-card:nth-child(7) { animation-delay: 5.1s; }
+
+        @media (max-width: 768px) {
+            .loading-logo {
+                font-size: 4rem;
+            }
+
+            .loading-text {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                flex-direction: column;
+                padding: 1rem;
+                border-radius: 0 0 15px 15px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                color: #0288d1;
+                margin: 0.5rem 0;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .bot-avatar {
+                width: 150px;
+                height: 150px;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="floating-particles" id="particles"></div>
-
-    <header>
-        <nav class="container">
-            <a href="index.html" class="logo">Aurora</a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Início</a></li>
-                <li><a href="comandos.html">Comandos</a></li>
-                <li><a href="novidades.html">Novidades</a></li>
-                <li><a href="contato.html">Contato</a></li>
-                <li><a href="regras.html">Regras</a></li>
-                <li><a href="privacidade.html">Privacidade</a></li>
-            </ul>
-            <div class="mobile-menu" onclick="toggleMobileMenu()">☰</div>
-        </nav>
-    </header>
-
-    <main class="container">
-        <section class="section">
-            <div class="hero">
-                <img src="https://cdn.discordapp.com/attachments/1346969321502539826/1387205655416541285/Image_20250624_195346.jpg?ex=685c7f71&is=685b2df1&hm=73ca0aeab0c06b0ffe58f3aaaf05d992070c743f462f77fcd2e8e62f47d70985&" alt="Aurora Bot" class="bot-avatar">
-                <h1>✨ Aurora</h1>
-                <p>O bot mais elegante e poderoso para transformar seu servidor Discord em uma experiência mágica e inesquecível!</p>
-                <a href="https://discord.com/oauth2/authorize?client_id=1379556005666357268" class="cta-button">
-                    🚀 Adicionar ao Discord
-                </a>
-            </div>
-
-            <div class="features">
-                <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>Moderação Avançada</h3>
-                    <p>Sistema completo de moderação com auto-mod inteligente, filtros personalizáveis, logs detalhados e punições automáticas para manter seu servidor sempre seguro e organizado.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🎮</div>
-                    <h3>Diversão Infinita</h3>
-                    <p>Mini-jogos interativos, memes atualizados, piadas inteligentes, sorteios automáticos e atividades envolventes que mantêm sua comunidade sempre animada e conectada.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">💰</div>
-                    <h3>Sistema de Economia</h3>
-                    <p>Economia virtual completa com moedas personalizadas, empregos diversos, loja exclusiva, apostas emocionantes e rankings competitivos para engajar todos os membros.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Performance Suprema</h3>
-                    <p>Infraestrutura de ponta com 99.9% de uptime, respostas instantâneas, servidores globais e tecnologia de última geração para máxima performance.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🔔</div>
-                    <h3>Notificações Smart</h3>
-                    <p>Sistema inteligente de avisos personalizáveis, lembretes automáticos, anúncios programados e notificações contextuais para eventos importantes.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🏆</div>
-                    <h3>Sistema de Níveis</h3>
-                    <p>Ranking dinâmico com XP personalizado, níveis exclusivos, recompensas especiais e sistema de conquistas que motiva participação ativa da comunidade.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">📝</div>
-                    <h3>Utilitários Avançados</h3>
-                    <p>Ferramentas profissionais como calculadora científica, tradutor multilíngue, previsão do tempo, encurtador de links e dezenas de outras funcionalidades úteis.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Aurora Bot. Todos os direitos reservados.</p>
-            <p>Feito com <span class="footer-heart">❤️</span> para a comunidade Discord</p>
+    <!-- Tela de Loading -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-logo">✨ Aurora</div>
+            <div class="loading-text">Carregando...</div>
+            <div class="loading-spinner"></div>
         </div>
-    </footer>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="main-content" id="mainContent">
+        <div class="floating-particles" id="particles"></div>
+
+        <header>
+            <nav class="container">
+                <a href="index.html" class="logo">Aurora</a>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Início</a></li>
+                    <li><a href="comandos.html">Comandos</a></li>
+                    <li><a href="novidades.html">Novidades</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="regras.html">Regras</a></li>
+                    <li><a href="privacidade.html">Privacidade</a></li>
+                </ul>
+                <div class="mobile-menu" onclick="toggleMobileMenu()">☰</div>
+            </nav>
+        </header>
+
+        <main class="container">
+            <section class="section">
+                <div class="hero">
+                    <img src="https://cdn.discordapp.com/attachments/1346969321502539826/1387205655416541285/Image_20250624_195346.jpg?ex=685c7f71&is=685b2df1&hm=73ca0aeab0c06b0ffe58f3aaaf05d992070c743f462f77fcd2e8e62f47d70985&" alt="Aurora Bot" class="bot-avatar">
+                    <h1>✨ Aurora</h1>
+                    <p>O bot mais elegante e poderoso para transformar seu servidor Discord em uma experiência moderna e inesquecível!</p>
+                    <a href="https://discord.com/oauth2/authorize?client_id=1379556005666357268" class="cta-button">
+                        🚀 Adicionar ao Discord
+                    </a>
+                </div>
+
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>Moderação Avançada</h3>
+                        <p>Sistema completo de moderação com auto-mod inteligente, filtros personalizáveis, logs detalhados e punições automáticas para manter seu servidor sempre seguro e organizado.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🎮</div>
+                        <h3>Diversão Infinita</h3>
+                        <p>Mini-jogos interativos, memes atualizados, piadas inteligentes, sorteios automáticos e atividades envolventes que mantêm sua comunidade sempre animada e conectada.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">💰</div>
+                        <h3>Sistema de Economia</h3>
+                        <p>Economia virtual completa com moedas personalizadas, empregos diversos, loja exclusiva, apostas emocionantes e rankings competitivos para engajar todos os membros.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Performance Suprema</h3>
+                        <p>Infraestrutura de ponta com 99.9% de uptime, respostas instantâneas, servidores globais e tecnologia de última geração para máxima performance.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🔔</div>
+                        <h3>Notificações Smart</h3>
+                        <p>Sistema inteligente de avisos personalizáveis, lembretes automáticos, anúncios programados e notificações contextuais para eventos importantes.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🏆</div>
+                        <h3>Sistema de Níveis</h3>
+                        <p>Ranking dinâmico com XP personalizado, níveis exclusivos, recompensas especiais e sistema de conquistas que motiva participação ativa da comunidade.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📝</div>
+                        <h3>Utilitários Avançados</h3>
+                        <p>Ferramentas profissionais como calculadora científica, tradutor multilíngue, previsão do tempo, encurtador de links e dezenas de outras funcionalidades úteis.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 Aurora Bot. Todos os direitos reservados.</p>
+                <p>Feito com <span class="footer-heart">❤️</span> para a comunidade Discord</p>
+            </div>
+        </footer>
+    </div>
 
     <script>
         function toggleMobileMenu() {
@@ -568,7 +673,7 @@
         // Criar partículas flutuantes
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 15;
+            const particleCount = 12;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
@@ -578,8 +683,8 @@
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
                 particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 10 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particle.style.animationDelay = Math.random() * 12 + 's';
+                particle.style.animationDuration = (Math.random() * 8 + 12) + 's';
                 
                 particlesContainer.appendChild(particle);
             }
@@ -599,74 +704,45 @@
             });
         });
 
-        // Efeito de parallax no scroll
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.section::before');
-            const speed = scrolled * 0.5;
-        });
-
-        // Animação de entrada para elementos
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
+        // Efeito de hover no botão CTA
+        const ctaButton = document.querySelector('.cta-button');
+        if (ctaButton) {
+            ctaButton.addEventListener('mousemove', (e) => {
+                const rect = ctaButton.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                ctaButton.style.background = `radial-gradient(circle at ${x}px ${y}px, #4dd0e1, #00bcd4)`;
             });
-        }, observerOptions);
 
-        // Efeito de digitação no título
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.innerHTML = '';
-            
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
+            ctaButton.addEventListener('mouseleave', () => {
+                ctaButton.style.background = 'linear-gradient(45deg, #00bcd4, #4dd0e1)';
+            });
         }
 
-        // Inicializar animações
+        // Função para remover a tela de loading
+        function hideLoadingScreen() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const mainContent = document.getElementById('mainContent');
+            
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                mainContent.style.display = 'block';
+                createParticles();
+            }, 4000);
+        }
+
+        // Inicializar quando a página carregar
         document.addEventListener('DOMContentLoaded', () => {
-            createParticles();
-            
-            // Animação de entrada suave para cards
-            const cards = document.querySelectorAll('.feature-card');
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(50px)';
-                
-                setTimeout(() => {
-                    card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, index * 100);
-            });
+            hideLoadingScreen();
         });
 
-        // Efeito de brilho no botão CTA
-        const ctaButton = document.querySelector('.cta-button');
-        ctaButton.addEventListener('mousemove', (e) => {
-            const rect = ctaButton.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            ctaButton.style.background = `radial-gradient(circle at ${x}px ${y}px, #764ba2, #667eea)`;
-        });
-
-        ctaButton.addEventListener('mouseleave', () => {
-            ctaButton.style.background = 'linear-gradient(45deg, #667eea, #764ba2)';
-        });
+        // Garantir que funcione mesmo se o DOM já estiver carregado
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', hideLoadingScreen);
+        } else {
+            hideLoadingScreen();
+        }
     </script>
 </body>
 </html>
