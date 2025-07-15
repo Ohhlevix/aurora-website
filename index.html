@@ -9,15 +9,18 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #e6f3ff 0%, #b3e5fc 25%, #4dd0e1 50%, #00bcd4 100%);
-            background-size: 400% 400%;
-            color: #1a202c;
+            background: linear-gradient(135deg, #e0e7ff 0%, #c4fff9 25%, #8fd7e5 60%, #51acc3 100%);
+            background-size: 500% 500%;
+            animation: gradient-shift 13s ease-in-out infinite;
+            color: #233347;
             min-height: 100vh;
             overflow-x: hidden;
         }
         @keyframes gradient-shift {
             0% { background-position: 0% 50%; }
+            25% { background-position: 30% 70%; }
             50% { background-position: 100% 50%; }
+            75% { background-position: 70% 30%; }
             100% { background-position: 0% 50%; }
         }
         .container {
@@ -26,72 +29,71 @@
             padding: 0 20px;
         }
         header {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.91);
             backdrop-filter: blur(20px);
-            border-bottom: 2px solid rgba(0,188,212,0.2);
+            border-bottom: 2px solid rgba(17,200,235,0.17);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 4px 20px rgba(0, 188, 212, 0.1);
+            box-shadow: 0 4px 18px rgba(0,188,212,0.10);
         }
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            padding: 1.2rem 0 1.2rem 0;
         }
         .logo {
-            font-size: 2rem;
+            font-size: 2.15rem;
             font-weight: 700;
             text-decoration: none;
-            background: linear-gradient(45deg, #00bcd4, #4dd0e1, #0288d1);
+            background: linear-gradient(45deg, #00bcd4, #43e6bf, #14b8a6, #0288d1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            filter: drop-shadow(0 2px 4px rgba(0,188,212,0.3));
+            filter: drop-shadow(0 2px 6px rgba(17,200,235,0.15));
         }
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 1.25rem;
         }
         .nav-links a {
-            color: #0288d1;
+            color: #2086c7;
             text-decoration: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            background: rgba(255,255,255,0.7);
-            border: 1px solid rgba(0,188,212,0.2);
+            padding: 0.7rem 1.4rem;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.79);
+            border: 1px solid rgba(0,188,212,0.14);
             font-weight: 500;
+            transition: all 0.25s cubic-bezier(.68,-0.55,.27,1.55);
+            box-shadow: 0 2px 5px rgba(0, 188, 212, 0.06);
         }
         .nav-links a:hover,
         .nav-links a.active {
-            background: linear-gradient(45deg, #00bcd4, #4dd0e1);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,188,212,0.3);
+            background: linear-gradient(45deg,#53e8d4,#2086c7);
+            color: #fff;
+            box-shadow: 0 8px 32px rgba(82,226,244,0.11);
+            transform: translateY(-3px) scale(1.02);
         }
         .mobile-menu {
             display: none;
-            color: #00bcd4;
-            font-size: 1.5rem;
+            color: #1cbabb;
+            font-size: 1.6rem;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: .3s;
         }
-        .mobile-menu:hover { transform: rotate(90deg); }
-
+        .mobile-menu:hover { transform: rotate(86deg); }
         main { padding: 3rem 0; }
         .section {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 20px 40px rgba(0, 188, 212, 0.1);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(0,188,212,0.2);
-            margin-bottom: 2rem;
+            background: rgba(255,255,255,0.95);
+            border-radius: 22px;
+            padding: 3.3rem 2.5rem 2.2rem 2.5rem;
+            box-shadow: 0 28px 64px rgba(0,188,212,0.090);
+            backdrop-filter: blur(13px);
+            border: 1px solid rgba(0,188,212,0.12);
+            margin-bottom: 2.2rem;
             position: relative;
-            overflow: hidden;
         }
         .section::before {
             content: '';
@@ -100,28 +102,29 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(0, 188, 212, 0.05) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 188, 212, 0.07) 0%, transparent 65%);
         }
         .hero {
             text-align: center;
-            margin-bottom: 4rem;
-            padding: 2rem 0;
+            margin-bottom: 4.3rem;
             position: relative;
             z-index: 2;
+            padding: 2.5rem 0 1.5rem 0;
         }
         /* Imagem do bot só no mobile */
         .bot-avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 20px;
-            border: 4px solid rgba(0,188,212,0.3);
-            box-shadow: 0 15px 35px rgba(0,188,212,0.2);
-            margin: 0 auto 1.5rem;
+            width: 140px;
+            height: 140px;
+            border-radius: 18px;
+            border: 4px solid #7de7fc66;
+            box-shadow: 0 10px 38px rgba(26,200,224,0.13);
+            margin: 0 auto 1.1rem;
             object-fit: cover;
             display: none;
+            background: #e0fbff;
         }
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.3rem; }
+            .hero h1 { font-size: 2.1rem; }
             .bot-avatar { display: block; }
             .nav-links {
                 display: none;
@@ -129,100 +132,136 @@
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background: rgba(255,255,255,0.95);
+                background: rgba(255,255,255,0.96);
                 flex-direction: column;
                 padding: 1rem;
                 border-radius: 0 0 15px 15px;
             }
             .nav-links.active { display: flex; }
-            .nav-links a { color: #0288d1; margin: 0.5rem 0; }
+            .nav-links a { color: #0288d1; margin: 0.45rem 0; }
             .mobile-menu { display: block; }
+            .section { padding: 1.7rem 0.5rem; }
         }
         .hero h1 {
-            font-size: 4rem;
+            font-size: 3.6rem;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #00bcd4, #4dd0e1, #0288d1);
+            background: linear-gradient(45deg, #00bcd4, #56ffec, #0288d1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-weight: 700;
+            font-weight: 800;
+            text-shadow: 0 3px 8px rgba(0,188,212,0.11);
         }
         .hero p {
-            font-size: 1.4rem;
-            color: #4a5568;
-            margin-bottom: 2.2rem;
-            max-width: 700px;
+            font-size: 1.38rem;
+            color: #269794;
+            margin-bottom: 2.5rem;
+            max-width: 730px;
             margin-left: auto;
             margin-right: auto;
-            font-weight: 400;
+            font-weight: 500;
             line-height: 1.65;
+        }
+        .welcome-msg {
+            margin: 0 auto 2.7rem auto;
+            background:linear-gradient(87deg, #0fd9bf 0%, #1198ff 100%);
+            color: #fff;
+            font-size: 1.27rem;
+            padding: 1.7rem 1rem 1.1rem 1rem;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 8px 35px #30c9c933;
+            max-width: 600px;
+            font-weight: 600;
+            line-height: 1.7;
+            letter-spacing: 0.3px;
+            border-bottom: 4px solid #4dd0e1;
+            position: relative;
         }
         .cta-buttons {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
         }
         .cta-button {
             display: inline-block;
-            background: linear-gradient(45deg, #00bcd4, #4dd0e1);
-            color: white;
-            padding: 1.1rem 2.4rem;
+            background: linear-gradient(90deg, #195fe4 0%, #43e6bf 100%);
+            color: #fff;
+            padding: 1.15rem 2.35rem;
+            border-radius: 40px;
+            font-size: 1.22rem;
+            font-weight: 700;
             text-decoration: none;
-            border-radius: 30px;
-            font-size: 1.15rem;
-            font-weight: 600;
-            transition: all 0.27s ease;
-            box-shadow: 0 7px 28px rgba(0, 188, 212, 0.22);
             border: none;
+            box-shadow: 0 10px 40px rgba(33,116,244,0.13);
+            transition: all 210ms cubic-bezier(.31,1.31,.48,.81);
+            letter-spacing: 0.5px;
             cursor: pointer;
+            border: 2px solid #e2fffe00;
+        }
+        .cta-button.votar {
+            background: linear-gradient(90deg, #ff85b3 0%, #a478e9 100%);
+            color: #fff;
         }
         .cta-button:hover {
-            transform: translateY(-2px) scale(1.04);
-            box-shadow: 0 15px 40px rgba(0,188,212,0.23);
+            filter: brightness(1.08) saturate(1.07);
+            box-shadow: 0 8px 46px #4dd0e177;
+            border: 2px solid #0fd9bf33;
+            transform: translateY(-2px) scale(1.045);
+        }
+        .cta-button.votar:hover {
+            background: linear-gradient(90deg, #ed5c94 0%, #7231d8 100%);
         }
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            gap: 2.3rem;
             margin-top: 4rem;
             position: relative;
-            z-index: 2;
         }
         .feature-card {
-            background: rgba(255,255,255,0.95);
-            padding: 2.3rem 2rem;
-            border-radius: 15px;
+            background: rgba(255,255,255,0.96);
+            padding: 2.5rem 2rem 1.6rem 2rem;
+            border-radius: 14px;
             text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0,188,212,0.16);
-            box-shadow: 0 4px 16px rgba(0,188,212,0.06);
+            border: 1px solid rgba(0,188,212,0.13);
+            box-shadow: 0 8px 22px rgba(0,188,212,0.10);
             position: relative;
+            transition: box-shadow .21s, transform .22s;
+        }
+        .feature-card:hover {
+            box-shadow: 0 14px 50px rgba(31,188,212,0.14);
+            transform: translateY(-3px) scale(1.04);
+            border: 1.2px solid #14b8a625;
         }
         .feature-icon {
             font-size: 2.5rem;
-            margin-bottom: 1.3rem;
-            color: #00bcd4;
+            margin-bottom: 1.15rem;
+            color: #16bddd;
             filter: drop-shadow(0 3px 8px rgba(0,188,212,0.11));
         }
         .feature-card h3 {
-            font-size: 1.33rem;
-            margin-bottom: 1rem;
+            font-size: 1.31rem;
+            margin-bottom: 0.85rem;
             color: #2d3748;
             font-weight: 600;
         }
         .feature-card p {
-            color: #4a5568;
-            line-height: 1.65;
-            font-size: 1rem;
-            font-weight: 400;
+            color: #3bad9a;
+            font-size: 1.05rem;
+            font-weight: 500;
+            line-height: 1.6;
         }
         footer {
-            background: linear-gradient(135deg, #2d3748, #4a5568);
+            background: linear-gradient(135deg, #284885, #28a0c8 60%, #6fd6e8 100%);
             color: white;
             text-align: center;
             padding: 2.5rem 1rem;
             margin-top: 3rem;
+            letter-spacing: 0.3px;
+            font-size: 1.05rem;
         }
         .footer-heart {
             color: #4dd0e1;
@@ -255,10 +294,17 @@
         <img src="https://cdn.discordapp.com/attachments/1346969321502539826/1387205655416541285/Image_20250624_195346.jpg?ex=685c7f71&is=685b2df1&hm=73ca0aeab0c06b0ffe58f3aaaf05d992070c743f462f77fcd2e8e62f47d70985&"
           alt="Aurora Bot" class="bot-avatar">
         <h1>✨ Aurora</h1>
-        <p>O bot mais elegante e poderoso para transformar seu servidor Discord em uma experiência moderna e inesquecível!</p>
+        <div class="welcome-msg">
+          🎉 <b>Bem-vindo ao universo Aurora!</b><br>
+          Descubra o bot que eleva seu Discord a outro nível com <span style="color:#ffe6fb;font-weight:600;">design incrível</span>, comandos poderosos,<br/>
+          interatividade e <span style="color:#f3f700;font-weight:700;">diversão garantida</span> para toda a comunidade. Junte-se a milhares que<br/>
+          já transformaram seus servidores em experiências únicas.<br/><br>
+          <span style="font-size:1.1rem;color:#fffda7;font-weight:600;">
+              O futuro dos bots começa aqui!</span>
+        </div>
         <div class="cta-buttons">
             <a href="https://discord.com/oauth2/authorize?client_id=1379556005666357268" class="cta-button">🚀 Adicionar ao Discord</a>
-            <a href="https://top.gg/bot/1379556005666357268" class="cta-button">💖 Votar no Top.gg</a>
+            <a href="https://top.gg/bot/1379556005666357268" class="cta-button votar">💖 Votar no Top.gg</a>
         </div>
     </div>
     <section class="section">
@@ -266,37 +312,37 @@
             <div class="feature-card">
                 <div class="feature-icon">🛡️</div>
                 <h3>Moderação Avançada</h3>
-                <p>Sistema completo de moderação com auto-mod inteligente, filtros personalizáveis e logs detalhados.</p>
+                <p>Sistema completo com auto-mod, filtros inteligentes e punições automáticas.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🎮</div>
                 <h3>Diversão Infinita</h3>
-                <p>Mini-jogos interativos, memes e sorteios automáticos para animar sua comunidade.</p>
+                <p>Mini-jogos, memes, sorteios e comandos criativos animam qualquer comunidade!</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">💰</div>
-                <h3>Sistema de Economia</h3>
-                <p>Economia virtual com moedas, empregos, loja e rankings para engajar todos.</p>
+                <h3>Economia Integrada</h3>
+                <p>Moedas, loja virtual, empregos, conquistas e rankings competitivos.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">⚡</div>
                 <h3>Performance Suprema</h3>
-                <p>Infraestrutura robusta com uptime de 99.9% e respostas rápidas.</p>
+                <p>Respostas instantâneas, estabilidade total e servidores rápidos no mundo todo.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🔔</div>
-                <h3>Notificações Smart</h3>
-                <p>Avisos automáticos, lembretes e anúncios inteligentes para seu servidor.</p>
+                <h3>Alerta & Notificação Smart</h3>
+                <p>Notificações, lembretes agendados e avisos automáticos no servidor.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🏆</div>
-                <h3>Sistema de Níveis</h3>
-                <p>Ranking, XP, conquistas e recompensas para criar participação ativa.</p>
+                <h3>Ranking & XP</h3>
+                <p>XP customizado, níveis exclusivos e conquistas que motivam a comunidade.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">📝</div>
-                <h3>Utilitários Avançados</h3>
-                <p>Ferramentas como tradutor, previsão do tempo, calculadora e muito mais!</p>
+                <h3>Utilitários Premium</h3>
+                <p>Tradutor, previsão do tempo, informações detalhadas e muito mais!</p>
             </div>
         </div>
     </section>
