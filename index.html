@@ -9,19 +9,12 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #e0e7ff 0%, #c4fff9 25%, #8fd7e5 60%, #51acc3 100%);
-            background-size: 500% 500%;
-            animation: gradient-shift 13s ease-in-out infinite;
-            color: #233347;
+            /* Aquarela azul clara como fundo */
+            background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') center center/cover no-repeat fixed,
+                        linear-gradient(135deg, #e0e7ff 0%, #c4fff9 25%, #8fd7e5 60%, #51acc3 100%);
             min-height: 100vh;
-            overflow-x: hidden;
-        }
-        @keyframes gradient-shift {
-            0% { background-position: 0% 50%; }
-            25% { background-position: 30% 70%; }
-            50% { background-position: 100% 50%; }
-            75% { background-position: 70% 30%; }
-            100% { background-position: 0% 50%; }
+            color: #233347;
+            background-blend-mode: lighten;
         }
         .container {
             max-width: 1200px;
@@ -41,7 +34,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.2rem 0 1.2rem 0;
+            padding: 1.2rem 0;
         }
         .logo {
             font-size: 2.15rem;
@@ -59,22 +52,21 @@
             gap: 1.25rem;
         }
         .nav-links a {
-            color: #2086c7;
+            color: #166cb6;
             text-decoration: none;
             padding: 0.7rem 1.4rem;
             border-radius: 22px;
-            background: rgba(255,255,255,0.79);
-            border: 1px solid rgba(0,188,212,0.14);
+            background: rgba(255,255,255,0.76);
+            border: 1px solid rgba(0,88,132,0.11);
             font-weight: 500;
-            transition: all 0.25s cubic-bezier(.68,-0.55,.27,1.55);
-            box-shadow: 0 2px 5px rgba(0, 188, 212, 0.06);
+            transition: all 0.2s cubic-bezier(.68,-0.55,.27,1.55);
         }
         .nav-links a:hover,
         .nav-links a.active {
-            background: linear-gradient(45deg,#53e8d4,#2086c7);
-            color: #fff;
-            box-shadow: 0 8px 32px rgba(82,226,244,0.11);
-            transform: translateY(-3px) scale(1.02);
+            background: #fff;
+            color: #2186c4;
+            box-shadow: 0 6px 26px #53a3e311;
+            transform: translateY(-2px) scale(1.025);
         }
         .mobile-menu {
             display: none;
@@ -84,6 +76,7 @@
             transition: .3s;
         }
         .mobile-menu:hover { transform: rotate(86deg); }
+
         main { padding: 3rem 0; }
         .section {
             background: rgba(255,255,255,0.95);
@@ -95,15 +88,6 @@
             margin-bottom: 2.2rem;
             position: relative;
         }
-        .section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0, 188, 212, 0.07) 0%, transparent 65%);
-        }
         .hero {
             text-align: center;
             margin-bottom: 4.3rem;
@@ -111,7 +95,6 @@
             z-index: 2;
             padding: 2.5rem 0 1.5rem 0;
         }
-        /* Imagem do bot só no mobile */
         .bot-avatar {
             width: 140px;
             height: 140px;
@@ -144,75 +127,62 @@
         }
         .hero h1 {
             font-size: 3.6rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.1rem;
             background: linear-gradient(45deg, #00bcd4, #56ffec, #0288d1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-weight: 800;
-            text-shadow: 0 3px 8px rgba(0,188,212,0.11);
+            text-shadow: 0 2px 10px #c8fff5c0;
         }
         .hero p {
-            font-size: 1.38rem;
-            color: #269794;
-            margin-bottom: 2.5rem;
-            max-width: 730px;
+            font-size: 1.35rem;
+            color: #2186c4;
+            margin-bottom: 2.4rem;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            font-weight: 500;
-            line-height: 1.65;
-        }
-        .welcome-msg {
-            margin: 0 auto 2.7rem auto;
-            background:linear-gradient(87deg, #0fd9bf 0%, #1198ff 100%);
-            color: #fff;
-            font-size: 1.27rem;
-            padding: 1.7rem 1rem 1.1rem 1rem;
-            border-radius: 18px;
-            text-align: center;
-            box-shadow: 0 8px 35px #30c9c933;
-            max-width: 600px;
             font-weight: 600;
-            line-height: 1.7;
-            letter-spacing: 0.3px;
-            border-bottom: 4px solid #4dd0e1;
-            position: relative;
+            letter-spacing: .02em;
+            line-height: 1.65;
         }
         .cta-buttons {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 1.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
         .cta-button {
             display: inline-block;
-            background: linear-gradient(90deg, #195fe4 0%, #43e6bf 100%);
+            background: linear-gradient(90deg, #2196f3 0%, #0288d1 100%);
             color: #fff;
-            padding: 1.15rem 2.35rem;
-            border-radius: 40px;
-            font-size: 1.22rem;
+            padding: 1.1rem 2.3rem;
+            border-radius: 36px;
+            font-size: 1.19rem;
             font-weight: 700;
             text-decoration: none;
             border: none;
-            box-shadow: 0 10px 40px rgba(33,116,244,0.13);
-            transition: all 210ms cubic-bezier(.31,1.31,.48,.81);
-            letter-spacing: 0.5px;
+            box-shadow: 0 8px 28px #159cdb1b;
+            transition: background 0.18s, color 0.18s, transform 0.18s;
             cursor: pointer;
-            border: 2px solid #e2fffe00;
+            border: 2px solid #bbecff00;
         }
         .cta-button.votar {
-            background: linear-gradient(90deg, #ff85b3 0%, #a478e9 100%);
-            color: #fff;
+            background: linear-gradient(90deg, #175ecc 0%, #6bd6ff 100%);
         }
-        .cta-button:hover {
-            filter: brightness(1.08) saturate(1.07);
-            box-shadow: 0 8px 46px #4dd0e177;
-            border: 2px solid #0fd9bf33;
+        .cta-button:hover,
+        .cta-button:focus {
+            background: #fff;
+            color: #2196f3;
+            border: 2px solid #86d8ef;
             transform: translateY(-2px) scale(1.045);
         }
-        .cta-button.votar:hover {
-            background: linear-gradient(90deg, #ed5c94 0%, #7231d8 100%);
+        .cta-button.votar:hover,
+        .cta-button.votar:focus {
+            background: #fff;
+            color: #1963af;
+            border: 2px solid #75cbef;
         }
         .features {
             display: grid;
@@ -224,17 +194,17 @@
         .feature-card {
             background: rgba(255,255,255,0.96);
             padding: 2.5rem 2rem 1.6rem 2rem;
-            border-radius: 14px;
+            border-radius: 15px;
             text-align: center;
             border: 1px solid rgba(0,188,212,0.13);
             box-shadow: 0 8px 22px rgba(0,188,212,0.10);
             position: relative;
-            transition: box-shadow .21s, transform .22s;
+            transition: box-shadow .18s, transform .18s;
         }
         .feature-card:hover {
-            box-shadow: 0 14px 50px rgba(31,188,212,0.14);
-            transform: translateY(-3px) scale(1.04);
-            border: 1.2px solid #14b8a625;
+            box-shadow: 0 14px 50px rgba(31,188,212,0.13);
+            transform: translateY(-3px) scale(1.035);
+            border: 1.2px solid #14b8a627;
         }
         .feature-icon {
             font-size: 2.5rem;
@@ -243,25 +213,27 @@
             filter: drop-shadow(0 3px 8px rgba(0,188,212,0.11));
         }
         .feature-card h3 {
-            font-size: 1.31rem;
+            font-size: 1.33rem;
             margin-bottom: 0.85rem;
             color: #2d3748;
             font-weight: 600;
         }
         .feature-card p {
-            color: #3bad9a;
-            font-size: 1.05rem;
+            color: #247997;
+            font-size: 1.07rem;
             font-weight: 500;
             line-height: 1.6;
         }
         footer {
-            background: linear-gradient(135deg, #284885, #28a0c8 60%, #6fd6e8 100%);
+            background: linear-gradient(135deg, #284885, #28a0c8 60%, #91e0e8 100%);
             color: white;
             text-align: center;
             padding: 2.5rem 1rem;
             margin-top: 3rem;
             letter-spacing: 0.3px;
             font-size: 1.05rem;
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
         }
         .footer-heart {
             color: #4dd0e1;
@@ -294,14 +266,7 @@
         <img src="https://cdn.discordapp.com/attachments/1346969321502539826/1387205655416541285/Image_20250624_195346.jpg?ex=685c7f71&is=685b2df1&hm=73ca0aeab0c06b0ffe58f3aaaf05d992070c743f462f77fcd2e8e62f47d70985&"
           alt="Aurora Bot" class="bot-avatar">
         <h1>✨ Aurora</h1>
-        <div class="welcome-msg">
-          🎉 <b>Bem-vindo ao universo Aurora!</b><br>
-          Descubra o bot que eleva seu Discord a outro nível com <span style="color:#ffe6fb;font-weight:600;">design incrível</span>, comandos poderosos,<br/>
-          interatividade e <span style="color:#f3f700;font-weight:700;">diversão garantida</span> para toda a comunidade. Junte-se a milhares que<br/>
-          já transformaram seus servidores em experiências únicas.<br/><br>
-          <span style="font-size:1.1rem;color:#fffda7;font-weight:600;">
-              O futuro dos bots começa aqui!</span>
-        </div>
+        <p>O bot para Discord de visual encantador, comandos inteligentes e recursos completos — tudo para a sua comunidade crescer com praticidade e diversão.</p>
         <div class="cta-buttons">
             <a href="https://discord.com/oauth2/authorize?client_id=1379556005666357268" class="cta-button">🚀 Adicionar ao Discord</a>
             <a href="https://top.gg/bot/1379556005666357268" class="cta-button votar">💖 Votar no Top.gg</a>
