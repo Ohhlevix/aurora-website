@@ -1,607 +1,617 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Comandos - Aurora Bot</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      color: #1a202c;
-      background: linear-gradient(135deg, #e6f3ff 0%, #b3e5fc 25%, #4dd0e1 50%, #00bcd4 100%);
-      background-size: 400% 400%;
-      animation: gradient-shift 10s ease infinite;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    @keyframes gradient-shift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    header {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      border-bottom: 2px solid rgba(0, 188, 212, 0.2);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 20px rgba(0, 188, 212, 0.1);
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 0;
-    }
-
-    .logo {
-      font-size: 2rem;
-      font-weight: 700;
-      text-decoration: none;
-      background: linear-gradient(45deg, #00bcd4, #4dd0e1, #0288d1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 2px 4px rgba(0, 188, 212, 0.3));
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 1.5rem;
-    }
-
-    .nav-links a {
-      color: #0288d1;
-      text-decoration: none;
-      padding: 0.7rem 1.5rem;
-      border-radius: 20px;
-      transition: all 0.3s ease;
-      background: rgba(255, 255, 255, 0.7);
-      border: 1px solid rgba(0, 188, 212, 0.2);
-      font-weight: 500;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      background: linear-gradient(45deg, #00bcd4, #4dd0e1);
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
-    }
-
-    .mobile-menu {
-      display: none;
-      color: #00bcd4;
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .mobile-menu:hover {
-      transform: rotate(90deg);
-    }
-
-    main {
-      padding: 3rem 0;
-    }
-
-    .section {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 20px;
-      padding: 3rem;
-      box-shadow: 0 20px 40px rgba(0, 188, 212, 0.1);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(0, 188, 212, 0.2);
-      margin-bottom: 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .page-title {
-      text-align: center;
-      margin-bottom: 3rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .page-title h1 {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-      background: linear-gradient(45deg, #00bcd4, #4dd0e1, #0288d1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 700;
-      text-shadow: 0 4px 8px rgba(0, 188, 212, 0.2);
-    }
-
-    .page-title p {
-      font-size: 1.3rem;
-      color: #4a5568;
-      max-width: 600px;
-      margin: 0 auto;
-      font-weight: 400;
-      line-height: 1.8;
-    }
-
-    .commands-category {
-      margin-bottom: 3rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .commands-category h3 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: #2d3748;
-      text-align: center;
-      position: relative;
-      font-weight: 600;
-    }
-
-    .commands-category h3::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(45deg, #00bcd4, #4dd0e1);
-      border-radius: 2px;
-    }
-
-    .commands-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .command-card {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 2rem;
-      border-radius: 15px;
-      border: 1px solid rgba(0, 188, 212, 0.2);
-      backdrop-filter: blur(15px);
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .command-name {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #00bcd4;
-      margin-bottom: 0.8rem;
-      font-family: 'Courier New', monospace;
-      background: rgba(0, 188, 212, 0.1);
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      border-left: 4px solid #00bcd4;
-    }
-
-    .command-card p {
-      color: #4a5568;
-      line-height: 1.6;
-      font-size: 1rem;
-      font-weight: 400;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comandos - Aurora Bot</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1a202c;
+            background: linear-gradient(135deg, #e6f3ff 0%, #b3e5fc 25%, #4dd0e1 50%, #00bcd4 100%);
+            background-size: 400% 400%;
+            animation: gradient-shift 10s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(0, 188, 212, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 188, 212, 0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            text-decoration: none;
+            background: linear-gradient(45deg, #00bcd4, #4dd0e1, #0288d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 2px 4px rgba(0, 188, 212, 0.3));
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        .nav-links a {
+            color: #0288d1;
+            text-decoration: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 188, 212, 0.2);
+            font-weight: 500;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: linear-gradient(45deg, #00bcd4, #4dd0e1);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
+        }
+        .mobile-menu {
+            display: none;
+            color: #00bcd4;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu:hover { transform: rotate(90deg); }
+        main { padding: 3rem 0; }
+        .section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 188, 212, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 188, 212, 0.2);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 188, 212, 0.05) 0%, transparent 70%);
+            animation: float 8s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+        .page-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+        .page-title h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00bcd4, #4dd0e1, #0288d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            text-shadow: 0 4px 8px rgba(0, 188, 212, 0.2);
+        }
+        .page-title p {
+            font-size: 1.3rem;
+            color: #4a5568;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+        .commands-category { margin-bottom: 3rem; position: relative; z-index: 2; }
+        .commands-category h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #2d3748;
+            text-align: center;
+            position: relative;
+            font-weight: 600;
+        }
+        .commands-category h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #00bcd4, #4dd0e1);
+            border-radius: 2px;
+        }
+        .commands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .command-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 188, 212, 0.2);
+            backdrop-filter: blur(15px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .command-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 188, 212, 0.1), rgba(77, 208, 225, 0.1));
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+        .command-card:hover::before { left: 0; }
+        .command-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 188, 212, 0.2);
+            border-color: #00bcd4;
+        }
+        .command-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #00bcd4;
+            margin-bottom: 0.8rem;
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 188, 212, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #00bcd4;
+        }
+        .command-card p {
+            color: #4a5568;
+            line-height: 1.6;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+        footer {
+            background: linear-gradient(135deg, #2d3748, #4a5568);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+        footer p { margin-bottom: 0.5rem; font-size: 1rem; }
+        .footer-heart {
+            color: #4dd0e1;
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+        @keyframes heartbeat {
+            0%, 50%, 100% { transform: scale(1); }
+            25%, 75% { transform: scale(1.2); }
+        }
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .particle {
+            position: absolute;
+            background: rgba(0, 188, 212, 0.1);
+            border-radius: 50%;
+            animation: floatParticle 12s infinite linear;
+        }
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .command-card { animation: fadeInUp 0.6s ease-out; }
+        .command-card:nth-child(1) { animation-delay: 0.1s; }
+        .command-card:nth-child(2) { animation-delay: 0.2s; }
+        .command-card:nth-child(3) { animation-delay: 0.3s; }
+        .command-card:nth-child(4) { animation-delay: 0.4s; }
+        .command-card:nth-child(5) { animation-delay: 0.5s; }
+        .command-card:nth-child(6) { animation-delay: 0.6s; }
+        .command-card:nth-child(7) { animation-delay: 0.7s; }
+        .command-card:nth-child(8) { animation-delay: 0.8s; }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                flex-direction: column;
+                padding: 1rem;
+                border-radius: 0 0 15px 15px;
+            }
+            .nav-links.active { display: flex; }
+            .nav-links a { color: #0288d1; margin: 0.5rem 0; }
+            .mobile-menu { display: block; }
+            .page-title h1 { font-size: 2.5rem; }
+            .page-title p { font-size: 1.1rem; }
+            .commands-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .section { padding: 2rem 1rem; }
+            .command-card { padding: 1.5rem; }
+            .commands-category h3 { font-size: 1.6rem; }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <nav class="container">
-      <a href="index.html" class="logo">Aurora</a>
-      <ul class="nav-links">
-        <li><a href="index.html">Início</a></li>
-        <li><a href="comandos.html" class="active">Comandos</a></li>
-        <li><a href="novidades.html">Novidades</a></li>
-        <li><a href="contato.html">Contato</a></li>
-        <li><a href="regras.html">Regras</a></li>
-        <li><a href="privacidade.html">Privacidade</a></li>
-      </ul>
-      <div class="mobile-menu" onclick="toggleMobileMenu()">☰</div>
-    </nav>
-  </header>
-  <main class="container">
-    <section class="section">
-      <div class="page-title">
-        <h1>⚡ Comandos do Aurora</h1>
-        <p>Descubra todos os comandos disponíveis e transforme seu servidor Discord em uma experiência incrível!</p>
-      </div>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Comandos - Aurora Bot</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      color: #1a202c;
-      background: linear-gradient(135deg, #e6f3ff 0%, #b3e5fc 25%, #4dd0e1 50%, #00bcd4 100%);
-      background-size: 400% 400%;
-      animation: gradient-shift 10s ease infinite;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-    @keyframes gradient-shift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-    header {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      border-bottom: 2px solid rgba(0, 188, 212, 0.2);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 20px rgba(0, 188, 212, 0.1);
-    }
-    nav {
-      display: flex; justify-content: space-between; align-items: center; padding: 1rem 0;
-    }
-    .logo {
-      font-size: 2rem; font-weight: 700; text-decoration: none;
-      background: linear-gradient(45deg, #00bcd4, #4dd0e1, #0288d1);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text; filter: drop-shadow(0 2px 4px rgba(0, 188, 212, 0.3));
-    }
-    .nav-links { display: flex; list-style: none; gap: 1.5rem; }
-    .nav-links a {
-      color: #0288d1; text-decoration: none; padding: 0.7rem 1.5rem; border-radius: 20px;
-      transition: all 0.3s ease; background: rgba(255, 255, 255, 0.7);
-      border: 1px solid rgba(0, 188, 212, 0.2); font-weight: 500;
-    }
-    .nav-links a:hover, .nav-links a.active {
-      background: linear-gradient(45deg, #00bcd4, #4dd0e1);
-      color: white; transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
-    }
-    .mobile-menu {
-      display: none; color: #00bcd4; font-size: 1.5rem; cursor: pointer; transition: transform 0.3s ease;
-    }
-    .mobile-menu:hover { transform: rotate(90deg); }
-    main { padding: 3rem 0; }
-    .section {
-      background: rgba(255, 255, 255, 0.9); border-radius: 20px; padding: 3rem;
-      box-shadow: 0 20px 40px rgba(0, 188, 212, 0.1);
-      backdrop-filter: blur(15px); border: 1px solid rgba(0, 188, 212, 0.2);
-      margin-bottom: 2rem; position: relative; overflow: hidden;
-    }
-    .page-title {
-      text-align: center; margin-bottom: 3rem; position: relative; z-index: 2;
-    }
-    .page-title h1 {
-      font-size: 4rem; margin-bottom: 1rem;
-      background: linear-gradient(45deg, #00bcd4, #4dd0e1, #0288d1);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text; font-weight: 700;
-      text-shadow: 0 4px 8px rgba(0, 188, 212, 0.2);
-    }
-    .page-title p { font-size: 1.3rem; color: #4a5568; max-width: 600px; margin: 0 auto; font-weight: 400; line-height: 1.8; }
-    .commands-category { margin-bottom: 3rem; position: relative; z-index: 2; }
-    .commands-category h3 {
-      font-size: 2rem; margin-bottom: 2rem; color: #2d3748;
-      text-align: center; position: relative; font-weight: 600;
-    }
-    .commands-category h3::after {
-      content: ''; position: absolute; bottom: -10px; left: 50%;
-      transform: translateX(-50%); width: 80px; height: 4px;
-      background: linear-gradient(45deg, #00bcd4, #4dd0e1); border-radius: 2px;
-    }
-    .commands-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;
-    }
-    .command-card {
-      background: rgba(255, 255, 255, 0.95); padding: 2rem; border-radius: 15px;
-      border: 1px solid rgba(0, 188, 212, 0.2); backdrop-filter: blur(15px);
-      transition: all 0.4s ease; position: relative; overflow: hidden; cursor: pointer;
-    }
-    .command-name {
-      font-size: 1.2rem; font-weight: 600; color: #00bcd4; margin-bottom: 0.8rem;
-      font-family: 'Courier New', monospace; background: rgba(0, 188, 212, 0.1);
-      padding: 0.5rem 1rem; border-radius: 8px; border-left: 4px solid #00bcd4;
-    }
-    .command-card p { color: #4a5568; line-height: 1.6; font-size: 1rem; font-weight: 400; }
-    footer {
-      background: linear-gradient(135deg, #2d3748, #4a5568); color: white;
-      text-align: center; padding: 3rem 0; margin-top: 3rem;
-    }
-    footer p { margin-bottom: 0.5rem; font-size: 1rem; }
-    .footer-heart { color: #4dd0e1; animation: heartbeat 2s ease-in-out infinite; }
-    @keyframes heartbeat {
-      0%, 50%, 100% { transform: scale(1); }
-      25%, 75% { transform: scale(1.2); }
-    }
-    @media (max-width: 768px) {
-      .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(255, 255, 255, 0.95); flex-direction: column; padding: 1rem; border-radius: 0 0 15px 15px; }
-      .nav-links.active { display: flex; }
-      .nav-links a { color: #0288d1; margin: 0.5rem 0; }
-      .mobile-menu { display: block; }
-      .page-title h1 { font-size: 2.5rem; }
-      .page-title p { font-size: 1.1rem; }
-      .commands-grid { grid-template-columns: 1fr; gap: 1rem; }
-      .section { padding: 2rem 1rem; }
-      .command-card { padding: 1.5rem; }
-      .commands-category h3 { font-size: 1.6rem; }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <nav class="container">
-      <a href="index.html" class="logo">Aurora</a>
-      <ul class="nav-links">
-        <li><a href="index.html">Início</a></li>
-        <li><a href="comandos.html" class="active">Comandos</a></li>
-        <li><a href="novidades.html">Novidades</a></li>
-        <li><a href="contato.html">Contato</a></li>
-        <li><a href="regras.html">Regras</a></li>
-        <li><a href="privacidade.html">Privacidade</a></li>
-      </ul>
-      <div class="mobile-menu" onclick="toggleMobileMenu()">☰</div>
-    </nav>
-  </header>
-  <main class="container">
-    <section class="section">
-      <div class="page-title">
-        <h1>⚡ Comandos do Aurora</h1>
-        <p>Descubra todos os comandos disponíveis e transforme seu servidor Discord em uma experiência incrível!</p>
-      </div>
-
-      <div class="commands-category">
-        <h3>📢 Comandos de Texto</h3>
-        <div class="commands-grid">
-          <div class="command-card">
-            <div class="command-name">!cmdlist</div>
-            <p>Envia uma lista com todos os comandos e suas descrições</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">!help</div>
-            <p>Shows this message</p>
-          </div>
+    <div class="floating-particles" id="particles"></div>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Aurora</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="comandos.html" class="active">Comandos</a></li>
+                <li><a href="novidades.html">Novidades</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="regras.html">Regras</a></li>
+                <li><a href="privacidade.html">Privacidade</a></li>
+            </ul>
+            <div class="mobile-menu" onclick="toggleMobileMenu()">☰</div>
+        </nav>
+    </header>
+    <main class="container">
+        <section class="section">
+            <div class="page-title">
+                <h1>⚡ Comandos do Aurora</h1>
+                <p>Descubra todos os comandos disponíveis e transforme seu servidor Discord em uma experiência incrível!</p>
+            </div>
+            <div class="commands-category">
+                <h3>📋 Comandos Básicos</h3>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <div class="command-name">/help</div>
+                        <p>Mostra informações de ajuda sobre o bot</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/ajuda</div>
+                        <p>Mostra informações de ajuda sobre o bot</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/report</div>
+                        <p>Sistema de reportes do servidor</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">!cmdlist</div>
+                        <p>Envia uma lista com todos os comandos e suas descrições</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">!help</div>
+                        <p>Shows this message</p>
+                    </div>
+                </div>
+            </div>
+            <div class="commands-category">
+                <h3>💰 Sistema Econômico</h3>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <div class="command-name">/balance</div>
+                        <p>Mostra o saldo de moedas e gemas</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/carteira</div>
+                        <p>Mostra o saldo de moedas e gemas</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/money</div>
+                        <p>Mostra o saldo de moedas e gemas</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/transferir</div>
+                        <p>Transfere moedas para outro usuário (7% de taxa)</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/resgatar</div>
+                        <p>Resgatar um código promocional</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/sorteio</div>
+                        <p>Criar um novo sorteio</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/sorteios</div>
+                        <p>Ver sorteios ativos</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/diario</div>
+                        <p>Resgate sua recompensa diária</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/daily</div>
+                        <p>Resgate sua recompensa diária</p>
+                    </div>
+                </div>
+            </div>
+            <div class="commands-category">
+                <h3>🛡️ Moderação</h3>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <div class="command-name">/ban</div>
+                        <p>Banir um usuário do servidor</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/kick</div>
+                        <p>Expulsar um usuário do servidor</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/mute</div>
+                        <p>Dar timeout em um usuário</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/warn</div>
+                        <p>Avisar um usuário</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/clear</div>
+                        <p>Limpar mensagens do canal</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/lock</div>
+                        <p>Trancar canal impedindo mensagens</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/unlock</div>
+                        <p>Destrancar canal permitindo mensagens</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/embed</div>
+                        <p>Cria um embed personalizado</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/config-ticket</div>
+                        <p>Configurar sistema de tickets</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/ticket-stats</div>
+                        <p>Estatísticas do sistema de tickets</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/force-close</div>
+                        <p>Forçar fechamento de um ticket</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/promocoes-config</div>
+                        <p>Configura a hierarquia de cargos para promoções</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/promover</div>
+                        <p>Promove um usuário para o próximo cargo</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/promocoes-setlog</div>
+                        <p>Configura o canal de logs de promoções e rebaixamentos</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/rebaixar</div>
+                        <p>Rebaixa um usuário para o cargo inferior</p>
+                    </div>
+                </div>
+            </div>
+            <div class="commands-category">
+                <h3>🎮 Diversão</h3>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <div class="command-name">/coinflip</div>
+                        <p>Joga uma moeda</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/dado</div>
+                        <p>Rola um dado de 6 lados</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/8ball</div>
+                        <p>Faça uma pergunta para a bola mágica</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/escolher</div>
+                        <p>Escolhe uma opção aleatória</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/par_ou_impar</div>
+                        <p>Joga par ou ímpar</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/roleta</div>
+                        <p>Gira a roleta russa (sem balas reais!)</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/numero_secreto</div>
+                        <p>Tente adivinhar o número secreto entre 1 e 100</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/pedra_papel_tesoura</div>
+                        <p>Jogue pedra, papel ou tesoura</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/sorte</div>
+                        <p>Veja sua sorte do dia</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/cara_ou_coroa_dupla</div>
+                        <p>Joga duas moedas ao mesmo tempo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="commands-category">
+                <h3>💕 Social</h3>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <div class="command-name">/perfil</div>
+                        <p>Visualiza o perfil completo de um usuário</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/kiss</div>
+                        <p>Dê um beijo em alguém</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/ship</div>
+                        <p>Faça um ship com alguém!</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/oraculo</div>
+                        <p>Sabote o cupido com o oráculo</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/casamento</div>
+                        <p>Comandos de casamento e relacionamento</p>
+                    </div>
+                </div>
+            </div>
+            <div class="commands-category">
+                <h3>📊 Utilitários & Outros</h3>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <div class="command-name">/cargo-info</div>
+                        <p>Mostra informações sobre um cargo</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/canal-info</div>
+                        <p>Mostra informações sobre um canal</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/server-info</div>
+                        <p>Mostra informações detalhadas sobre o servidor</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/emoji</div>
+                        <p>Lista todos os emojis do servidor</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/avatar</div>
+                        <p>Mostra o avatar de um usuário</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/server</div>
+                        <p>Comandos de informações do servidor</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/informacoes</div>
+                        <p>Comandos de informações do sistema</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/ranque</div>
+                        <p>Comandos de ranking de usuários</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/lembrete</div>
+                        <p>Comandos de lembrete</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/votar</div>
+                        <p>Vote no bot e ajude-nos a crescer</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/weather</div>
+                        <p>Previsão do tempo em tempo real com mapas meteorológicos</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-name">/translate</div>
+                        <p>Tradutor inteligente com suporte a mais de 100 idiomas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Aurora Bot. Todos os direitos reservados.</p>
+            <p>Feito com <span class="footer-heart">❤️</span> para a comunidade Discord</p>
         </div>
-      </div>
-
-      <div class="commands-category">
-        <h3>📋 Comandos Básicos & Utilitários</h3>
-        <div class="commands-grid">
-          <div class="command-card">
-            <div class="command-name">/help</div>
-            <p>『utilitário』Mostra informações de ajuda sobre o bot</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/ajuda</div>
-            <p>『utilitário』Mostra informações de ajuda sobre o bot</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/report</div>
-            <p>『utilitário』Sistema de reportes do servidor</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/ping</div>
-            <p>Verifica a latência do bot e mostra informações de conexão em tempo real</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/perfil [usuário]</div>
-            <p>Visualiza seu perfil completo ou de outro usuário com estatísticas detalhadas</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/userinfo [usuário]</div>
-            <p>Informações completas de qualquer usuário com estatísticas detalhadas</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/cargo-info</div>
-            <p>Mostra informações sobre um cargo</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/canal-info</div>
-            <p>Mostra informações sobre um canal</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/serverinfo, /server-info, /server</div>
-            <p>Estatísticas completas do servidor com gráficos e métricas</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/avatar [usuário]</div>
-            <p>Visualize avatares em alta resolução com download direto</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/translate [texto]</div>
-            <p>Tradutor inteligente com suporte a mais de 100 idiomas</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/informacoes</div>
-            <p>Comandos de informações do sistema</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/lembrete</div>
-            <p>Comandos de lembrete</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/votar</div>
-            <p>Vote no bot e ajude-nos a crescer</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="commands-category">
-        <h3>💰 Sistema Econômico</h3>
-        <div class="commands-grid">
-          <div class="command-card">
-            <div class="command-name">/balance, /carteira, /money</div>
-            <p>『Economia』Mostra o saldo de moedas e gemas</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/diario, /daily</div>
-            <p>『Economia』Resgate sua recompensa diária</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/transferir [usuário] [valor]</div>
-            <p>『Economia』Transfere moedas para outro usuário (7% de taxa)</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/resgatar</div>
-            <p>『Economia』Resgatar um código promocional</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/sorteio</div>
-            <p>『Economia』Criar um novo sorteio</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/sorteios</div>
-            <p>『Economia』Ver sorteios ativos</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/loja</div>
-            <p>Acesse a loja virtual do servidor com itens exclusivos e upgrades</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="commands-category">
-        <h3>🛡️ Comandos de Moderação</h3>
-        <div class="commands-grid">
-          <div class="command-card">
-            <div class="command-name">/ban [usuário] [motivo]</div>
-            <p>Banir um usuário do servidor com sistema de logs e histórico completo</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/kick [usuário] [motivo]</div>
-            <p>Expulsar um usuário do servidor com notificação automática</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/mute [usuário] [tempo]</div>
-            <p>Silenciar um usuário temporariamente com controle preciso de duração</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/warn</div>
-            <p>Avisar um usuário</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/clear</div>
-            <p>Limpar mensagens do canal</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/lock</div>
-            <p>Trancar um canal impedindo que usuários comuns enviem mensagens</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/unlock</div>
-            <p>Destrancar um canal restaurando as permissões normais de envio</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/embed</div>
-            <p>Cria um embed personalizado</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/config-ticket</div>
-            <p>Configurar sistema de tickets</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/ticket-stats</div>
-            <p>Estatísticas do sistema de tickets</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/force-close</div>
-            <p>Forçar fechamento de um ticket</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/promocoes-config</div>
-            <p>Configura a hierarquia de cargos para promoções</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/promover</div>
-            <p>Promove um usuário para o próximo cargo</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/promocoes-setlog</div>
-            <p>Configura o canal de logs de promoções e rebaixamentos</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/rebaixar</div>
-            <p>Rebaixa um usuário para o cargo inferior</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="commands-category">
-        <h3>🎮 Jogos e Diversão</h3>
-        <div class="commands-grid">
-          <div class="command-card">
-            <div class="command-name">/coinflip</div>
-            <p>Jogue cara ou coroa com animações visuais épicas e estatísticas</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/8ball [pergunta]</div>
-            <p>Bola 8 mágica com mais de 50 respostas únicas e divertidas</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/dado [lados]</div>
-            <p>Rolar um dado personalizado com diferentes números de lados</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/escolher [opções]</div>
-            <p>Deixe o Aurora escolher entre várias opções que você fornecer</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/par_ou_impar [número]</div>
-            <p>Jogo clássico de par ou ímpar com apostas e rankings</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/roleta</div>
-            <p>Jogue na roleta russa virtual com emoção e adrenalina</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/numero_secreto</div>
-            <p>Tente adivinhar o número secreto entre 1 e 100</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/pedra_papel_tesoura</div>
-            <p>Jogo clássico contra o bot com estatísticas e torneios</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/sorte</div>
-            <p>Veja sua sorte do dia</p>
-          </div>
-          <div class="command-card">
-            <div class="command-name">/cara_ou_coroa_dupla</div>
-            <p>Joga duas moedas ao mesmo tempo</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="commands-category">
-        <h3>💕 Comandos Sociais</h3>
-        <div class="commands-grid">
-          <div class="command-card">
-            <div class="command-name">/casar [usuário]</div>
-            <p>Case-se com alguém especial e compartilhe momentos únicos</p>
-          </div>
+    </footer>
+    <script>
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 12;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 6 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 12 + 's';
+                particle.style.animationDuration = (Math.random() * 8 + 12) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            const cards = document.querySelectorAll('.command-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 50);
+            });
+        });
+        function searchCommands(query) {
+            const cards = document.querySelectorAll('.command-card');
+            const categories = document.querySelectorAll('.commands-category');
+            if (!query) {
+                cards.forEach(card => card.style.display = 'block');
+                categories.forEach(cat => cat.style.display = 'block');
+                return;
+            }
+            cards.forEach(card => {
+                const commandName = card.querySelector('.command-name').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                if (commandName.includes(query.toLowerCase()) || description.includes(query.toLowerCase())) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
