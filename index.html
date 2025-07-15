@@ -9,7 +9,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
-            /* Aquarela azul clara como fundo */
+            /* Fundo aquarela azul clara */
             background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') center center/cover no-repeat fixed,
                         linear-gradient(135deg, #e0e7ff 0%, #c4fff9 25%, #8fd7e5 60%, #51acc3 100%);
             min-height: 100vh;
@@ -22,7 +22,7 @@
             padding: 0 20px;
         }
         header {
-            background: rgba(255, 255, 255, 0.91);
+            background: rgba(255,255,255,0.95);
             backdrop-filter: blur(20px);
             border-bottom: 2px solid rgba(17,200,235,0.17);
             position: sticky;
@@ -49,40 +49,39 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 1.25rem;
+            gap: 1.5rem;
         }
         .nav-links a {
-            color: #166cb6;
+            color: #0288d1;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 188, 212, 0.2);
             text-decoration: none;
-            padding: 0.7rem 1.4rem;
-            border-radius: 22px;
-            background: rgba(255,255,255,0.76);
-            border: 1px solid rgba(0,88,132,0.11);
+            padding: 0.7rem 1.5rem;
+            border-radius: 20px;
             font-weight: 500;
-            transition: all 0.2s cubic-bezier(.68,-0.55,.27,1.55);
+            transition: all 0.3s ease;
         }
         .nav-links a:hover,
         .nav-links a.active {
-            background: #fff;
-            color: #2186c4;
-            box-shadow: 0 6px 26px #53a3e311;
-            transform: translateY(-2px) scale(1.025);
+            background: linear-gradient(45deg, #00bcd4, #4dd0e1);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,188,212,0.3);
         }
         .mobile-menu {
             display: none;
-            color: #1cbabb;
-            font-size: 1.6rem;
+            color: #00bcd4;
+            font-size: 1.5rem;
             cursor: pointer;
-            transition: .3s;
+            transition: transform 0.3s ease;
         }
-        .mobile-menu:hover { transform: rotate(86deg); }
-
+        .mobile-menu:hover { transform: rotate(90deg); }
         main { padding: 3rem 0; }
         .section {
-            background: rgba(255,255,255,0.95);
+            background: rgba(255,255,255,0.96);
             border-radius: 22px;
             padding: 3.3rem 2.5rem 2.2rem 2.5rem;
-            box-shadow: 0 28px 64px rgba(0,188,212,0.090);
+            box-shadow: 0 28px 64px rgba(0,188,212,0.10);
             backdrop-filter: blur(13px);
             border: 1px solid rgba(0,188,212,0.12);
             margin-bottom: 2.2rem;
