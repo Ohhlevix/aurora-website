@@ -1,188 +1,152 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-<title>Contato - Aurora</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-
-  body {
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-    color: #1a202c;
-    background: linear-gradient(135deg, #e6f3ff 0%, #b3e5fc 25%, #4dd0e1 50%, #00bcd4 100%);
-    background-size: 400% 400%;
-    animation: gradient-shift 10s ease infinite;
-    min-height: 100vh;
-    overflow-x: hidden;
-    transition: overflow 0.3s ease;
-  }
-
-  body.menu-open {
-    overflow: hidden;
-  }
-
-  @keyframes gradient-shift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  header {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border-bottom: 2px solid rgba(0, 188, 212, 0.2);
-    position: sticky;
-    top: 0;
-    z-index: 10000;
-    box-shadow: 0 4px 20px rgba(0, 188, 212, 0.1);
-  }
-
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 20px;
-  }
-
-  .logo {
-    font-size: 2rem;
-    font-weight: 700;
-    text-decoration: none;
-    background: linear-gradient(45deg, #00bcd4, #4dd0e1, #0288d1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 2px 4px rgba(0,188,212,0.3));
-    user-select: none;
-  }
-
-  .nav-links {
-    display: flex;
-    list-style: none;
-    gap: 1.5rem;
-    z-index: 10500;
-  }
-
-  .nav-links a {
-    color: #0288d1;
-    text-decoration: none;
-    padding: 0.7rem 1.5rem;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(0, 188, 212, 0.2);
-    font-weight: 500;
-    white-space: nowrap;
-    user-select: none;
-    transition: all 0.3s ease;
-  }
-
-  .nav-links a:hover, .nav-links a.active {
-    background: linear-gradient(45deg, #00bcd4, #4dd0e1);
-    color: white;
-    box-shadow: 0 8px 20px rgba(0,188,212,0.3);
-    transform: translateY(-2px);
-  }
-
-  .mobile-menu {
-    display: none;
-    color: #00bcd4;
-    font-size: 1.8rem;
-    cursor: pointer;
-    padding: 0.25rem 0.5rem;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-    user-select: none;
-    z-index: 11000;
-  }
-
-  .mobile-menu:hover {
-    transform: rotate(90deg);
-  }
-
-  @media (max-width: 768px) {
-    .nav-links {
-      position: fixed;
-      top: 0;
-      right: 0;
-      height: 100vh;
-      width: 250px;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      box-shadow: -4px 0px 20px rgba(0,188,212,0.1);
-      flex-direction: column;
-      padding: 4rem 1.5rem;
-      gap: 1rem;
-      transform: translateX(100%);
-      opacity: 0;
-      pointer-events: none;
-      border-radius: 0 0 0 16px;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-      z-index: 10000;
-    }
-
-    .nav-links.active {
-      transform: translateX(0);
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .nav-links a {
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-      border-radius: 16px;
-      white-space: nowrap;
-      color: #0288d1;
-      background: rgba(255, 255, 255, 0.87);
-      border: 1px solid rgba(0,188,212,0.3);
-      box-shadow: none;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-
-    .nav-links a:hover, .nav-links a.active {
-      background: linear-gradient(45deg, #00bcd4, #4dd0e1);
-      color: white;
-      box-shadow: 0 6px 18px rgba(0,188,212,0.28);
-      transform: none;
-    }
-
-    .mobile-menu {
-      display: block;
-    }
-
-    body.menu-open {
-      overflow: hidden;
-    }
-  }
-
-  main {
-    padding: 5rem 20px;
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    color: #1a202c;
-    font-size: 1.3rem;
-  }
-
-  /* Aviso do sistema de contato em desenvolvimento */
-  .project-message {
-    max-width: 600px;
-    margin: 5rem auto;
-    background: rgba(0,188,212,0.15);
-    padding: 2.5rem;
-    border-radius: 20px;
-    font-weight: 600;
-    box-shadow: 0 8px 32px rgba(0,188,212,0.15);
-    color: #0288d1;
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(0,188,212,0.3);
-  }
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Menu Padrão Aurora</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1a202c;
+            background: linear-gradient(135deg, #e6f3ff 0%, #b3e5fc 25%, #4dd0e1 50%, #00bcd4 100%);
+            background-size: 400% 400%;
+            animation: gradient-shift 10s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: overflow 0.3s ease;
+        }
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        body.menu-open {
+          overflow: hidden;
+        }
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(0, 188, 212, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 10000;
+            box-shadow: 0 4px 20px rgba(0, 188, 212, 0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 20px;
+            position: relative;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            text-decoration: none;
+            background: linear-gradient(45deg, #00bcd4, #4dd0e1, #0288d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 2px 4px rgba(0,188,212,0.3));
+            user-select: none;
+            z-index: 11000;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            z-index: 10500;
+        }
+        .nav-links a {
+            color: #0288d1;
+            text-decoration: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 188, 212, 0.2);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: linear-gradient(45deg, #00bcd4, #4dd0e1);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
+        }
+        .mobile-menu {
+            display: none;
+            color: #00bcd4;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            user-select: none;
+            z-index: 11000;
+        }
+        .mobile-menu:hover {
+            transform: rotate(90deg);
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 260px;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                box-shadow: -4px 0px 20px rgba(0, 188, 212, 0.1);
+                flex-direction: column;
+                padding: 4rem 1.75rem;
+                gap: 1rem;
+                transform: translateX(100%);
+                opacity: 0;
+                pointer-events: none;
+                border-radius: 0 0 0 16px;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                z-index: 10000;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+            .nav-links a {
+                padding: 1rem 2rem;
+                font-size: 1.2rem;
+                border-radius: 16px;
+                white-space: nowrap;
+                color: #0288d1;
+                background: rgba(255, 255, 255, 0.87);
+                border: 1px solid rgba(0,188,212,0.3);
+                box-shadow: none;
+                transition: background 0.3s ease, color 0.3s ease;
+            }
+            .nav-links a:hover,
+            .nav-links a.active {
+                background: linear-gradient(45deg, #00bcd4, #4dd0e1);
+                color: white;
+                box-shadow: 0 6px 18px rgba(0,188,212,0.28);
+                transform: none;
+            }
+            .mobile-menu {
+                display: block;
+            }
+            body.menu-open {
+              overflow: hidden;
+            }
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -192,27 +156,20 @@
       <li role="none"><a href="index.html" role="menuitem" tabindex="-1">Início</a></li>
       <li role="none"><a href="comandos.html" role="menuitem" tabindex="-1">Comandos</a></li>
       <li role="none"><a href="novidades.html" role="menuitem" tabindex="-1">Novidades</a></li>
-      <li role="none"><a href="contato.html" role="menuitem" tabindex="0" class="active">Contato</a></li>
-      <li role="none"><a href="regras.html" role="menuitem" tabindex="-1">Regras</a></li>
+      <li role="none"><a href="contato.html" role="menuitem" tabindex="-1">Contato</a></li>
+      <li role="none"><a href="regras.html" class="active" role="menuitem" tabindex="0">Regras</a></li>
       <li role="none"><a href="privacidade.html" role="menuitem" tabindex="-1">Privacidade</a></li>
     </ul>
-    <div class="mobile-menu" aria-label="Abrir menu" role="button" tabindex="0" onclick="toggleMobileMenu()" onkeypress="if(event.key==='Enter' || event.key===' ') toggleMobileMenu()">☰</div>
+    <div class="mobile-menu" aria-label="Abrir menu" role="button" tabindex="0" onclick="toggleMobileMenu()" onkeypress="if(event.key==='Enter'||event.key===' ') toggleMobileMenu()">☰</div>
   </nav>
 </header>
 
-<main>
-  <div class="project-message" role="alert" aria-live="polite">
-    🚧 O sistema de contato está em projeto e será lançado em breve. Agradecemos a compreensão!
-  </div>
-</main>
-
 <script>
-  function toggleMobileMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    navLinks.classList.toggle('active');
-    document.body.classList.toggle('menu-open');
-  }
+function toggleMobileMenu() {
+  const navLinks = document.querySelector('.nav-links');
+  navLinks.classList.toggle('active');
+  document.body.classList.toggle('menu-open');
+}
 </script>
-
 </body>
 </html>
