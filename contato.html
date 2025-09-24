@@ -16,7 +16,9 @@
     line-height: 1.6;
     color: #1e293b;
     background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 25%, #3b82f6 75%, #1d4ed8 100%);
-    min-height: 100vh; position: relative; overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
     transition: overflow 0.3s ease;
   }
 
@@ -122,9 +124,9 @@
       font-size: 1.2rem;
       border-radius: 16px;
       white-space: nowrap;
+      color: #0288d1;
       background: rgba(255, 255, 255, 0.87);
       border: 1px solid rgba(0, 188, 212, 0.3);
-      color: #0288d1;
       box-shadow: none;
       transition: background 0.3s ease, color 0.3s ease;
     }
@@ -133,7 +135,7 @@
     .nav-links a.active {
       background: linear-gradient(45deg, #00bcd4, #4dd0e1);
       color: white;
-      box-shadow: 0 6px 18px rgba(0,188,212,0.28);
+      box-shadow: 0 6px 18px rgba(0, 188, 212, 0.28);
       transform: none;
     }
 
@@ -147,12 +149,25 @@
   }
 
   main {
-    padding: 4rem 0;
+    padding: 5rem 20px;
     position: relative;
     z-index: 1;
     text-align: center;
     color: white;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+  }
+
+  .project-message {
+    max-width: 600px;
+    margin: 5rem auto;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 3rem;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0,188,212,0.3);
+    color: #0288d1;
+    font-weight: 600;
+    box-shadow: 0 8px 32px rgba(0,188,212,0.15);
   }
 </style>
 </head>
@@ -160,13 +175,13 @@
 <header>
   <nav class="container">
     <a href="index.html" class="logo">Aurora</a>
-    <ul class="nav-links">
-      <li><a href="index.html">Início</a></li>
-      <li><a href="comandos.html">Comandos</a></li>
-      <li><a href="novidades.html">Novidades</a></li>
-      <li><a href="contato.html" class="active">Contato</a></li>
-      <li><a href="regras.html">Regras</a></li>
-      <li><a href="privacidade.html">Privacidade</a></li>
+    <ul class="nav-links" role="menubar" aria-label="Menu principal">
+      <li role="none"><a href="index.html" role="menuitem" tabindex="-1">Início</a></li>
+      <li role="none"><a href="comandos.html" role="menuitem" tabindex="-1">Comandos</a></li>
+      <li role="none"><a href="novidades.html" role="menuitem" tabindex="-1">Novidades</a></li>
+      <li role="none"><a href="contato.html" role="menuitem" tabindex="0" class="active">Contato</a></li>
+      <li role="none"><a href="regras.html" role="menuitem" tabindex="-1">Regras</a></li>
+      <li role="none"><a href="privacidade.html" role="menuitem" tabindex="-1">Privacidade</a></li>
     </ul>
     <div class="mobile-menu" aria-label="Abrir menu" role="button" tabindex="0"
       onclick="toggleMobileMenu()" onkeypress="if(event.key==='Enter' || event.key===' ') toggleMobileMenu()">☰</div>
@@ -174,7 +189,9 @@
 </header>
 
 <main>
-  <p>O site está em desenvolvimento, a página de contato será lançada em breve.</p>
+  <div class="project-message" role="alert" aria-live="polite">
+    🚧 O sistema de contato está em projeto e será lançado em breve. Agradecemos a compreensão!
+  </div>
 </main>
 
 <script>
