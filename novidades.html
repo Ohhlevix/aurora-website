@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>Novidades - Aurora</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
+
         * {
             margin: 0;
             padding: 0;
@@ -22,6 +22,7 @@
             animation: gradient-shift 10s ease infinite;
             min-height: 100vh;
             overflow-x: hidden;
+            transition: overflow 0.3s ease;
         }
 
         @keyframes gradient-shift {
@@ -42,7 +43,7 @@
             border-bottom: 2px solid rgba(0, 188, 212, 0.2);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 10000;
             box-shadow: 0 4px 20px rgba(0, 188, 212, 0.1);
         }
 
@@ -51,6 +52,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 0;
+            position: relative;
         }
 
         .logo {
@@ -62,12 +64,15 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             filter: drop-shadow(0 2px 4px rgba(0, 188, 212, 0.3));
+            z-index: 11000;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
             gap: 1.5rem;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            z-index: 10500;
         }
 
         .nav-links a {
@@ -79,6 +84,8 @@
             background: rgba(255, 255, 255, 0.7);
             border: 1px solid rgba(0, 188, 212, 0.2);
             font-weight: 500;
+            white-space: nowrap;
+            user-select: none;
         }
 
         .nav-links a:hover,
@@ -92,12 +99,21 @@
         .mobile-menu {
             display: none;
             color: #00bcd4;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
+            z-index: 11000;
+            user-select: none;
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu:hover {
+            transform: rotate(90deg);
         }
 
         main {
             padding: 3rem 0;
+            position: relative;
+            z-index: 1;
         }
 
         .section {
@@ -221,6 +237,7 @@
             border: none;
             cursor: pointer;
             font-size: 1rem;
+            user-select: none;
         }
 
         .notify-button:hover {
@@ -260,6 +277,7 @@
             height: 100%;
             background: linear-gradient(45deg, rgba(0, 188, 212, 0.1), rgba(77, 208, 225, 0.1));
             transition: left 0.5s ease;
+            z-index: 1;
         }
 
         .feature-card:hover::before {
@@ -314,6 +332,7 @@
             text-align: center;
             padding: 3rem 0;
             margin-top: 3rem;
+            user-select: none;
         }
 
         footer p {
@@ -324,6 +343,7 @@
         .footer-heart {
             color: #4dd0e1;
             animation: heartbeat 2s ease-in-out infinite;
+            user-select: none;
         }
 
         @keyframes heartbeat {
@@ -331,6 +351,7 @@
             25%, 75% { transform: scale(1.2); }
         }
 
+        /* Scroll Indicator */
         .scroll-indicator {
             position: fixed;
             top: 0;
@@ -343,6 +364,7 @@
             transform: scaleX(0);
         }
 
+        /* Floating Particles */
         .floating-particles {
             position: fixed;
             top: 0;
@@ -377,46 +399,47 @@
             }
         }
 
+        /* Responsive Mobile Menu */
         @media (max-width: 768px) {
             .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 250px;
                 background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                box-shadow: -4px 0px 20px rgba(0, 188, 212, 0.1);
                 flex-direction: column;
-                padding: 1rem;
-                border-radius: 0 0 15px 15px;
+                padding: 4rem 1.5rem;
+                gap: 1rem;
+                transform: translateX(100%);
+                opacity: 0;
+                pointer-events: none;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                z-index: 10000;
             }
 
             .nav-links.active {
-                display: flex;
+                transform: translateX(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .nav-links a {
+                padding: 1rem 2rem;
+                font-size: 1.2rem;
+                border-radius: 10px;
+                white-space: nowrap;
             }
 
             .mobile-menu {
                 display: block;
+                z-index: 11000;
             }
 
-            .section {
-                padding: 2rem;
-                margin: 1rem;
-            }
-
-            h2 {
-                font-size: 2.5rem;
-            }
-
-            .empty-state {
-                padding: 3rem 1.5rem;
-            }
-
-            .features-preview {
-                grid-template-columns: 1fr;
-            }
-
-            .news-intro {
-                font-size: 1.1rem;
+            body.menu-open {
+                overflow: hidden;
             }
         }
     </style>
@@ -424,7 +447,7 @@
 <body>
     <div class="floating-particles" id="particles"></div>
     <div class="scroll-indicator" id="scrollIndicator"></div>
-    
+
     <header>
         <nav class="container">
             <a href="index.html" class="logo">✨ Aurora</a>
@@ -436,7 +459,7 @@
                 <li><a href="regras.html">Regras</a></li>
                 <li><a href="privacidade.html">Privacidade</a></li>
             </ul>
-            <div class="mobile-menu" onclick="toggleMobileMenu()">☰</div>
+            <div class="mobile-menu" aria-label="Abrir menu" role="button" tabindex="0" onclick="toggleMobileMenu()" onkeypress="if(event.key==='Enter' || event.key===' ') toggleMobileMenu()">☰</div>
         </nav>
     </header>
 
@@ -444,8 +467,8 @@
         <section class="section">
             <h2>🎉 Novidades do Aurora</h2>
             <p class="news-intro">Fique por dentro das últimas atualizações, recursos e melhorias que estamos desenvolvendo para tornar sua experiência ainda melhor!</p>
-            
-            <div class="empty-state">
+
+            <div class="empty-state" tabindex="0" aria-live="polite">
                 <div class="empty-icon">📰</div>
                 <h3 class="empty-title">Em breve, novidades incríveis!</h3>
                 <p class="empty-message">
@@ -456,27 +479,24 @@
                 <a href="contato.html" class="notify-button">💬 Receber Notificações</a>
             </div>
 
-            <div class="features-preview">
-                <div class="feature-card">
-                    <span class="feature-emoji">🚀</span>
+            <div class="features-preview" aria-label="Prévia de funcionalidades">
+                <div class="feature-card" tabindex="0">
+                    <span class="feature-emoji" aria-hidden="true">🚀</span>
                     <h4>Atualizações Regulares</h4>
                     <p>Novos recursos e melhorias são adicionados constantemente baseados no feedback da comunidade</p>
                 </div>
-                
-                <div class="feature-card">
-                    <span class="feature-emoji">🔧</span>
+                <div class="feature-card" tabindex="0">
+                    <span class="feature-emoji" aria-hidden="true">🔧</span>
                     <h4>Correções de Bugs</h4>
                     <p>Mantemos o bot sempre atualizado com correções rápidas para garantir a melhor experiência</p>
                 </div>
-                
-                <div class="feature-card">
-                    <span class="feature-emoji">💡</span>
+                <div class="feature-card" tabindex="0">
+                    <span class="feature-emoji" aria-hidden="true">💡</span>
                     <h4>Recursos Inovadores</h4>
                     <p>Desenvolvemos funcionalidades únicas que tornam o Aurora especial para sua comunidade</p>
                 </div>
-                
-                <div class="feature-card">
-                    <span class="feature-emoji">📊</span>
+                <div class="feature-card" tabindex="0">
+                    <span class="feature-emoji" aria-hidden="true">📊</span>
                     <h4>Melhorias de Performance</h4>
                     <p>Otimizações constantes para garantir velocidade e estabilidade em todos os servidores</p>
                 </div>
@@ -487,7 +507,7 @@
     <footer>
         <div class="container">
             <p>&copy; 2025 Aurora. Todos os direitos reservados.</p>
-            <p>Feito com <span class="footer-heart">❤️</span> para a comunidade Discord</p>
+            <p>Feito com <span class="footer-heart" aria-hidden="true">❤️</span> para a comunidade Discord</p>
             <p>🔒 Seus dados estão seguros conosco | 🌟 Obrigado por usar o Aurora!</p>
         </div>
     </footer>
@@ -496,68 +516,33 @@
         function toggleMobileMenu() {
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
         }
 
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 8;
+        // Scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const scrollIndicator = document.getElementById('scrollIndicator');
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollRatio = window.scrollY / scrollHeight;
+            scrollIndicator.style.transform = `scaleX(${scrollRatio})`;
+        });
 
-            for (let i = 0; i < particleCount; i++) {
+        // Particle creation (optional, can remove if prefer)
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const count = 8;
+            for(let i = 0; i < count; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
-                
                 const size = Math.random() * 4 + 2;
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 12 + 's';
+                particle.style.left = (Math.random() * 100) + '%';
+                particle.style.animationDelay = (Math.random() * 12) + 's';
                 particle.style.animationDuration = (Math.random() * 8 + 12) + 's';
-                
-                particlesContainer.appendChild(particle);
+                container.appendChild(particle);
             }
         }
-
-        // Indicador de scroll
-        window.addEventListener('scroll', function() {
-            const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-            document.getElementById('scrollIndicator').style.transform = `scaleX(${scrolled / 100})`;
-        });
-
-        // Animação de entrada dos elementos
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.empty-state, .feature-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-
-        // Scroll suave para links internos
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
 
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
