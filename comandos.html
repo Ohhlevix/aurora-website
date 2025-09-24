@@ -104,6 +104,7 @@
             font-size: 1.8rem;
             cursor: pointer;
             transition: transform 0.3s ease;
+            user-select: none;
         }
 
         .mobile-menu:hover {
@@ -253,6 +254,7 @@
             display: flex;
             align-items: flex-start;
             gap: 0.6rem;
+            cursor: default;
         }
 
         .command-list li:before {
@@ -304,40 +306,6 @@
             25%,
             75% {
                 transform: scale(1.2);
-            }
-        }
-
-        .floating-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            background: rgba(0, 188, 212, 0.1);
-            border-radius: 50%;
-            animation: floatParticle 12s infinite linear;
-        }
-
-        @keyframes floatParticle {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
             }
         }
 
@@ -413,19 +381,18 @@
     </style>
 </head>
 <body>
-    <div class="floating-particles" id="particles"></div>
     <header>
         <nav class="container">
             <a href="index.html" class="logo">Aurora</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="comandos.html" class="active">Comandos</a></li>
-                <li><a href="novidades.html">Novidades</a></li>
-                <li><a href="contato.html">Contato</a></li>
-                <li><a href="regras.html">Regras</a></li>
-                <li><a href="privacidade.html">Privacidade</a></li>
+            <ul class="nav-links" role="menubar" aria-label="Menu principal">
+                <li role="none"><a href="index.html" role="menuitem" tabindex="-1">Início</a></li>
+                <li role="none"><a href="comandos.html" class="active" role="menuitem" tabindex="0">Comandos</a></li>
+                <li role="none"><a href="novidades.html" role="menuitem" tabindex="-1">Novidades</a></li>
+                <li role="none"><a href="contato.html" role="menuitem" tabindex="-1">Contato</a></li>
+                <li role="none"><a href="regras.html" role="menuitem" tabindex="-1">Regras</a></li>
+                <li role="none"><a href="privacidade.html" role="menuitem" tabindex="-1">Privacidade</a></li>
             </ul>
-            <div class="mobile-menu" aria-label="Abrir menu" role="button" tabindex="0" onclick="toggleMobileMenu()" onkeypress="if(event.key==='Enter'){toggleMobileMenu()}">☰</div>
+            <div class="mobile-menu" aria-label="Abrir menu" role="button" tabindex="0" onclick="toggleMobileMenu()" onkeypress="if(event.key==='Enter'||event.key===' ') toggleMobileMenu()">☰</div>
         </nav>
     </header>
     <main class="container">
@@ -435,9 +402,9 @@
                 <p>Descubra todos os comandos disponíveis e transforme seu servidor Discord em uma experiência incrível!</p>
             </div>
             <div class="search-bar">
-                <input type="text" id="commandSearch" placeholder="Pesquise por comando..." aria-label="Pesquisar comandos" />
+                <input type="text" id="commandSearch" aria-label="Pesquisar comandos" placeholder="Pesquise por comando..." oninput="filterCommands()" />
             </div>
-            <div class="categories-container" role="list">
+            <div class="categories-container" role="list" id="commandsList">
                 <div class="command-folder" role="listitem" tabindex="0">
                     <div class="folder-title">📋 Utilitários</div>
                     <ul class="command-list">
@@ -501,86 +468,43 @@
                         <li><span class="command-name">/escolher</span> <span class="command-desc">Escolha aleatória de opções</span></li>
                         <li><span class="command-name">/par_ou_impar</span> <span class="command-desc">Jogue par ou ímpar</span></li>
                         <li><span class="command-name">/roleta</span> <span class="command-desc">Jogue roleta russa virtual</span></li>
-                        <li><span class="command-name">/numero_secreto</span> <span class="command-desc">Adivinhe número secreto (1-100)</span></li>
-                        <li><span class="command-name">/pedra_papel_tesoura</span> <span class="command-desc">Jogo clássico</span></li>
-                        <li><span class="command-name">/sorte</span> <span class="command-desc">Veja sua sorte do dia</span></li>
-                        <li><span class="command-name">/cara_ou_coroa_dupla</span> <span class="command-desc">Jogue duas moedas</span></li>
-                    </ul>
-                </div>
-                <div class="command-folder" role="listitem" tabindex="0">
-                    <div class="folder-title">💕 Social</div>
-                    <ul class="command-list">
-                        <li><span class="command-name">/perfil</span> <span class="command-desc">Visualizar perfil de usuário</span></li>
-                        <li><span class="command-name">/kiss</span> <span class="command-desc">Envie um beijo</span></li>
-                        <li><span class="command-name">/ship</span> <span class="command-desc">Compatibilidade (ship)</span></li>
-                        <li><span class="command-name">/oraculo</span> <span class="command-desc">Oráculo do cupido</span></li>
-                        <li><span class="command-name">/casamento</span> <span class="command-desc">Comandos de casamento e relacionamento</span></li>
+                        <li><span class="command-name">/numero_secreto</span> <span class="command-desc">Adivinhe o número secreto</span></li>
                     </ul>
                 </div>
             </div>
         </section>
     </main>
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Aurora Bot. Todos os direitos reservados.</p>
-            <p>Feito com <span class="footer-heart" aria-label="coração">❤️</span> para a comunidade Discord</p>
-        </div>
+        <p>&copy; 2025 Aurora Bot. Todos os direitos reservados.</p>
+        <p>Feito com <span class="footer-heart">❤️</span> para a comunidade Discord</p>
     </footer>
-    <script>
-        function toggleMobileMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
-        }
 
-        // Acessibilidade: fechar menu ao clicar em link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                const navLinks = document.querySelector('.nav-links');
-                if (navLinks.classList.contains('active')) {
-                    toggleMobileMenu();
-                }
+<script>
+    function toggleMobileMenu() {
+        const navLinks = document.querySelector('.nav-links');
+        navLinks.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+    }
+
+    function filterCommands() {
+        const input = document.getElementById('commandSearch').value.toLowerCase();
+        const folders = document.querySelectorAll('.command-folder');
+
+        folders.forEach(folder => {
+            let folderHasMatch = false;
+            const commands = folder.querySelectorAll('.command-list li');
+
+            commands.forEach(command => {
+                const commandName = command.querySelector('.command-name').textContent.toLowerCase();
+                const commandDesc = command.querySelector('.command-desc').textContent.toLowerCase();
+                const match = commandName.includes(input) || commandDesc.includes(input);
+                command.style.display = match ? 'flex' : 'none';
+                if(match) folderHasMatch = true;
             });
-        });
 
-        // partículas flutuantes
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 12;
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                const size = Math.random() * 6 + 2;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 12 + 's';
-                particle.style.animationDuration = (Math.random() * 8 + 12) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            createParticles();
+            folder.style.display = folderHasMatch ? 'flex' : 'none';
         });
-
-        // Filtro de comandos
-        document.getElementById('commandSearch').addEventListener('input', function (e) {
-            const val = e.target.value.toLowerCase();
-            document.querySelectorAll('.command-folder').forEach(folder => {
-                let hasResult = false;
-                folder.querySelectorAll('.command-list li').forEach(item => {
-                    const text = item.textContent.toLowerCase();
-                    if (val === "" || text.includes(val)) {
-                        item.style.display = '';
-                        hasResult = true;
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-                folder.style.display = hasResult ? '' : 'none';
-            });
-        });
-    </script>
+    }
+</script>
 </body>
 </html>
