@@ -1,259 +1,188 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <title>Contato - Aurora</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Contato - Aurora</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
 
-        body {
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #1e293b;
-            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 25%, #3b82f6 75%, #1d4ed8 100%);
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-            transition: overflow 0.3s ease;
-        }
+  body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #1e293b;
+    background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 25%, #3b82f6 75%, #1d4ed8 100%);
+    min-height: 100vh; position: relative; overflow-x: hidden;
+    transition: overflow 0.3s ease;
+  }
 
-        body.menu-open {
-            overflow: hidden;
-        }
+  body.menu-open {
+    overflow: hidden;
+  }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background:
-                radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(14, 165, 233, 0.2) 0%, transparent 50%);
-            z-index: -1;
-        }
+  header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 2px solid rgba(0, 188, 212, 0.2);
+    position: sticky; top: 0; z-index: 10000;
+    box-shadow: 0 4px 20px rgba(0, 188, 212, 0.1);
+  }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 20px;
+    position: relative;
+  }
 
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 2px solid rgba(0, 188, 212, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 10000;
-            box-shadow: 0 4px 20px rgba(0, 188, 212, 0.1);
-        }
+  .logo {
+    font-size: 2rem; font-weight: 700; text-decoration: none;
+    background: linear-gradient(45deg, #00bcd4, #4dd0e1, #0288d1);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; filter: drop-shadow(0 2px 4px rgba(0,188,212,0.3));
+    user-select: none;
+    z-index: 11000;
+  }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-            position: relative;
-        }
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 10000;
+  }
 
-        .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            text-decoration: none;
-            background: linear-gradient(45deg, #00bcd4, #4dd0e1, #0288d1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            filter: drop-shadow(0 2px 4px rgba(0, 188, 212, 0.3));
-            user-select: none;
-            z-index: 11000;
-        }
+  .nav-links a {
+    color: #0288d1;
+    text-decoration: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 188, 212, 0.2);
+    font-weight: 500;
+    white-space: nowrap;
+    user-select: none;
+  }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            z-index: 10500;
-        }
+  .nav-links a:hover,
+  .nav-links a.active {
+    background: linear-gradient(45deg, #00bcd4, #4dd0e1);
+    color: white;
+    box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
+    transform: translateY(-2px);
+  }
 
-        .nav-links a {
-            color: #0288d1;
-            text-decoration: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(0, 188, 212, 0.2);
-            font-weight: 500;
-            white-space: nowrap;
-            user-select: none;
-        }
+  .mobile-menu {
+    display: none;
+    color: #00bcd4;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    user-select: none;
+    z-index: 11000;
+  }
 
-        .nav-links a:hover,
-        .nav-links a.active {
-            background: linear-gradient(45deg, #00bcd4, #4dd0e1);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
-        }
+  .mobile-menu:hover {
+    transform: rotate(90deg);
+  }
 
-        /* Correção do menu mobile para evitar bugs visuais */
-        .mobile-menu {
-            display: none;
-            color: #00bcd4;
-            font-size: 1.8rem;
-            cursor: pointer;
-            padding: 0.25rem 0.5rem;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-            user-select: none;
-            z-index: 11000;
-        }
+  @media (max-width: 768px) {
+    .nav-links {
+      position: fixed;
+      top: 0; right: 0;
+      height: 100vh;
+      width: 260px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      box-shadow: -4px 0px 20px rgba(0, 188, 212, 0.1);
+      flex-direction: column;
+      padding: 4rem 1.75rem;
+      gap: 1rem;
+      transform: translateX(100%);
+      opacity: 0;
+      pointer-events: none;
+      border-radius: 0 0 0 16px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      z-index: 10000;
+    }
 
-        .mobile-menu:hover {
-            transform: rotate(90deg);
-        }
+    .nav-links.active {
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
 
-        /* Menu mobile estilo comandos */
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: 0;
-                height: 100vh;
-                width: 260px;
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(20px);
-                box-shadow: -4px 0px 20px rgba(0, 188, 212, 0.1);
-                flex-direction: column;
-                padding: 4rem 1.75rem;
-                gap: 1rem;
-                transform: translateX(100%);
-                opacity: 0;
-                pointer-events: none;
-                border-radius: 0 0 0 16px;
-                transition: transform 0.3s ease, opacity 0.3s ease;
-                z-index: 10000;
-            }
+    .nav-links a {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border-radius: 16px;
+      white-space: nowrap;
+      background: rgba(255, 255, 255, 0.87);
+      border: 1px solid rgba(0, 188, 212, 0.3);
+      color: #0288d1;
+      box-shadow: none;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
 
-            .nav-links.active {
-                transform: translateX(0);
-                opacity: 1;
-                pointer-events: auto;
-            }
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: linear-gradient(45deg, #00bcd4, #4dd0e1);
+      color: white;
+      box-shadow: 0 6px 18px rgba(0,188,212,0.28);
+      transform: none;
+    }
 
-            .nav-links a {
-                padding: 1rem 2rem;
-                font-size: 1.2rem;
-                border-radius: 16px;
-                white-space: nowrap;
-                color: #0288d1;
-                background: rgba(255, 255, 255, 0.87);
-                border: 1px solid rgba(0, 188, 212, 0.3);
-                box-shadow: none;
-                transition: background 0.3s ease, color 0.3s ease;
-            }
+    .mobile-menu {
+      display: block;
+    }
 
-            .nav-links a:hover,
-            .nav-links a.active {
-                background: linear-gradient(45deg, #00bcd4, #4dd0e1);
-                color: white;
-                box-shadow: 0 6px 18px rgba(0, 188, 212, 0.28);
-                transform: none;
-            }
+    body.menu-open {
+      overflow: hidden;
+    }
+  }
 
-            .mobile-menu {
-                display: block;
-            }
-
-            body.menu-open {
-                overflow: hidden;
-            }
-        }
-
-        main {
-            padding: 4rem 0;
-            position: relative;
-            z-index: 1;
-        }
-
-        .section {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 20px 40px rgba(0, 188, 212, 0.1);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(0, 188, 212, 0.2);
-            margin-bottom: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .contact-header h2 {
-            font-size: 2.4rem;
-            background: linear-gradient(45deg, #00bcd4, #4dd0e1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-            margin-bottom: 0.6rem;
-        }
-
-        .contact-header p {
-            color: #405060;
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto;
-            font-weight: 500;
-        }
-    </style>
+  main {
+    padding: 4rem 0;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: white;
+    font-size: 1.4rem;
+  }
+</style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <a href="index.html" class="logo">Aurora</a>
-            <ul class="nav-links" role="menubar" aria-label="Menu principal">
-                <li role="none"><a href="index.html" role="menuitem" tabindex="-1">Início</a></li>
-                <li role="none"><a href="comandos.html" class="active" role="menuitem" tabindex="0">Comandos</a></li>
-                <li role="none"><a href="novidades.html" role="menuitem" tabindex="-1">Novidades</a></li>
-                <li role="none"><a href="contato.html" role="menuitem" tabindex="-1">Contato</a></li>
-                <li role="none"><a href="regras.html" role="menuitem" tabindex="-1">Regras</a></li>
-                <li role="none"><a href="privacidade.html" role="menuitem" tabindex="-1">Privacidade</a></li>
-            </ul>
-            <div class="mobile-menu" aria-label="Abrir menu" role="button" tabindex="0" onclick="toggleMobileMenu()" onkeypress="if(event.key==='Enter'||event.key===' ') toggleMobileMenu()">☰</div>
-        </nav>
-    </header>
+<header>
+  <nav class="container">
+    <a href="index.html" class="logo">Aurora</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Início</a></li>
+      <li><a href="comandos.html">Comandos</a></li>
+      <li><a href="novidades.html">Novidades</a></li>
+      <li><a href="contato.html" class="active">Contato</a></li>
+      <li><a href="regras.html">Regras</a></li>
+      <li><a href="privacidade.html">Privacidade</a></li>
+    </ul>
+    <div class="mobile-menu" aria-label="Abrir menu" role="button" tabindex="0"
+      onclick="toggleMobileMenu()" onkeypress="if(event.key==='Enter' || event.key===' ') toggleMobileMenu()">☰</div>
+  </nav>
+</header>
 
-    <main class="container">
-        <section class="section">
-            <div class="contact-header">
-                <h2>💬 Fale Conosco</h2>
-                <p>Precisa de ajuda ou tem dúvidas? Utilize o menu para navegar ou entre em contato pela área designada.</p>
-            </div>
-            <!-- Conteúdo de contato aqui -->
-        </section>
-    </main>
+<main>
+  <p>O site está em desenvolvimento, a página de contato será lançada em breve.</p>
+</main>
 
 <script>
-    function toggleMobileMenu() {
-        const navLinks = document.querySelector('.nav-links');
-        navLinks.classList.toggle('active');
-        document.body.classList.toggle('menu-open');
-    }
+  function toggleMobileMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');
+    document.body.classList.toggle('menu-open');
+  }
 </script>
 </body>
 </html>
