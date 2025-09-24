@@ -48,7 +48,7 @@
             border-bottom: 2px solid rgba(0, 188, 212, 0.2);
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 100;
             box-shadow: 0 4px 20px rgba(0, 188, 212, 0.1);
         }
 
@@ -57,7 +57,6 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 0;
-            position: relative;
         }
 
         .logo {
@@ -75,7 +74,6 @@
             display: flex;
             list-style: none;
             gap: 1.5rem;
-            transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
         .nav-links a {
@@ -87,7 +85,6 @@
             background: rgba(255, 255, 255, 0.7);
             border: 1px solid rgba(0, 188, 212, 0.2);
             font-weight: 500;
-            white-space: nowrap;
         }
 
         .nav-links a:hover,
@@ -101,14 +98,8 @@
         .mobile-menu {
             display: none;
             color: #00bcd4;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             cursor: pointer;
-            transition: transform 0.3s ease;
-            user-select: none;
-        }
-
-        .mobile-menu:hover {
-            transform: rotate(90deg);
         }
 
         main {
@@ -338,44 +329,40 @@
             }
 
             .nav-links {
-                position: fixed;
-                top: 0;
-                right: 0;
-                height: 100vh;
-                width: 250px;
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
                 background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(20px);
-                box-shadow: -4px 0px 20px rgba(0, 188, 212, 0.1);
                 flex-direction: column;
-                padding: 4rem 1.5rem;
-                gap: 1rem;
-                transform: translateX(100%);
-                opacity: 0;
-                pointer-events: none;
-                transition: transform 0.3s ease, opacity 0.3s ease;
-                z-index: 10000;
+                padding: 1rem;
+                border-radius: 0 0 15px 15px;
             }
 
             .nav-links.active {
-                transform: translateX(0);
-                opacity: 1;
-                pointer-events: auto;
-            }
-
-            .nav-links a {
-                padding: 1rem 2rem;
-                font-size: 1.2rem;
-                border-radius: 10px;
-                white-space: nowrap;
+                display: flex;
             }
 
             .mobile-menu {
                 display: block;
-                z-index: 20000;
             }
 
-            body.menu-open {
-                overflow: hidden;
+            .section {
+                padding: 2rem;
+                margin: 1rem;
+            }
+
+            .page-title h1 {
+                font-size: 2.5rem;
+            }
+
+            .page-title p {
+                font-size: 1.1rem;
+            }
+
+            #commandSearch {
+                width: 90%;
             }
         }
     </style>
@@ -384,15 +371,15 @@
     <header>
         <nav class="container">
             <a href="index.html" class="logo">Aurora</a>
-            <ul class="nav-links" role="menubar" aria-label="Menu principal">
-                <li role="none"><a href="index.html" role="menuitem" tabindex="-1">Início</a></li>
-                <li role="none"><a href="comandos.html" class="active" role="menuitem" tabindex="0">Comandos</a></li>
-                <li role="none"><a href="novidades.html" role="menuitem" tabindex="-1">Novidades</a></li>
-                <li role="none"><a href="contato.html" role="menuitem" tabindex="-1">Contato</a></li>
-                <li role="none"><a href="regras.html" role="menuitem" tabindex="-1">Regras</a></li>
-                <li role="none"><a href="privacidade.html" role="menuitem" tabindex="-1">Privacidade</a></li>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="comandos.html" class="active">Comandos</a></li>
+                <li><a href="novidades.html">Novidades</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="regras.html">Regras</a></li>
+                <li><a href="privacidade.html">Privacidade</a></li>
             </ul>
-            <div class="mobile-menu" aria-label="Abrir menu" role="button" tabindex="0" onclick="toggleMobileMenu()" onkeypress="if(event.key==='Enter'||event.key===' ') toggleMobileMenu()">☰</div>
+            <div class="mobile-menu" onclick="toggleMobileMenu()">☰</div>
         </nav>
     </header>
     <main class="container">
@@ -483,7 +470,6 @@
     function toggleMobileMenu() {
         const navLinks = document.querySelector('.nav-links');
         navLinks.classList.toggle('active');
-        document.body.classList.toggle('menu-open');
     }
 
     function filterCommands() {
