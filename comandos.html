@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>Comandos - Aurora Bot</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
@@ -17,79 +23,109 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
+
         @keyframes gradient-shift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
         header {
-            background: rgba(255,255,255,0.95);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
-            border-bottom: 2px solid rgba(0,188,212,0.2);
+            border-bottom: 2px solid rgba(0, 188, 212, 0.2);
             position: sticky;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 20px rgba(0,188,212,0.1);
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 188, 212, 0.1);
         }
+
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1rem 0;
+            position: relative;
         }
+
         .logo {
             font-size: 2rem;
             font-weight: 700;
             text-decoration: none;
-            background: linear-gradient(45deg,#00bcd4,#4dd0e1,#0288d1);
+            background: linear-gradient(45deg, #00bcd4, #4dd0e1, #0288d1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            filter: drop-shadow(0 2px 4px rgba(0,188,212,0.3));
+            filter: drop-shadow(0 2px 4px rgba(0, 188, 212, 0.3));
         }
+
         .nav-links {
             display: flex;
             list-style: none;
             gap: 1.5rem;
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
+
         .nav-links a {
             color: #0288d1;
             text-decoration: none;
             padding: 0.7rem 1.5rem;
             border-radius: 20px;
             transition: all 0.3s ease;
-            background: rgba(255,255,255,0.7);
-            border: 1px solid rgba(0,188,212,0.2);
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 188, 212, 0.2);
             font-weight: 500;
+            white-space: nowrap;
         }
+
         .nav-links a:hover,
         .nav-links a.active {
-            background: linear-gradient(45deg,#00bcd4,#4dd0e1);
+            background: linear-gradient(45deg, #00bcd4, #4dd0e1);
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,188,212,0.3);
+            box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
         }
+
         .mobile-menu {
             display: none;
             color: #00bcd4;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
             transition: transform 0.3s ease;
         }
-        .mobile-menu:hover { transform: rotate(90deg); }
-        main { padding: 3rem 0; }
+
+        .mobile-menu:hover {
+            transform: rotate(90deg);
+        }
+
+        main {
+            padding: 3rem 0;
+        }
+
         .section {
-            background: rgba(255,255,255,0.9);
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 20px;
             padding: 3rem;
-            box-shadow: 0 20px 40px rgba(0,188,212,0.1);
+            box-shadow: 0 20px 40px rgba(0, 188, 212, 0.1);
             backdrop-filter: blur(15px);
-            border: 1px solid rgba(0,188,212,0.2);
+            border: 1px solid rgba(0, 188, 212, 0.2);
             margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
         }
+
         .section::before {
             content: '';
             position: absolute;
@@ -97,30 +133,43 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle,rgba(0,188,212,0.05) 0%,transparent 70%);
+            background: radial-gradient(circle, rgba(0, 188, 212, 0.05) 0%, transparent 70%);
             animation: float 8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
         }
+
         @keyframes float {
-            0%,100% {transform: translate(0,0) rotate(0deg);}
-            33% {transform: translate(30px,-30px) rotate(120deg);}
-            66% {transform: translate(-20px,20px) rotate(240deg);}
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            33% {
+                transform: translate(30px, -30px) rotate(120deg);
+            }
+            66% {
+                transform: translate(-20px, 20px) rotate(240deg);
+            }
         }
+
         .page-title {
             text-align: center;
             margin-bottom: 3rem;
             position: relative;
             z-index: 2;
         }
+
         .page-title h1 {
             font-size: 4rem;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg,#00bcd4,#4dd0e1,#0288d1);
+            background: linear-gradient(45deg, #00bcd4, #4dd0e1, #0288d1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-weight: 700;
-            text-shadow: 0 4px 8px rgba(0,188,212,0.2);
+            text-shadow: 0 4px 8px rgba(0, 188, 212, 0.2);
         }
+
         .page-title p {
             font-size: 1.3rem;
             color: #4a5568;
@@ -129,10 +178,12 @@
             font-weight: 400;
             line-height: 1.8;
         }
+
         .search-bar {
             text-align: center;
             margin: 2rem 0;
         }
+
         #commandSearch {
             padding: 0.7rem 1.5rem;
             font-size: 1.1rem;
@@ -142,13 +193,20 @@
             width: 60%;
             max-width: 400px;
             outline: none;
+            transition: box-shadow 0.3s ease;
         }
+
+        #commandSearch:focus {
+            box-shadow: 0 0 10px 2px #00bcd4;
+        }
+
         .categories-container {
             display: flex;
             flex-wrap: wrap;
             gap: 2rem;
             justify-content: center;
         }
+
         .command-folder {
             flex: 1 1 320px;
             min-width: 300px;
@@ -156,15 +214,20 @@
             background: rgba(245, 251, 255, 0.82);
             border-radius: 14px;
             padding: 2.2rem 1.5rem 1.8rem 1.5rem;
-            box-shadow: 0 6px 24px rgba(0,188,212,0.10);
+            box-shadow: 0 6px 24px rgba(0, 188, 212, 0.10);
             margin: 1rem 0;
             transition: 0.2s box-shadow, 0.2s transform;
-            border: 1px solid rgba(0,188,212,0.10);
+            border: 1px solid rgba(0, 188, 212, 0.10);
+            display: flex;
+            flex-direction: column;
+            z-index: 2;
         }
+
         .command-folder:hover {
-            box-shadow: 0 10px 36px rgba(0,188,212,0.19);
+            box-shadow: 0 10px 36px rgba(0, 188, 212, 0.19);
             transform: translateY(-2px) scale(1.015);
         }
+
         .folder-title {
             font-size: 1.4rem;
             font-weight: 600;
@@ -174,10 +237,14 @@
             align-items: center;
             gap: 0.6rem;
         }
+
         .command-list {
             list-style: none;
             padding-left: 0;
+            overflow-y: auto;
+            max-height: 280px;
         }
+
         .command-list li {
             padding: 0.7rem 0.6rem 0.7rem 0.3rem;
             margin-bottom: 0.5rem;
@@ -187,16 +254,19 @@
             align-items: flex-start;
             gap: 0.6rem;
         }
+
         .command-list li:before {
             content: '›';
             color: #00bcd4;
             font-family: monospace;
         }
+
         .command-list li .command-name {
             font-weight: 600;
             color: #006e8a;
             font-family: 'Fira Mono', monospace;
         }
+
         .command-list li .command-desc {
             color: #405060;
             margin-left: 5px;
@@ -204,40 +274,39 @@
             font-weight: 400;
             opacity: 0.88;
         }
+
         .command-list li:hover {
-            background: rgba(0,188,212,0.091);
+            background: rgba(0, 188, 212, 0.091);
         }
-        @media (max-width: 1024px) {
-            .categories-container {
-                flex-direction: column;
-                gap: 1.5rem;
-                align-items: stretch;
-            }
-            .command-folder {
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
-        @media (max-width: 768px) {
-            .categories-container { gap: 0.7rem; }
-            .command-folder { padding: 1.3rem 0.7rem 1.2rem 0.7rem; }
-            .folder-title { font-size: 1.16rem; }
-        }
+
         footer {
             background: linear-gradient(135deg, #2d3748, #4a5568);
             color: white;
             text-align: center;
             padding: 3rem 0;
             margin-top: 3rem;
+            position: relative;
+            z-index: 2;
         }
+
         .footer-heart {
             color: #4dd0e1;
             animation: heartbeat 2s ease-in-out infinite;
+            display: inline-block;
         }
+
         @keyframes heartbeat {
-            0%, 50%, 100% { transform: scale(1); }
-            25%, 75% { transform: scale(1.2); }
+            0%,
+            50%,
+            100% {
+                transform: scale(1);
+            }
+            25%,
+            75% {
+                transform: scale(1.2);
+            }
         }
+
         .floating-particles {
             position: fixed;
             top: 0;
@@ -247,174 +316,271 @@
             pointer-events: none;
             z-index: 1;
         }
+
         .particle {
             position: absolute;
             background: rgba(0, 188, 212, 0.1);
             border-radius: 50%;
             animation: floatParticle 12s infinite linear;
         }
+
         @keyframes floatParticle {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive - mobile menu */
+
+        @media (max-width: 1024px) {
+            .categories-container {
+                flex-direction: column;
+                gap: 1.5rem;
+                align-items: stretch;
+            }
+
+            .command-folder {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .categories-container {
+                gap: 0.7rem;
+            }
+
+            .command-folder {
+                padding: 1.3rem 0.7rem 1.2rem 0.7rem;
+            }
+
+            .folder-title {
+                font-size: 1.16rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 250px;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                box-shadow: -4px 0px 20px rgba(0, 188, 212, 0.1);
+                flex-direction: column;
+                padding: 4rem 1.5rem;
+                gap: 1rem;
+                transform: translateX(100%);
+                opacity: 0;
+                pointer-events: none;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                z-index: 10000;
+            }
+
+            .nav-links.active {
+                transform: translateX(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .nav-links a {
+                padding: 1rem 2rem;
+                font-size: 1.2rem;
+                border-radius: 10px;
+                white-space: nowrap;
+            }
+
+            .mobile-menu {
+                display: block;
+                z-index: 20000;
+            }
+
+            body.menu-open {
+                overflow: hidden;
+            }
         }
     </style>
 </head>
 <body>
-<div class="floating-particles" id="particles"></div>
-<header>
-    <nav class="container">
-        <a href="index.html" class="logo">Aurora</a>
-        <ul class="nav-links">
-            <li><a href="index.html">Início</a></li>
-            <li><a href="comandos.html" class="active">Comandos</a></li>
-            <li><a href="novidades.html">Novidades</a></li>
-            <li><a href="contato.html">Contato</a></li>
-            <li><a href="regras.html">Regras</a></li>
-            <li><a href="privacidade.html">Privacidade</a></li>
-        </ul>
-        <div class="mobile-menu" onclick="toggleMobileMenu()">☰</div>
-    </nav>
-</header>
-<main class="container">
-    <section class="section">
-        <div class="page-title">
-            <h1>⚡ Comandos do Aurora</h1>
-            <p>Descubra todos os comandos disponíveis e transforme seu servidor Discord em uma experiência incrível!</p>
+    <div class="floating-particles" id="particles"></div>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Aurora</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="comandos.html" class="active">Comandos</a></li>
+                <li><a href="novidades.html">Novidades</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="regras.html">Regras</a></li>
+                <li><a href="privacidade.html">Privacidade</a></li>
+            </ul>
+            <div class="mobile-menu" aria-label="Abrir menu" role="button" tabindex="0" onclick="toggleMobileMenu()" onkeypress="if(event.key==='Enter'){toggleMobileMenu()}">☰</div>
+        </nav>
+    </header>
+    <main class="container">
+        <section class="section">
+            <div class="page-title">
+                <h1>⚡ Comandos do Aurora</h1>
+                <p>Descubra todos os comandos disponíveis e transforme seu servidor Discord em uma experiência incrível!</p>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="commandSearch" placeholder="Pesquise por comando..." aria-label="Pesquisar comandos" />
+            </div>
+            <div class="categories-container" role="list">
+                <div class="command-folder" role="listitem" tabindex="0">
+                    <div class="folder-title">📋 Utilitários</div>
+                    <ul class="command-list">
+                        <li><span class="command-name">/help</span> <span class="command-desc">Informações de ajuda sobre o bot</span></li>
+                        <li><span class="command-name">/ajuda</span> <span class="command-desc">Informações de ajuda sobre o bot</span></li>
+                        <li><span class="command-name">/report</span> <span class="command-desc">Sistema de reportes do servidor</span></li>
+                        <li><span class="command-name">/cargo-info</span> <span class="command-desc">Informações sobre cargo</span></li>
+                        <li><span class="command-name">/canal-info</span> <span class="command-desc">Informações sobre canal</span></li>
+                        <li><span class="command-name">/server-info</span> <span class="command-desc">Detalhes do servidor</span></li>
+                        <li><span class="command-name">/server</span> <span class="command-desc">Detalhes do servidor</span></li>
+                        <li><span class="command-name">/emoji</span> <span class="command-desc">Lista de emojis</span></li>
+                        <li><span class="command-name">/avatar</span> <span class="command-desc">Avatar de usuários</span></li>
+                        <li><span class="command-name">/informacoes</span> <span class="command-desc">Informações do sistema</span></li>
+                        <li><span class="command-name">/ranque</span> <span class="command-desc">Ranking de usuários</span></li>
+                        <li><span class="command-name">/lembrete</span> <span class="command-desc">Lembretes do servidor</span></li>
+                        <li><span class="command-name">/votar</span> <span class="command-desc">Votar e apoiar o bot</span></li>
+                        <li><span class="command-name">/weather</span> <span class="command-desc">Previsão do tempo</span></li>
+                        <li><span class="command-name">/translate</span> <span class="command-desc">Tradutor inteligente</span></li>
+                    </ul>
+                </div>
+                <div class="command-folder" role="listitem" tabindex="0">
+                    <div class="folder-title">💰 Economia</div>
+                    <ul class="command-list">
+                        <li><span class="command-name">/balance</span> <span class="command-desc">Saldo de moedas/gemas</span></li>
+                        <li><span class="command-name">/carteira</span> <span class="command-desc">Saldo de moedas/gemas</span></li>
+                        <li><span class="command-name">/money</span> <span class="command-desc">Saldo de moedas/gemas</span></li>
+                        <li><span class="command-name">/transferir</span> <span class="command-desc">Transferência de moedas (taxa 7%)</span></li>
+                        <li><span class="command-name">/resgatar</span> <span class="command-desc">Resgatar código promocional</span></li>
+                        <li><span class="command-name">/sorteio</span> <span class="command-desc">Criar sorteio</span></li>
+                        <li><span class="command-name">/sorteios</span> <span class="command-desc">Ver sorteios ativos</span></li>
+                        <li><span class="command-name">/daily</span> <span class="command-desc">Recompensa diária</span></li>
+                        <li><span class="command-name">/diario</span> <span class="command-desc">Recompensa diária</span></li>
+                    </ul>
+                </div>
+                <div class="command-folder" role="listitem" tabindex="0">
+                    <div class="folder-title">🛡️ Moderação</div>
+                    <ul class="command-list">
+                        <li><span class="command-name">/ban</span> <span class="command-desc">Banir usuário</span></li>
+                        <li><span class="command-name">/kick</span> <span class="command-desc">Expulsar usuário</span></li>
+                        <li><span class="command-name">/mute</span> <span class="command-desc">Timeout em usuário</span></li>
+                        <li><span class="command-name">/warn</span> <span class="command-desc">Avisar usuário</span></li>
+                        <li><span class="command-name">/clear</span> <span class="command-desc">Limpar mensagens</span></li>
+                        <li><span class="command-name">/lock</span> <span class="command-desc">Trancar canal</span></li>
+                        <li><span class="command-name">/unlock</span> <span class="command-desc">Destrancar canal</span></li>
+                        <li><span class="command-name">/embed</span> <span class="command-desc">Criar embed personalizado</span></li>
+                        <li><span class="command-name">/config-ticket</span> <span class="command-desc">Configurar tickets</span></li>
+                        <li><span class="command-name">/ticket-stats</span> <span class="command-desc">Estatísticas de tickets</span></li>
+                        <li><span class="command-name">/force-close</span> <span class="command-desc">Fechar ticket à força</span></li>
+                        <li><span class="command-name">/promocoes-config</span> <span class="command-desc">Configurar hierarquia de promoções</span></li>
+                        <li><span class="command-name">/promover</span> <span class="command-desc">Promover usuário</span></li>
+                        <li><span class="command-name">/promocoes-setlog</span> <span class="command-desc">Canal de logs de promoções/rebaixamentos</span></li>
+                        <li><span class="command-name">/rebaixar</span> <span class="command-desc">Rebaixar usuário</span></li>
+                    </ul>
+                </div>
+                <div class="command-folder" role="listitem" tabindex="0">
+                    <div class="folder-title">🎮 Diversão</div>
+                    <ul class="command-list">
+                        <li><span class="command-name">/coinflip</span> <span class="command-desc">Jogue cara ou coroa</span></li>
+                        <li><span class="command-name">/dado</span> <span class="command-desc">Rolar dado de 6 lados</span></li>
+                        <li><span class="command-name">/8ball</span> <span class="command-desc">Pergunte à bola mágica</span></li>
+                        <li><span class="command-name">/escolher</span> <span class="command-desc">Escolha aleatória de opções</span></li>
+                        <li><span class="command-name">/par_ou_impar</span> <span class="command-desc">Jogue par ou ímpar</span></li>
+                        <li><span class="command-name">/roleta</span> <span class="command-desc">Jogue roleta russa virtual</span></li>
+                        <li><span class="command-name">/numero_secreto</span> <span class="command-desc">Adivinhe número secreto (1-100)</span></li>
+                        <li><span class="command-name">/pedra_papel_tesoura</span> <span class="command-desc">Jogo clássico</span></li>
+                        <li><span class="command-name">/sorte</span> <span class="command-desc">Veja sua sorte do dia</span></li>
+                        <li><span class="command-name">/cara_ou_coroa_dupla</span> <span class="command-desc">Jogue duas moedas</span></li>
+                    </ul>
+                </div>
+                <div class="command-folder" role="listitem" tabindex="0">
+                    <div class="folder-title">💕 Social</div>
+                    <ul class="command-list">
+                        <li><span class="command-name">/perfil</span> <span class="command-desc">Visualizar perfil de usuário</span></li>
+                        <li><span class="command-name">/kiss</span> <span class="command-desc">Envie um beijo</span></li>
+                        <li><span class="command-name">/ship</span> <span class="command-desc">Compatibilidade (ship)</span></li>
+                        <li><span class="command-name">/oraculo</span> <span class="command-desc">Oráculo do cupido</span></li>
+                        <li><span class="command-name">/casamento</span> <span class="command-desc">Comandos de casamento e relacionamento</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Aurora Bot. Todos os direitos reservados.</p>
+            <p>Feito com <span class="footer-heart" aria-label="coração">❤️</span> para a comunidade Discord</p>
         </div>
-        <div class="search-bar">
-            <input type="text" id="commandSearch" placeholder="Pesquise por comando...">
-        </div>
-        <div class="categories-container">
-            <div class="command-folder">
-                <div class="folder-title">📋 Utilitários</div>
-                <ul class="command-list">
-                    <li><span class="command-name">/help</span> <span class="command-desc">Informações de ajuda sobre o bot</span></li>
-                    <li><span class="command-name">/ajuda</span> <span class="command-desc">Informações de ajuda sobre o bot</span></li>
-                    <li><span class="command-name">/report</span> <span class="command-desc">Sistema de reportes do servidor</span></li>
-                    <li><span class="command-name">/cargo-info</span> <span class="command-desc">Informações sobre cargo</span></li>
-                    <li><span class="command-name">/canal-info</span> <span class="command-desc">Informações sobre canal</span></li>
-                    <li><span class="command-name">/server-info</span> <span class="command-desc">Detalhes do servidor</span></li>
-                    <li><span class="command-name">/server</span> <span class="command-desc">Detalhes do servidor</span></li>
-                    <li><span class="command-name">/emoji</span> <span class="command-desc">Lista de emojis</span></li>
-                    <li><span class="command-name">/avatar</span> <span class="command-desc">Avatar de usuários</span></li>
-                    <li><span class="command-name">/informacoes</span> <span class="command-desc">Informações do sistema</span></li>
-                    <li><span class="command-name">/ranque</span> <span class="command-desc">Ranking de usuários</span></li>
-                    <li><span class="command-name">/lembrete</span> <span class="command-desc">Lembretes do servidor</span></li>
-                    <li><span class="command-name">/votar</span> <span class="command-desc">Votar e apoiar o bot</span></li>
-                    <li><span class="command-name">/weather</span> <span class="command-desc">Previsão do tempo</span></li>
-                    <li><span class="command-name">/translate</span> <span class="command-desc">Tradutor inteligente</span></li>
-                </ul>
-            </div>
-            <div class="command-folder">
-                <div class="folder-title">💰 Economia</div>
-                <ul class="command-list">
-                    <li><span class="command-name">/balance</span> <span class="command-desc">Saldo de moedas/gemas</span></li>
-                    <li><span class="command-name">/carteira</span> <span class="command-desc">Saldo de moedas/gemas</span></li>
-                    <li><span class="command-name">/money</span> <span class="command-desc">Saldo de moedas/gemas</span></li>
-                    <li><span class="command-name">/transferir</span> <span class="command-desc">Transferência de moedas (taxa 7%)</span></li>
-                    <li><span class="command-name">/resgatar</span> <span class="command-desc">Resgatar código promocional</span></li>
-                    <li><span class="command-name">/sorteio</span> <span class="command-desc">Criar sorteio</span></li>
-                    <li><span class="command-name">/sorteios</span> <span class="command-desc">Ver sorteios ativos</span></li>
-                    <li><span class="command-name">/daily</span> <span class="command-desc">Recompensa diária</span></li>
-                    <li><span class="command-name">/diario</span> <span class="command-desc">Recompensa diária</span></li>
-                </ul>
-            </div>
-            <div class="command-folder">
-                <div class="folder-title">🛡️ Moderação</div>
-                <ul class="command-list">
-                    <li><span class="command-name">/ban</span> <span class="command-desc">Banir usuário</span></li>
-                    <li><span class="command-name">/kick</span> <span class="command-desc">Expulsar usuário</span></li>
-                    <li><span class="command-name">/mute</span> <span class="command-desc">Timeout em usuário</span></li>
-                    <li><span class="command-name">/warn</span> <span class="command-desc">Avisar usuário</span></li>
-                    <li><span class="command-name">/clear</span> <span class="command-desc">Limpar mensagens</span></li>
-                    <li><span class="command-name">/lock</span> <span class="command-desc">Trancar canal</span></li>
-                    <li><span class="command-name">/unlock</span> <span class="command-desc">Destrancar canal</span></li>
-                    <li><span class="command-name">/embed</span> <span class="command-desc">Criar embed personalizado</span></li>
-                    <li><span class="command-name">/config-ticket</span> <span class="command-desc">Configurar tickets</span></li>
-                    <li><span class="command-name">/ticket-stats</span> <span class="command-desc">Estatísticas de tickets</span></li>
-                    <li><span class="command-name">/force-close</span> <span class="command-desc">Fechar ticket à força</span></li>
-                    <li><span class="command-name">/promocoes-config</span> <span class="command-desc">Configurar hierarquia de promoções</span></li>
-                    <li><span class="command-name">/promover</span> <span class="command-desc">Promover usuário</span></li>
-                    <li><span class="command-name">/promocoes-setlog</span> <span class="command-desc">Canal de logs de promoções/rebaixamentos</span></li>
-                    <li><span class="command-name">/rebaixar</span> <span class="command-desc">Rebaixar usuário</span></li>
-                </ul>
-            </div>
-            <div class="command-folder">
-                <div class="folder-title">🎮 Diversão</div>
-                <ul class="command-list">
-                    <li><span class="command-name">/coinflip</span> <span class="command-desc">Jogue cara ou coroa</span></li>
-                    <li><span class="command-name">/dado</span> <span class="command-desc">Rolar dado de 6 lados</span></li>
-                    <li><span class="command-name">/8ball</span> <span class="command-desc">Pergunte à bola mágica</span></li>
-                    <li><span class="command-name">/escolher</span> <span class="command-desc">Escolha aleatória de opções</span></li>
-                    <li><span class="command-name">/par_ou_impar</span> <span class="command-desc">Jogue par ou ímpar</span></li>
-                    <li><span class="command-name">/roleta</span> <span class="command-desc">Jogue roleta russa virtual</span></li>
-                    <li><span class="command-name">/numero_secreto</span> <span class="command-desc">Adivinhe número secreto (1-100)</span></li>
-                    <li><span class="command-name">/pedra_papel_tesoura</span> <span class="command-desc">Jogo clássico</span></li>
-                    <li><span class="command-name">/sorte</span> <span class="command-desc">Veja sua sorte do dia</span></li>
-                    <li><span class="command-name">/cara_ou_coroa_dupla</span> <span class="command-desc">Jogue duas moedas</span></li>
-                </ul>
-            </div>
-            <div class="command-folder">
-                <div class="folder-title">💕 Social</div>
-                <ul class="command-list">
-                    <li><span class="command-name">/perfil</span> <span class="command-desc">Visualizar perfil de usuário</span></li>
-                    <li><span class="command-name">/kiss</span> <span class="command-desc">Envie um beijo</span></li>
-                    <li><span class="command-name">/ship</span> <span class="command-desc">Compatibilidade (ship)</span></li>
-                    <li><span class="command-name">/oraculo</span> <span class="command-desc">Oráculo do cupido</span></li>
-                    <li><span class="command-name">/casamento</span> <span class="command-desc">Comandos de casamento e relacionamento</span></li>
-                </ul>
-            </div>
-        </div>
-    </section>
-</main>
-<footer>
-    <div class="container">
-        <p>&copy; 2025 Aurora Bot. Todos os direitos reservados.</p>
-        <p>Feito com <span class="footer-heart">❤️</span> para a comunidade Discord</p>
-    </div>
-</footer>
-<script>
-function toggleMobileMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    navLinks.classList.toggle('active');
-}
-// partículas flutuantes
-function createParticles() {
-    const particlesContainer = document.getElementById('particles');
-    const particleCount = 12;
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        const size = Math.random() * 6 + 2;
-        particle.style.width = size + 'px';
-        particle.style.height = size + 'px';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 12 + 's';
-        particle.style.animationDuration = (Math.random() * 8 + 12) + 's';
-        particlesContainer.appendChild(particle);
-    }
-}
-document.addEventListener('DOMContentLoaded', () => {
-    createParticles();
-});
-document.getElementById('commandSearch').addEventListener('input', function(e) {
-    const val = e.target.value.toLowerCase();
-    document.querySelectorAll('.command-folder').forEach(folder => {
-        let hasResult = false;
-        folder.querySelectorAll('.command-list li').forEach(item => {
-            const text = item.textContent.toLowerCase();
-            if (val === "" || text.includes(val)) {
-                item.style.display = '';
-                hasResult = true;
-            } else {
-                item.style.display = 'none';
-            }
+    </footer>
+    <script>
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        }
+
+        // Acessibilidade: fechar menu ao clicar em link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navLinks = document.querySelector('.nav-links');
+                if (navLinks.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+            });
         });
-        folder.style.display = hasResult ? '' : 'none';
-    });
-});
-</script>
+
+        // partículas flutuantes
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 12;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 6 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 12 + 's';
+                particle.style.animationDuration = (Math.random() * 8 + 12) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+        });
+
+        // Filtro de comandos
+        document.getElementById('commandSearch').addEventListener('input', function (e) {
+            const val = e.target.value.toLowerCase();
+            document.querySelectorAll('.command-folder').forEach(folder => {
+                let hasResult = false;
+                folder.querySelectorAll('.command-list li').forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (val === "" || text.includes(val)) {
+                        item.style.display = '';
+                        hasResult = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                folder.style.display = hasResult ? '' : 'none';
+            });
+        });
+    </script>
 </body>
 </html>
