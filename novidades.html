@@ -17,7 +17,7 @@
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: #1a202c;
-            background: linear-gradient(135deg, #e6f3ff 0%, #b3e5fc 25%, #4dd0e1 50%, #00bcd4 100%);
+            background: linear-gradient(135deg, #f0fbff 0%, #e8f9fd 25%, #e0f7fa 50%, #d4f1f9 100%);
             background-size: 400% 400%;
             animation: gradient-shift 10s ease infinite;
             min-height: 100vh;
@@ -156,126 +156,222 @@
             z-index: 2;
         }
 
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+        .alert-banner {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+            border-radius: 15px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(238, 90, 82, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             position: relative;
             z-index: 2;
+            animation: pulse-alert 2s ease-in-out infinite;
         }
 
-        .news-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 8px 25px rgba(0, 188, 212, 0.1);
+        @keyframes pulse-alert {
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(238, 90, 82, 0.3); }
+            50% { transform: scale(1.01); box-shadow: 0 15px 40px rgba(238, 90, 82, 0.4); }
+        }
+
+        .alert-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            color: white;
+        }
+
+        .alert-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+            animation: shake 3s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            10%, 30%, 50%, 70%, 90% { transform: rotate(-10deg); }
+            20%, 40%, 60%, 80% { transform: rotate(10deg); }
+        }
+
+        .alert-text {
+            flex: 1;
+        }
+
+        .alert-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .alert-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        .update-block {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 253, 255, 0.95) 100%);
+            border-radius: 20px;
+            padding: 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 188, 212, 0.15);
             backdrop-filter: blur(15px);
-            border: 1px solid rgba(0, 188, 212, 0.2);
-            transition: all 0.3s ease;
+            border: 2px solid rgba(0, 188, 212, 0.25);
             position: relative;
             overflow: hidden;
+            z-index: 2;
+            transition: all 0.3s ease;
         }
 
-        .news-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(0, 188, 212, 0.1), rgba(77, 208, 225, 0.1));
-            transition: left 0.5s ease;
-        }
-
-        .news-card:hover::before {
-            left: 0;
-        }
-
-        .news-card:hover {
+        .update-block:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 188, 212, 0.2);
-            border-color: #00bcd4;
+            box-shadow: 0 15px 40px rgba(0, 188, 212, 0.25);
         }
 
-        .news-date {
-            display: inline-block;
-            background: linear-gradient(45deg, #00bcd4, #4dd0e1);
+        .update-header {
+            background: linear-gradient(135deg, #00bcd4 0%, #4dd0e1 100%);
+            padding: 1.5rem 2rem;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .update-date {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .news-title {
             font-size: 1.4rem;
-            font-weight: 600;
-            color: #2d3748;
+            font-weight: 700;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .update-date::before {
+            content: '📅';
+            font-size: 1.6rem;
+        }
+
+        .update-list {
+            list-style: none;
+            padding: 1.5rem 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .update-item {
+            padding: 1.5rem;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #0288d1, #00bcd4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-            z-index: 2;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+            border-left: 4px solid #00bcd4;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 188, 212, 0.1);
         }
 
-        .news-description {
-            color: #4a5568;
+        .update-item:hover {
+            transform: translateX(5px);
+            border-left-color: #4dd0e1;
+            box-shadow: 0 4px 12px rgba(0, 188, 212, 0.2);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .update-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .update-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .update-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .update-text {
+            color: #2d3748;
+            font-size: 1.05rem;
             line-height: 1.7;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .news-tags {
-            position: relative;
-            z-index: 2;
-        }
-
-        .news-tag {
-            display: inline-block;
-            background: rgba(0, 188, 212, 0.1);
-            color: #0288d1;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
+            flex: 1;
             font-weight: 500;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-            border: 1px solid rgba(0, 188, 212, 0.2);
         }
 
-        .new-badge {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+        .update-tags {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-top: 0.8rem;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            transform: scale(1.05);
+        }
+
+        .tag::before {
+            font-size: 1rem;
+        }
+
+        .tag-bugfix {
+            background: linear-gradient(135deg, #a8e6cf, #88d8a3);
+            color: #1e5631;
+        }
+
+        .tag-bugfix::before {
+            content: '🐛';
+        }
+
+        .tag-novidade {
+            background: linear-gradient(135deg, #4dd0e1, #00bcd4);
             color: white;
-            border-color: #ff6b6b;
         }
 
-        .improvement-badge {
-            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+        .tag-novidade::before {
+            content: '✨';
+        }
+
+        .tag-importante {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
             color: white;
-            border-color: #4ecdc4;
+            animation: pulse-tag 2s ease-in-out infinite;
         }
 
-        .bugfix-badge {
-            background: linear-gradient(45deg, #a8e6cf, #88d8a3);
-            color: #2d5016;
-            border-color: #a8e6cf;
+        .tag-importante::before {
+            content: '⚠️';
         }
 
-        .visual-badge {
-            background: linear-gradient(45deg, #ffd93d, #ff6b35);
-            color: white;
-            border-color: #ffd93d;
+        @keyframes pulse-tag {
+            0%, 100% { box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); }
+            50% { box-shadow: 0 4px 12px rgba(238, 90, 82, 0.4); }
+        }
+
+        .tag-mudanca {
+            background: linear-gradient(135deg, #ffd93d, #ff9a3d);
+            color: #663d00;
+        }
+
+        .tag-mudanca::before {
+            content: '🔄';
         }
 
         footer {
-            background: linear-gradient(135deg, #2d3748, #4a5568);
-            color: white;
+            background: linear-gradient(135deg, #0288d1 0%, #00bcd4 50%, #4dd0e1 100%);
+            color: rgba(255, 255, 255, 0.95);
             text-align: center;
             padding: 3rem 0;
             margin-top: 3rem;
@@ -287,7 +383,7 @@
         }
 
         .footer-heart {
-            color: #4dd0e1;
+            color: #ffffff;
             animation: heartbeat 2s ease-in-out infinite;
         }
 
@@ -326,13 +422,45 @@
                 font-size: 2.5rem;
             }
 
-            .news-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
             .news-intro {
                 font-size: 1.1rem;
+            }
+
+            .update-block {
+                padding: 1.5rem;
+            }
+
+            .update-item {
+                padding: 1.2rem;
+            }
+
+            .update-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .update-icon {
+                font-size: 1.3rem;
+            }
+
+            .update-text {
+                font-size: 0.95rem;
+            }
+
+            .alert-banner {
+                padding: 1.2rem 1.5rem;
+            }
+
+            .alert-icon {
+                font-size: 1.5rem;
+            }
+
+            .alert-title {
+                font-size: 1.1rem;
+            }
+
+            .alert-description {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -358,138 +486,197 @@
             <h2>🎉 Novidades do Aurora</h2>
             <p class="news-intro">Fique por dentro das últimas atualizações, recursos e melhorias que estamos desenvolvendo para tornar sua experiência ainda melhor!</p>
 
-            <div class="news-grid">
-                <div class="news-card">
-                    <div class="news-date">Outubro, 2025</div>
-                    <h3 class="news-title">⚠️ Reset da Economia e Grandes Mudanças</h3>
-                    <p class="news-description">
-                        Devido a erros internos no bot, foi necessário realizar um reset completo da economia. 
-                        No entanto, aproveitamos essa oportunidade para implementar novos sistemas incríveis e 
-                        melhorar significativamente a experiência de todos! Agradecemos pela compreensão e esperamos 
-                        que aproveitem as novidades que preparamos com muito carinho.
-                    </p>
-                    <div class="news-tags">
-                        <span class="news-tag new-badge">Importante</span>
-                        <span class="news-tag improvement-badge">Reset</span>
+            <div class="alert-banner">
+                <div class="alert-content">
+                    <div class="alert-icon">⚠️</div>
+                    <div class="alert-text">
+                        <div class="alert-title">Atenção: Reset da Economia</div>
+                        <div class="alert-description">
+                            Devido a erros internos críticos no sistema de economia, foi necessário realizar um reset completo de todos os dados econômicos. Pedimos desculpas pelos transtornos e agradecemos pela compreensão. Novos sistemas mais estáveis e seguros foram implementados para garantir uma melhor experiência!
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="news-card">
-                    <div class="news-date">Outubro, 2025</div>
-                    <h3 class="news-title">🎖️ Sistema de Badges/Insígnias</h3>
-                    <p class="news-description">
-                        Novo sistema de badges foi adicionado ao perfil! Colecione insígnias especiais conquistando 
-                        objetivos, participando de eventos e explorando o bot. Use /badges ou /insígnias para ver 
-                        sua coleção e mostre suas conquistas para todos!
-                    </p>
-                    <div class="news-tags">
-                        <span class="news-tag new-badge">Novo</span>
-                        <span class="news-tag improvement-badge">Sistema</span>
-                    </div>
+            <div class="update-block">
+                <div class="update-header">
+                    <div class="update-date">26 de Outubro de 2025</div>
                 </div>
+                <ul class="update-list">
+                    <li class="update-item">
+                        <div class="update-content">
+                            <span class="update-icon">🐾</span>
+                            <div class="update-text">Sistema de pets adicionado! Use /pets e /loja para começar sua coleção e cuidar dos seus companheiros virtuais.</div>
+                        </div>
+                        <div class="update-tags">
+                            <span class="tag tag-novidade">Novidade</span>
+                        </div>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-content">
+                            <span class="update-icon">🌍</span>
+                            <div class="update-text">Sistema de tradução completa implementado! Configure seu idioma preferido com /idioma e desfrute do bot no seu idioma.</div>
+                        </div>
+                        <div class="update-tags">
+                            <span class="tag tag-novidade">Novidade</span>
+                            <span class="tag tag-importante">Importante</span>
+                        </div>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-content">
+                            <span class="update-icon">📊</span>
+                            <div class="update-text">Sistema de enquetes implementado! Crie votações interativas com /enquete ou /poll e tome decisões em comunidade.</div>
+                        </div>
+                        <div class="update-tags">
+                            <span class="tag tag-novidade">Novidade</span>
+                        </div>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-content">
+                            <span class="update-icon">🎁</span>
+                            <div class="update-text">Sistema de sorteios adicionado! Realize giveaways incríveis com /sorteio e engaje sua comunidade.</div>
+                        </div>
+                        <div class="update-tags">
+                            <span class="tag tag-novidade">Novidade</span>
+                        </div>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-content">
+                            <span class="update-icon">🛡️</span>
+                            <div class="update-text">Comandos de moderação atualizados com adição de /lockdown e /unlock para maior controle do servidor.</div>
+                        </div>
+                        <div class="update-tags">
+                            <span class="tag tag-mudanca">Mudança</span>
+                            <span class="tag tag-novidade">Novidade</span>
+                        </div>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-content">
+                            <span class="update-icon">🎨</span>
+                            <div class="update-text">Redesign completo do site da Aurora com visual moderno e responsivo!</div>
+                        </div>
+                        <div class="update-tags">
+                            <span class="tag tag-mudanca">Mudança</span>
+                        </div>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-content">
+                            <span class="update-icon">⚡</span>
+                            <div class="update-text">Novos comandos utilitários: /clima, /traduzir, /banco, /afk, /anagrama e /emoji para mais diversão!</div>
+                        </div>
+                        <div class="update-tags">
+                            <span class="tag tag-novidade">Novidade</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
 
-                <div class="news-card">
-                    <div class="news-date">Outubro, 2025</div>
-                    <h3 class="news-title">🗺️ Comando /explorar Adicionado</h3>
-                    <p class="news-description">
-                        Embarque em aventuras emocionantes com o novo comando /explorar! Viaje por diferentes 
-                        locais, enfrente desafios e ganhe moedas e recompensas especiais. Cada exploração é única 
-                        e traz surpresas diferentes!
-                    </p>
-                    <div class="news-tags">
-                        <span class="news-tag new-badge">Novo</span>
-                        <span class="news-tag visual-badge">Aventura</span>
-                    </div>
+            <div class="update-block">
+                <div class="update-header">
+                    <div class="update-date">Outubro de 2025</div>
                 </div>
+                <ul class="update-list">
+                    <li class="update-item">
+                        <div class="update-content">
+                            <span class="update-icon">🔄</span>
+                            <div class="update-text">Reset completo da economia devido a erros internos críticos. Novos sistemas mais estáveis foram implementados!</div>
+                        </div>
+                        <div class="update-tags">
+                            <span class="tag tag-importante">Importante</span>
+                            <span class="tag tag-mudanca">Mudança</span>
+                        </div>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-content">
+                            <span class="update-icon">🏆</span>
+                            <div class="update-text">Sistema de Badges/Insígnias implementado! Colecione conquistas especiais usando /badges.</div>
+                        </div>
+                        <div class="update-tags">
+                            <span class="tag tag-novidade">Novidade</span>
+                        </div>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-content">
+                            <span class="update-icon">🗺️</span>
+                            <div class="update-text">Comando /explorar adicionado! Embarque em aventuras épicas e ganhe recompensas exclusivas.</div>
+                        </div>
+                        <div class="update-tags">
+                            <span class="tag tag-novidade">Novidade</span>
+                        </div>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-content">
+                            <span class="update-icon">🔧</span>
+                            <div class="update-text">Reestruturação completa do bot com suporte ao prefix "a!" além dos comandos de barra.</div>
+                        </div>
+                        <div class="update-tags">
+                            <span class="tag tag-mudanca">Mudança</span>
+                            <span class="tag tag-importante">Importante</span>
+                        </div>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-content">
+                            <span class="update-icon">📉</span>
+                            <div class="update-text">Sistema de XP/Level removido. Foco total em badges e economia para melhor experiência.</div>
+                        </div>
+                        <div class="update-tags">
+                            <span class="tag tag-mudanca">Mudança</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
 
-                <div class="news-card">
-                    <div class="news-date">Outubro, 2025</div>
-                    <h3 class="news-title">🔧 Melhor Reestruturação do Bot</h3>
-                    <p class="news-description">
-                        O Aurora passou por uma reestruturação completa! Código mais limpo, comandos mais rápidos, 
-                        melhor estabilidade e novos recursos. Agora também com suporte ao prefix a! além dos 
-                        comandos slash. A experiência ficou muito mais fluida!
-                    </p>
-                    <div class="news-tags">
-                        <span class="news-tag improvement-badge">Melhoria</span>
-                        <span class="news-tag new-badge">Prefix a!</span>
-                    </div>
+            <div class="update-block">
+                <div class="update-header">
+                    <div class="update-date">24 de Setembro de 2025</div>
                 </div>
-
-                <div class="news-card">
-                    <div class="news-date">Outubro, 2025</div>
-                    <h3 class="news-title">❌ Remoção do Sistema XP/Level</h3>
-                    <p class="news-description">
-                        O sistema de XP e níveis foi removido para dar lugar a sistemas mais dinâmicos e 
-                        interessantes. Agora o foco está nas badges, conquistas e na economia renovada, 
-                        proporcionando uma experiência mais equilibrada e divertida!
-                    </p>
-                    <div class="news-tags">
-                        <span class="news-tag bugfix-badge">Mudança</span>
-                        <span class="news-tag improvement-badge">Sistema</span>
-                    </div>
-                </div>
-
-                <div class="news-card">
-                    <div class="news-date">24 de Setembro, 2025</div>
-                    <h3 class="news-title">Daily mudado visualmente</h3>
-                    <p class="news-description">
-                        O comando daily recebeu uma reformulação visual completa! Agora com interface mais moderna, 
-                        animações suaves e melhor organização das informações de recompensas diárias.
-                    </p>
-                    <div class="news-tags">
-                        <span class="news-tag visual-badge">Visual</span>
-                        <span class="news-tag improvement-badge">Melhoria</span>
-                    </div>
-                </div>
-
-                <div class="news-card">
-                    <div class="news-date">24 de Setembro, 2025</div>
-                    <h3 class="news-title">Correção de bugs no site</h3>
-                    <p class="news-description">
-                        Resolvidos diversos problemas de navegação, responsividade mobile e compatibilidade 
-                        entre navegadores. O site agora funciona perfeitamente em todos os dispositivos.
-                    </p>
-                    <div class="news-tags">
-                        <span class="news-tag bugfix-badge">Bug Fix</span>
-                        <span class="news-tag improvement-badge">Estabilidade</span>
-                    </div>
-                </div>
-
-                <div class="news-card">
-                    <div class="news-date">24 de Setembro, 2025</div>
-                    <h3 class="news-title">Melhora no sistema de tickets</h3>
-                    <p class="news-description">
-                        Sistema de tickets reformulado com interface mais intuitiva, categorização automática, 
-                        respostas mais rápidas e melhor organização para administradores.
-                    </p>
-                    <div class="news-tags">
-                        <span class="news-tag improvement-badge">Melhoria</span>
-                        <span class="news-tag new-badge">Sistema</span>
-                    </div>
-                </div>
-
-                <div class="news-card">
-                    <div class="news-date">24 de Setembro, 2025</div>
-                    <h3 class="news-title">Mudança nos comandos de diversão em geral</h3>
-                    <p class="news-description">
-                        Todos os comandos de diversão foram repensados com novas funcionalidades, 
-                        respostas mais variadas, easter eggs e interações mais divertidas para a comunidade.
-                    </p>
-                    <div class="news-tags">
-                        <span class="news-tag new-badge">Novo</span>
-                        <span class="news-tag improvement-badge">Diversão</span>
-                    </div>
-                </div>
+                <ul class="update-list">
+                    <li class="update-item">
+                        <div class="update-content">
+                            <span class="update-icon">💎</span>
+                            <div class="update-text">Comando /daily completamente reformulado com interface moderna e animações interativas.</div>
+                        </div>
+                        <div class="update-tags">
+                            <span class="tag tag-mudanca">Mudança</span>
+                        </div>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-content">
+                            <span class="update-icon">🐛</span>
+                            <div class="update-text">Correção de diversos bugs no site, melhorias de responsividade e compatibilidade com dispositivos móveis.</div>
+                        </div>
+                        <div class="update-tags">
+                            <span class="tag tag-bugfix">Bugfix</span>
+                        </div>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-content">
+                            <span class="update-icon">🎫</span>
+                            <div class="update-text">Sistema de tickets completamente reformulado com melhor organização e gerenciamento.</div>
+                        </div>
+                        <div class="update-tags">
+                            <span class="tag tag-mudanca">Mudança</span>
+                        </div>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-content">
+                            <span class="update-icon">🎮</span>
+                            <div class="update-text">Comandos de diversão atualizados com novas funcionalidades e easter eggs escondidos!</div>
+                        </div>
+                        <div class="update-tags">
+                            <span class="tag tag-novidade">Novidade</span>
+                            <span class="tag tag-mudanca">Mudança</span>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Aurora. Todos os direitos reservados.</p>
+            <p>&copy; 2025 Aurora Bot. Todos os direitos reservados.</p>
             <p>Feito com <span class="footer-heart">❤️</span> para a sua comunidade</p>
-            <p> | 🌟 Obrigado por usar o Aurora!</p>
         </div>
     </footer>
 
