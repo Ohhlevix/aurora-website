@@ -87,7 +87,6 @@
             cursor: pointer;
         }
 
-        /* Conteúdo da página */
         main {
             padding: 3rem 0;
         }
@@ -159,11 +158,11 @@
 
         .contact-card {
             background: rgba(255, 255, 255, 0.95);
-            padding: 2rem;
-            border-radius: 15px;
+            padding: 2.5rem;
+            border-radius: 20px;
             box-shadow: 0 8px 25px rgba(0, 188, 212, 0.1);
             transition: all 0.3s ease;
-            border: 1px solid rgba(0, 188, 212, 0.2);
+            border: 2px solid rgba(0, 188, 212, 0.2);
             backdrop-filter: blur(15px);
             position: relative;
             overflow: hidden;
@@ -185,26 +184,155 @@
         }
 
         .contact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 188, 212, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 188, 212, 0.25);
             border-color: #00bcd4;
         }
 
-        .contact-card h4 {
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .contact-card h3 {
             color: #2d3748;
             margin-bottom: 1rem;
-            font-size: 1.3rem;
-            font-weight: 600;
+            font-size: 1.5rem;
+            font-weight: 700;
             background: linear-gradient(45deg, #0288d1, #00bcd4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-card p {
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        .discord-card {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(88, 101, 242, 0.1) 0%, rgba(114, 137, 218, 0.1) 100%);
+            border: 2px solid rgba(88, 101, 242, 0.3);
+        }
+
+        .discord-card:hover {
+            border-color: #5865f2;
+        }
+
+        .discord-card h3 {
+            background: linear-gradient(45deg, #5865f2, #7289da);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .contact-card p {
-            color: #4a5568;
+        .btn-discord {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: linear-gradient(135deg, #5865f2 0%, #7289da 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
+            position: relative;
+            z-index: 2;
+            border: 2px solid transparent;
+        }
+
+        .btn-discord:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(88, 101, 242, 0.5);
+            background: linear-gradient(135deg, #4752c4 0%, #5b6eae 100%);
+        }
+
+        .btn-discord::before {
+            content: '💬';
+            font-size: 1.3rem;
+        }
+
+        .coming-soon-card {
+            opacity: 0.7;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px dashed rgba(0, 188, 212, 0.3);
+        }
+
+        .coming-soon-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ffd93d, #ff9a3d);
+            color: #663d00;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .coming-soon-card {
+            opacity: 0.7;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px dashed rgba(0, 188, 212, 0.3);
+        }
+
+        .coming-soon-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ffd93d, #ff9a3d);
+            color: #663d00;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #0288d1 0%, #00bcd4 50%, #4dd0e1 100%);
+            color: rgba(255, 255, 255, 0.95);
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+
+        footer p {
             margin-bottom: 0.5rem;
-            font-weight: 400;
+            font-size: 1rem;
+        }
+
+        .footer-heart {
+            color: #ffffff;
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 50%, 100% { transform: scale(1); }
+            25%, 75% { transform: scale(1.2); }
         }
 
         @media (max-width: 768px) {
@@ -244,6 +372,19 @@
             .contact-intro {
                 font-size: 1.1rem;
             }
+
+            .discord-card {
+                grid-column: 1;
+            }
+
+            .card-icon {
+                font-size: 2.5rem;
+            }
+
+            .btn-discord {
+                padding: 0.9rem 2rem;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -266,22 +407,27 @@
 <main class="container">
     <section class="section">
         <h2>📞 Entre em Contato</h2>
-        <p class="contact-intro">Estamos trabalhando para estabelecer canais de comunicação oficiais. Em breve você poderá entrar em contato conosco para suporte, sugestões e muito mais!</p>
+        <p class="contact-intro">Precisa de ajuda, tem sugestões ou quer reportar um problema? Estamos aqui para ajudar! Entre em contato através dos nossos canais oficiais.</p>
         
         <div class="contact-grid">
-            <div class="contact-card" style="grid-column: 1 / -1; text-align: center; background: rgba(255, 193, 7, 0.1); border-left: 4px solid #ffc107;">
-                <h4 style="color: #f57c00; margin-bottom: 1.5rem;">⚠️ Aviso Importante</h4>
-                <p style="font-size: 1.1rem; color: #e65100; font-weight: 500;">
-                    <strong>Não há maneiras de contato disponíveis no momento.</strong>
-                </p>
-                <p style="color: #6a5acd; margin-top: 1rem;">
-                    Estamos trabalhando para implementar canais de comunicação em breve. 
-                    Fique atento às atualizações na página de novidades!
-                </p>
+            <div class="contact-card discord-card">
+                <span class="card-icon">💬</span>
+                <h3>Servidor de Suporte</h3>
+                <p>Junte-se ao nosso servidor oficial do Discord para obter suporte em tempo real, reportar bugs e sugerir novas funcionalidades!</p>
+                <a href="https://discord.gg/2jqCXRRnpa" target="_blank" class="btn-discord">
+                    Entrar no Discord
+                </a>
             </div>
         </div>
     </section>
 </main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Aurora Bot. Todos os direitos reservados.</p>
+        <p>Feito com <span class="footer-heart">❤️</span> para a sua comunidade</p>
+    </div>
+</footer>
 
 <script>
 function toggleMobileMenu() {
